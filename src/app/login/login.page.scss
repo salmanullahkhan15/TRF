@@ -30,8 +30,8 @@
 
     ion-item {
         margin-bottom: 2%;
-        --border-radius: 7px !important;
         --background: transparent;
+        --border-color: #fff;
     }
 
 
@@ -65,5 +65,20 @@
 
     ion-button {
         width: 70%;
+    }
+}
+
+.form-login {
+    ion-label {
+        --color: #fff;
+    }
+
+    ion-label.item-has-focus {
+        --color: #fff;
+    }
+
+    ion-input {
+        --placeholder-color: #fff;
+        --color: #fff
     }
 }
