@@ -5,15 +5,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { LoginPage } from './login.page';
-
-// import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
+import { AddTravelReqeustPage } from './add-travel-reqeust.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: LoginPage
+    component: AddTravelReqeustPage
   }
 ];
 
@@ -22,9 +19,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    // FontAwesomeModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [LoginPage]
+  declarations: [AddTravelReqeustPage]
 })
-export class LoginPageModule {}
+export class AddTravelReqeustPageModule {}

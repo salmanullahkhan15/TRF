@@ -41,6 +41,8 @@
 .remember-check {
     margin-left: 5%;
     margin-top: 5%;
+    float: left;
+    width: 100%;
 
     ion-checkbox {
         float: left;
@@ -81,4 +83,27 @@
         --placeholder-color: #fff;
         --color: #fff
     }
+
+
+}
+
+.user-icon {
+    float: left;
+    font-size: 25px;
+    margin-top: 5%;
+    color: #fff;
+    margin-left: 2%;
+}
+
+.pass-icon {
+    float: left;
+    font-size: 25px;
+    margin-top: 11%;
+    color: #fff;
+    margin-left: 2%;
+}
+
+.username-item {
+    float: right;
+    width: 90%;
 }

@@ -9,16 +9,21 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
-  public appPages = [
+  public ƒappPages = [
     {
-      title: 'Home',
+      title: 'Add Travel Request',
+      url: '/add-travel-reqeust',
+      icon: 'home'
+    },
+    {
+      title: 'My Travel Request',
       url: '/home',
       icon: 'home'
     },
     {
-      title: 'List',
-      url: '/list',
-      icon: 'list'
+      title: 'Logout',
+      url: '/home',
+      icon: 'home'
     }
   ];
 

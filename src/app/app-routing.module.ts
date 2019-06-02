@@ -12,13 +12,14 @@ const routes: Routes = [
     loadChildren: './login/login.module#LoginPageModule'
   },
   {
-    path: 'home',
+    path: 'home/:userType',
     loadChildren: './home/home.module#HomePageModule'
   },
   {
     path: 'list',
     loadChildren: './list/list.module#ListPageModule'
-  }
+  },
+  { path: 'add-travel-reqeust', loadChildren: './add-travel-reqeust/add-travel-reqeust.module#AddTravelReqeustPageModule' }
 ];
 
 @NgModule({

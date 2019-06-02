@@ -8,6 +8,11 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+// import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+// import { library } from '@fortawesome/fontawesome-svg-core';
+// import { far } from '@fortawesome/free-regular-svg-icons';
+
+// library.add(far);
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,7 +20,8 @@ import { AppRoutingModule } from './app-routing.module';
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    // FontAwesomeModule
   ],
   providers: [
     StatusBar,
@@ -24,4 +30,4 @@ import { AppRoutingModule } from './app-routing.module';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
