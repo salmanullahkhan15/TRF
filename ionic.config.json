@@ -1,5 +1,7 @@
 {
   "name": "TRF",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

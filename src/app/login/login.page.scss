@@ -1,0 +1,84 @@
+.grad-bg {
+    --background: url(../../assets/img/bg.jpeg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    --background-size: cover;
+}
+
+.app-logo {
+
+    p {
+        color: #fff;
+        font-size: 95px;
+        text-align: center;
+        margin-top: 10%;
+    }
+}
+
+.creden-txt {
+    text-align: center;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.form-login {
+    width: 90%;
+    text-align: center;
+    margin: auto;
+
+    ion-item {
+        margin-bottom: 2%;
+        --background: transparent;
+        --border-color: #fff;
+    }
+
+
+
+}
+
+.remember-check {
+    margin-left: 5%;
+    margin-top: 5%;
+
+    ion-checkbox {
+        float: left;
+    }
+
+    p {
+        width: 80%;
+        float: left;
+        margin: auto;
+        margin-left: 2%;
+        color: #fff;
+        font-size: 15px;
+        font-weight: 500;
+    }
+}
+
+.btn-login {
+    text-align: center;
+    margin-top: 5%;
+    float: left;
+    width: 100%;
+
+    ion-button {
+        width: 70%;
+    }
+}
+
+.form-login {
+    ion-label {
+        --color: #fff;
+    }
+
+    ion-label.item-has-focus {
+        --color: #fff;
+    }
+
+    ion-input {
+        --placeholder-color: #fff;
+        --color: #fff
+    }
+}

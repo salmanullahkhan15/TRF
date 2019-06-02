@@ -1,0 +1,32 @@
+<ion-content class="grad-bg">
+
+  <div class="app-logo">
+    <p>TRF</p>
+  </div>
+
+
+  <p class="creden-txt">LOGIN CREDENTIALS</p>
+
+  <div class="form-login">
+    <ion-item>
+      <ion-label position="floating">Username</ion-label>
+      <ion-input [(ngModel)]="username" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Password</ion-label>
+      <ion-input [(ngModel)]="password" type="password"></ion-input>
+    </ion-item>
+  </div>
+
+  <div class="remember-check">
+    <ion-checkbox [(ngModel)]="checkRemember"></ion-checkbox>
+    <p>Remember me</p>
+  </div>
+
+
+  <div class="btn-login">
+    <ion-button color="light" (click)="doLogin()">Login</ion-button>
+  </div>
+
+</ion-content>
