@@ -3,7 +3,7 @@
     <ion-buttons slot="start" class="burger-icon">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Add Travel Request</ion-title>
+    <ion-title>{{pageTitle}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -101,12 +101,11 @@
     <ion-item>
       <ion-label>Departure From</ion-label>
       <ion-select placeholder="Select">
-        <ion-select-option value="f">Value 1</ion-select-option>
-        <ion-select-option value="f">Value 2</ion-select-option>
-        <ion-select-option value="f">Value 3</ion-select-option>
-        <ion-select-option value="f">Value 4</ion-select-option>
-        <ion-select-option value="f">Value 5</ion-select-option>
-        <ion-select-option value="f">Value 6</ion-select-option>
+        <ion-select-option value="f">Karachi</ion-select-option>
+        <ion-select-option value="f">Lahore</ion-select-option>
+        <ion-select-option value="f">Islamabad</ion-select-option>
+        <ion-select-option value="f">Faisalabad</ion-select-option>
+        <ion-select-option value="f">Larkana</ion-select-option>
       </ion-select>
     </ion-item>
 
@@ -150,14 +149,7 @@
 
     <ion-item>
       <ion-label>Preferable Date From</ion-label>
-      <ion-select placeholder="Select">
-        <ion-select-option value="f">Value 1</ion-select-option>
-        <ion-select-option value="f">Value 2</ion-select-option>
-        <ion-select-option value="f">Value 3</ion-select-option>
-        <ion-select-option value="f">Value 4</ion-select-option>
-        <ion-select-option value="f">Value 5</ion-select-option>
-        <ion-select-option value="f">Value 6</ion-select-option>
-      </ion-select>
+      <ion-datetime displayFormat="MM/DD/YYYY"></ion-datetime>
     </ion-item>
 
     <ion-item>
@@ -201,14 +193,7 @@
 
     <ion-item>
       <ion-label>Preferable Time From</ion-label>
-      <ion-select placeholder="Select">
-        <ion-select-option value="f">Value 1</ion-select-option>
-        <ion-select-option value="f">Value 2</ion-select-option>
-        <ion-select-option value="f">Value 3</ion-select-option>
-        <ion-select-option value="f">Value 4</ion-select-option>
-        <ion-select-option value="f">Value 5</ion-select-option>
-        <ion-select-option value="f">Value 6</ion-select-option>
-      </ion-select>
+      <ion-datetime displayFormat="hh:mm"></ion-datetime>
     </ion-item>
 
     <ion-item>

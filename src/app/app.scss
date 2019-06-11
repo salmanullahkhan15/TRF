@@ -6,7 +6,7 @@
 // and used throughout the application.
 
 
-.user-img{
+.user-img {
     float: left;
     width: 35%;
     margin-top: 3%;
@@ -14,20 +14,18 @@
     margin-left: 2%;
 }
 
-.user-name{
-    width: 60%;
+.user-name {
+    width: 50%;
     float: right;
     margin-top: 12%;
 }
 
-.user-name{
-    width: 60%;
-    float: right;
-    margin-top: 12%;
-}
 
-.user-designation{
+.user-designation {
     float: right;
     width: 50%;
+}
 
+ion-header ion-toolbar ion-title {
+    padding-left: 0 !important;
 }

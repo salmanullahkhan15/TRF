@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GeneralService } from '../general.service';
 
 @Component({
   selector: 'app-approve-reject',
@@ -10,35 +11,50 @@ export class ApproveRejectPage implements OnInit {
   requests = [
     {
       id: 1,
+      selected: false
     },
     {
       id: 1,
+      selected: false
     },
     {
       id: 1,
+      selected: false
     },
     {
       id: 1,
+      selected: false
     },
     {
       id: 1,
+      selected: false
     },
     {
       id: 1,
+      selected: false
     },
     {
       id: 1,
+      selected: false
     },
     {
       id: 1,
+      selected: false
     },
   ]
-  constructor() { }
+  userRole: any;
+  constructor(public generalService: GeneralService) { }
 
   ngOnInit() {
+    this.userRole = this.generalService.userTypeGlobal
   }
   segmentChanged(e) {
     console.log(this.segment)
     // this.segment = e
+  }
+
+  selectCard(i) {
+
+    this.requests[i].selected = this.requests[i].selected == true ? false : true;
   }
 }

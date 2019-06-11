@@ -27,17 +27,31 @@ export class LoginPage implements OnInit {
     if (this.password == "1234") {
 
       var userType = 0;
-      if (this.username == 'employe' && this.password == "1234") {
+      if (this.username == 'employee' && this.password == "1234") {
         userType = 1;
+        this.generalService.userTypeGlobal = userType;
+        this.events.publish('sidemenuEvent', { key: 'value' });
+        this.router.navigateByUrl('/home/' + userType);
       } else if (this.username == 'cfo' && this.password == "1234") {
         userType = 2;
+        this.generalService.userTypeGlobal = userType;
+        this.events.publish('sidemenuEvent', { key: 'value' });
+        this.router.navigateByUrl('/home/' + userType);
       }
       else if (this.username == 'ceo' && this.password == "1234") {
         userType = 3;
+        this.generalService.userTypeGlobal = userType;
+        this.events.publish('sidemenuEvent', { key: 'value' });
+        this.router.navigateByUrl('/home/' + userType);
       }
-      this.generalService.userTypeGlobal = userType;
-      this.events.publish('sidemenuEvent', {key: 'value'});
-      this.router.navigateByUrl('/home/' + userType);
+      else if (this.username == 'head' && this.password == "1234") {
+        userType = 4;
+        this.generalService.userTypeGlobal = userType;
+        this.events.publish('sidemenuEvent', { key: 'value' });
+        this.router.navigateByUrl('/home/' + userType);
+      } else {
+        this.presentToast();
+      }
 
     } else {
       this.presentToast();
