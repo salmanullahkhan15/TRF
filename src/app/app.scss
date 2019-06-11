@@ -4,3 +4,30 @@
 // styles are for the entire app and not just one component. Additionally, this 
 // file can hold Sass mixins, functions, and placeholder classes to be imported 
 // and used throughout the application.
+
+
+.user-img{
+    float: left;
+    width: 35%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    margin-left: 2%;
+}
+
+.user-name{
+    width: 60%;
+    float: right;
+    margin-top: 12%;
+}
+
+.user-name{
+    width: 60%;
+    float: right;
+    margin-top: 12%;
+}
+
+.user-designation{
+    float: right;
+    width: 50%;
+
+}

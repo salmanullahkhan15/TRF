@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" class="burger-icon">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>My Travel Request</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <!-- Default Segment -->
+  <ion-segment (ionChange)="segmentChanged($event)" [(ngModel)]="segment">
+    <ion-segment-button value="pending">
+      <ion-label>Pending</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="approved">
+      <ion-label>Approved</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+
+  <div class="contents-segment">
+    <!-- pending -->
+    <div class="pending-seg" *ngIf="segment == 'pending'">
+
+      <div class="seg-list" *ngFor="let item of requests">
+        <h6>Hammad Khatri</h6>
+        <p class="loc">Karachi to Multan</p>
+        <p class="from">From: 10/04/2019</p>
+        <p class="to">To: 24/04/2019</p>
+        <p class="req">Requested date: 10/04/2019</p>
+        <p class="status pending-st">Status: Pending</p>
+      </div>
+
+    </div>
+
+    <!-- approved -->
+    <div *ngIf="segment == 'approved'">
+        <div class="seg-list" *ngFor="let item of requests">
+            <h6>Hammad Khatri</h6>
+            <p class="loc">Karachi to Multan</p>
+            <p class="from">From: 10/04/2019</p>
+            <p class="to">To: 24/04/2019</p>
+            <p class="req">Requested date: 10/04/2019</p>
+            <p class="status approved-st">Status: Approved</p>
+          </div>    </div>
+  </div>
+
+
+</ion-content>

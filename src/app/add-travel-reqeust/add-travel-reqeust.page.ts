@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-travel-reqeust.page.scss'],
 })
 export class AddTravelReqeustPage implements OnInit {
+  staffCode: string;
 
   constructor() { }
 
   ngOnInit() {
+    this.staffCode = "0001"
   }
 
 }

@@ -1,0 +1,58 @@
+ion-header ion-toolbar {
+    --background: #3e3866 !important;
+    color: #fff;
+    text-align: center;
+}
+
+.burger-icon {
+    color: #fff;
+}
+
+
+.seg-list {
+    padding: 3%;
+    float: left;
+    border: 1px solid;
+    margin-top: 11px;
+    border-radius: 20px;
+    margin: 12px;
+    border-color: #3e3866;
+}
+
+.seg-list p {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.seg-list h6 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.seg-list .from {
+    width: 50%;
+    float: left;
+}
+
+.seg-list .to {
+    width: 50%;
+    float: left;
+}
+
+.seg-list .req {
+    width: 50%;
+    float: left;
+}
+
+.seg-list .status {
+    width: 50%;
+    float: left;
+}
+
+.seg-list .pending-st {
+    color: red;
+}
+
+.seg-list .approved-st {
+    color: green;
+}

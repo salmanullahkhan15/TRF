@@ -1,18 +1,349 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start" class="burger-icon">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
     <ion-title>Add Travel Request</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <ion-list-header>
-      <ion-label>User Information</ion-label>
+    <ion-list-header class="list-header-custom">
+      <ion-label>USER INFORMATION</ion-label>
     </ion-list-header>
-    <ion-item>Item 1</ion-item>
-    <ion-item>Item 2</ion-item>
-    <ion-item>Item 3</ion-item>
-    <ion-item>Item 4</ion-item>
-    <ion-item>Item 5</ion-item>
+    <ion-item>
+      <ion-label position="floating">Staff Code</ion-label>
+      <ion-input disabled="true" [(ngModel)]="staffCode"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Designation</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Department</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+
+
+
+    <ion-item>
+      <ion-label position="floating">Agency</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label position="floating">Location</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+
+
+
+    <ion-list-header class="list-header-custom">
+      <ion-label>BASIC INFORMATION</ion-label>
+    </ion-list-header>
+
+    <ion-item>
+      <ion-label>Nature Of Travel</ion-label>
+      <ion-select placeholder="Select">
+        <ion-select-option value="f">Value 1</ion-select-option>
+        <ion-select-option value="f">Value 2</ion-select-option>
+        <ion-select-option value="f">Value 3</ion-select-option>
+        <ion-select-option value="f">Value 4</ion-select-option>
+        <ion-select-option value="f">Value 5</ion-select-option>
+        <ion-select-option value="f">Value 6</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Purpose Of Travel</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Reason</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Chargeable to Clients</ion-label>
+      <ion-select placeholder="Select">
+        <ion-select-option value="f">YES</ion-select-option>
+        <ion-select-option value="m">NO</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Number of Clients/Regions</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label>PE</ion-label>
+      <ion-select placeholder="Select">
+        <ion-select-option value="f">Value 1</ion-select-option>
+        <ion-select-option value="f">Value 2</ion-select-option>
+        <ion-select-option value="f">Value 3</ion-select-option>
+        <ion-select-option value="f">Value 4</ion-select-option>
+        <ion-select-option value="f">Value 5</ion-select-option>
+        <ion-select-option value="f">Value 6</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-list-header class="list-header-custom">
+      <ion-label>TRAVEL INFORMATION</ion-label>
+    </ion-list-header>
+
+    <ion-item>
+      <ion-label>Departure From</ion-label>
+      <ion-select placeholder="Select">
+        <ion-select-option value="f">Value 1</ion-select-option>
+        <ion-select-option value="f">Value 2</ion-select-option>
+        <ion-select-option value="f">Value 3</ion-select-option>
+        <ion-select-option value="f">Value 4</ion-select-option>
+        <ion-select-option value="f">Value 5</ion-select-option>
+        <ion-select-option value="f">Value 6</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>To</ion-label>
+      <ion-select placeholder="Select">
+        <ion-select-option value="f">Value 1</ion-select-option>
+        <ion-select-option value="f">Value 2</ion-select-option>
+        <ion-select-option value="f">Value 3</ion-select-option>
+        <ion-select-option value="f">Value 4</ion-select-option>
+        <ion-select-option value="f">Value 5</ion-select-option>
+        <ion-select-option value="f">Value 6</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label>To</ion-label>
+      <ion-select placeholder="Select">
+        <ion-select-option value="f">Value 1</ion-select-option>
+        <ion-select-option value="f">Value 2</ion-select-option>
+        <ion-select-option value="f">Value 3</ion-select-option>
+        <ion-select-option value="f">Value 4</ion-select-option>
+        <ion-select-option value="f">Value 5</ion-select-option>
+        <ion-select-option value="f">Value 6</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label>To</ion-label>
+      <ion-select placeholder="Select">
+        <ion-select-option value="f">Value 1</ion-select-option>
+        <ion-select-option value="f">Value 2</ion-select-option>
+        <ion-select-option value="f">Value 3</ion-select-option>
+        <ion-select-option value="f">Value 4</ion-select-option>
+        <ion-select-option value="f">Value 5</ion-select-option>
+        <ion-select-option value="f">Value 6</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Preferable Date From</ion-label>
+      <ion-select placeholder="Select">
+        <ion-select-option value="f">Value 1</ion-select-option>
+        <ion-select-option value="f">Value 2</ion-select-option>
+        <ion-select-option value="f">Value 3</ion-select-option>
+        <ion-select-option value="f">Value 4</ion-select-option>
+        <ion-select-option value="f">Value 5</ion-select-option>
+        <ion-select-option value="f">Value 6</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>To</ion-label>
+      <ion-select placeholder="Select">
+        <ion-select-option value="f">Value 1</ion-select-option>
+        <ion-select-option value="f">Value 2</ion-select-option>
+        <ion-select-option value="f">Value 3</ion-select-option>
+        <ion-select-option value="f">Value 4</ion-select-option>
+        <ion-select-option value="f">Value 5</ion-select-option>
+        <ion-select-option value="f">Value 6</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label>To</ion-label>
+      <ion-select placeholder="Select">
+        <ion-select-option value="f">Value 1</ion-select-option>
+        <ion-select-option value="f">Value 2</ion-select-option>
+        <ion-select-option value="f">Value 3</ion-select-option>
+        <ion-select-option value="f">Value 4</ion-select-option>
+        <ion-select-option value="f">Value 5</ion-select-option>
+        <ion-select-option value="f">Value 6</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label>To</ion-label>
+      <ion-select placeholder="Select">
+        <ion-select-option value="f">Value 1</ion-select-option>
+        <ion-select-option value="f">Value 2</ion-select-option>
+        <ion-select-option value="f">Value 3</ion-select-option>
+        <ion-select-option value="f">Value 4</ion-select-option>
+        <ion-select-option value="f">Value 5</ion-select-option>
+        <ion-select-option value="f">Value 6</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label>Preferable Time From</ion-label>
+      <ion-select placeholder="Select">
+        <ion-select-option value="f">Value 1</ion-select-option>
+        <ion-select-option value="f">Value 2</ion-select-option>
+        <ion-select-option value="f">Value 3</ion-select-option>
+        <ion-select-option value="f">Value 4</ion-select-option>
+        <ion-select-option value="f">Value 5</ion-select-option>
+        <ion-select-option value="f">Value 6</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>To</ion-label>
+      <ion-select placeholder="Select">
+        <ion-select-option value="f">Value 1</ion-select-option>
+        <ion-select-option value="f">Value 2</ion-select-option>
+        <ion-select-option value="f">Value 3</ion-select-option>
+        <ion-select-option value="f">Value 4</ion-select-option>
+        <ion-select-option value="f">Value 5</ion-select-option>
+        <ion-select-option value="f">Value 6</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label>To</ion-label>
+      <ion-select placeholder="Select">
+        <ion-select-option value="f">Value 1</ion-select-option>
+        <ion-select-option value="f">Value 2</ion-select-option>
+        <ion-select-option value="f">Value 3</ion-select-option>
+        <ion-select-option value="f">Value 4</ion-select-option>
+        <ion-select-option value="f">Value 5</ion-select-option>
+        <ion-select-option value="f">Value 6</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label>To</ion-label>
+      <ion-select placeholder="Select">
+        <ion-select-option value="f">Value 1</ion-select-option>
+        <ion-select-option value="f">Value 2</ion-select-option>
+        <ion-select-option value="f">Value 3</ion-select-option>
+        <ion-select-option value="f">Value 4</ion-select-option>
+        <ion-select-option value="f">Value 5</ion-select-option>
+        <ion-select-option value="f">Value 6</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+
+    <ion-list-header class="list-header-custom">
+      <ion-label>AIRLINE INFORMATION</ion-label>
+    </ion-list-header>
+
+    <ion-item>
+      <ion-label>Preferable Flight</ion-label>
+      <ion-select placeholder="Select">
+        <ion-select-option value="f">Value 1</ion-select-option>
+        <ion-select-option value="f">Value 2</ion-select-option>
+        <ion-select-option value="f">Value 3</ion-select-option>
+        <ion-select-option value="f">Value 4</ion-select-option>
+        <ion-select-option value="f">Value 5</ion-select-option>
+        <ion-select-option value="f">Value 6</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Duration Of Visit (in Days) </ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Expected Date Of Return</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+
+
+
+    <ion-list-header class="list-header-custom">
+      <ion-label>OTHER INFORMATION</ion-label>
+    </ion-list-header>
+
+    <ion-item>
+      <ion-label>Mode Of Travel</ion-label>
+      <ion-select placeholder="Select">
+        <ion-select-option value="f">Value 1</ion-select-option>
+        <ion-select-option value="f">Value 2</ion-select-option>
+        <ion-select-option value="f">Value 3</ion-select-option>
+        <ion-select-option value="f">Value 4</ion-select-option>
+        <ion-select-option value="f">Value 5</ion-select-option>
+        <ion-select-option value="f">Value 6</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Hotel Booking Required</ion-label>
+      <ion-select placeholder="Select">
+        <ion-select-option value="f">YES</ion-select-option>
+        <ion-select-option value="m">NO</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label>Visa Required</ion-label>
+      <ion-select placeholder="Select">
+        <ion-select-option value="f">YES</ion-select-option>
+        <ion-select-option value="m">NO</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label>Rent a Car Required</ion-label>
+      <ion-select placeholder="Select">
+        <ion-select-option value="f">YES</ion-select-option>
+        <ion-select-option value="m">NO</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Other Arrangements</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+
+    <ion-list-header class="list-header-custom">
+      <ion-label>TRAVELING ADVANCE (FOR FINANCE DEPARTMENT)</ion-label>
+    </ion-list-header>
+
+    <ion-item>
+      <ion-label>Advance Required</ion-label>
+      <ion-select placeholder="Select">
+        <ion-select-option value="f">YES</ion-select-option>
+        <ion-select-option value="m">NO</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Advance Amount (PKR)</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+
   </ion-list>
+
+  <!-- <ion-button expand="full" fill="outline">Submit</ion-button> -->
+  <ion-button expand="block" fill="outline">Submit</ion-button>
 </ion-content>

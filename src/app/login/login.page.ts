@@ -1,6 +1,7 @@
+import { GeneralService } from './../general.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NavController, ToastController } from '@ionic/angular';
+import { NavController, ToastController, Events } from '@ionic/angular';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -12,7 +13,7 @@ export class LoginPage implements OnInit {
   username: any;
   password: any;
   checkRemember: any = false;
-  constructor(private router: Router, private navCtrl: NavController, public toastController: ToastController) { }
+  constructor(private router: Router, private navCtrl: NavController, public toastController: ToastController, public generalService: GeneralService, public events: Events) { }
 
   ngOnInit() {
 
@@ -34,10 +35,11 @@ export class LoginPage implements OnInit {
       else if (this.username == 'ceo' && this.password == "1234") {
         userType = 3;
       }
-
+      this.generalService.userTypeGlobal = userType;
+      this.events.publish('sidemenuEvent', {key: 'value'});
       this.router.navigateByUrl('/home/' + userType);
 
-    }else{
+    } else {
       this.presentToast();
     }
 

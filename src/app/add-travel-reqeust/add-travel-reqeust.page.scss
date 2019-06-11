@@ -1,0 +1,27 @@
+ion-header ion-toolbar {
+    --background: #3e3866 !important;
+    color: #fff;
+    text-align: center;
+}
+
+.list-header-custom {
+    background: rgba(62, 56, 102, 0.85);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+}
+ion-button{
+    --background: #3e3866 !important;
+    color: #fff;
+    --border-color: #3e3866 !important;
+    margin-bottom: 10%;
+    width: 80%;
+    margin: auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.burger-icon{
+    color: #fff;
+}
