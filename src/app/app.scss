@@ -15,19 +15,17 @@
 }
 
 .user-name {
-    width: 60%;
+    width: 50%;
     float: right;
     margin-top: 12%;
 }
 
-.user-name {
-    width: 60%;
-    float: right;
-    margin-top: 12%;
-}
 
 .user-designation {
     float: right;
     width: 50%;
+}
 
+ion-header ion-toolbar ion-title {
+    padding-left: 0 !important;
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-travel-request',
@@ -33,13 +34,18 @@ export class MyTravelRequestPage implements OnInit {
       id: 1,
     },
   ]
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
   segmentChanged(e) {
     console.log(this.segment)
     // this.segment = e
+  }
+
+  gotoDetail() {
+    var isReadOnly = true;
+    this.router.navigateByUrl('/add-travel-reqeust/' + isReadOnly);
   }
 
 }
