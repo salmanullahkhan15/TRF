@@ -14,317 +14,351 @@
     </ion-list-header>
     <ion-item>
       <ion-label position="floating">Staff Code</ion-label>
-      <ion-input disabled="true" [(ngModel)]="staffCode"></ion-input>
+      <ion-input disabled="true" [(ngModel)]="userInfo.staffCode"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Designation</ion-label>
-      <ion-input></ion-input>
+      <ion-input disabled="true " [(ngModel)]="userInfo.designation"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Department</ion-label>
-      <ion-input></ion-input>
+      <ion-input disabled="true " [(ngModel)]="userInfo.department"></ion-input>
     </ion-item>
 
 
 
     <ion-item>
       <ion-label position="floating">Agency</ion-label>
-      <ion-input></ion-input>
+      <ion-input disabled="true" [(ngModel)]="userInfo.agency"></ion-input>
     </ion-item>
 
 
     <ion-item>
       <ion-label position="floating">Location</ion-label>
-      <ion-input></ion-input>
+      <ion-input disabled="true" [(ngModel)]="userInfo.location"></ion-input>
     </ion-item>
 
 
-
+    <!-- ---------------------||||||||||||||||||||||||||||||||---------------------- -->
     <ion-list-header class="list-header-custom">
       <ion-label>BASIC INFORMATION</ion-label>
     </ion-list-header>
 
     <ion-item>
       <ion-label>Nature Of Travel</ion-label>
-      <ion-select placeholder="Select">
-        <ion-select-option value="f">Value 1</ion-select-option>
-        <ion-select-option value="f">Value 2</ion-select-option>
-        <ion-select-option value="f">Value 3</ion-select-option>
-        <ion-select-option value="f">Value 4</ion-select-option>
-        <ion-select-option value="f">Value 5</ion-select-option>
-        <ion-select-option value="f">Value 6</ion-select-option>
+      <ion-select placeholder="Select" [(ngModel)]="basicInfo.natureOfTravel" [disabled]="isReadOnly">
+        <ion-select-option value="domestic">Domestic</ion-select-option>
+        <ion-select-option value="international">International</ion-select-option>
       </ion-select>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Purpose Of Travel</ion-label>
-      <ion-input></ion-input>
+      <ion-input [(ngModel)]="basicInfo.purposeOfTravel" [disabled]="isReadOnly"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label position="floating">Reason</ion-label>
-      <ion-input></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label>Chargeable to Clients</ion-label>
-      <ion-select placeholder="Select">
-        <ion-select-option value="f">YES</ion-select-option>
-        <ion-select-option value="m">NO</ion-select-option>
+      <ion-label >Reason</ion-label>
+      <!-- <ion-input [(ngModel)]="basicInfo.reason" [disabled]="isReadOnly"></ion-input> -->
+      <ion-select placeholder="Select" [(ngModel)]="basicInfo.reason" [disabled]="isReadOnly">
+        <ion-select-option value="1">Value 1</ion-select-option>
+        <ion-select-option value="2">Value 2</ion-select-option>
+        <ion-select-option value="3">Value 3</ion-select-option>
+        <ion-select-option value="4">Value 4</ion-select-option>
+        <ion-select-option value="5">Value 5</ion-select-option>
+        <ion-select-option value="6">Value 6</ion-select-option>
       </ion-select>
     </ion-item>
 
     <ion-item>
-      <ion-label position="floating">Number of Clients/Regions</ion-label>
-      <ion-input></ion-input>
+      <ion-label>Chargeable to Clients</ion-label>
+      <ion-select placeholder="Select" [(ngModel)]="basicInfo.chargableToClients"
+        (ionChange)="chargableToClientsChange(basicInfo.chargableToClients)" [disabled]="isReadOnly">
+        <ion-select-option value="yes">YES</ion-select-option>
+        <ion-select-option value="no">NO</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Name of Clients/Regions</ion-label>
+      <ion-input [(ngModel)]="basicInfo.nameOfClients" [disabled]="basicInfo.chargableToClients == 'no' || isReadOnly">
+      </ion-input>
+      <ion-select placeholder="Select" [(ngModel)]="basicInfo.nameOfClients"
+        [disabled]="basicInfo.chargableToClients == 'no' || isReadOnly">
+        <ion-select-option value="1">Salman</ion-select-option>
+        <ion-select-option value="2">Kashan</ion-select-option>
+        <ion-select-option value="3">Waleed</ion-select-option>
+        <ion-select-option value="4">Faizan</ion-select-option>
+        <ion-select-option value="5">Junaid</ion-select-option>
+        <ion-select-option value="6">Noman</ion-select-option>
+      </ion-select>
     </ion-item>
 
 
     <ion-item>
       <ion-label>PE</ion-label>
-      <ion-select placeholder="Select">
-        <ion-select-option value="f">Value 1</ion-select-option>
-        <ion-select-option value="f">Value 2</ion-select-option>
-        <ion-select-option value="f">Value 3</ion-select-option>
-        <ion-select-option value="f">Value 4</ion-select-option>
-        <ion-select-option value="f">Value 5</ion-select-option>
-        <ion-select-option value="f">Value 6</ion-select-option>
+      <ion-select placeholder="Select" [(ngModel)]="basicInfo.pe"
+        [disabled]="basicInfo.chargableToClients == 'no' || isReadOnly">
+        <ion-select-option value="1">0001</ion-select-option>
+        <ion-select-option value="2">1234</ion-select-option>
+        <ion-select-option value="3">4342</ion-select-option>
+        <ion-select-option value="4">5432</ion-select-option>
+        <ion-select-option value="5">7790</ion-select-option>
+        <ion-select-option value="6">4323</ion-select-option>
       </ion-select>
     </ion-item>
 
+    <!-- ---------------------||||||||||||||||||||||||||||||||---------------------- -->
     <ion-list-header class="list-header-custom">
       <ion-label>TRAVEL INFORMATION</ion-label>
     </ion-list-header>
 
     <ion-item>
       <ion-label>Departure From</ion-label>
-      <ion-select placeholder="Select">
-        <ion-select-option value="f">Karachi</ion-select-option>
-        <ion-select-option value="f">Lahore</ion-select-option>
-        <ion-select-option value="f">Islamabad</ion-select-option>
-        <ion-select-option value="f">Faisalabad</ion-select-option>
-        <ion-select-option value="f">Larkana</ion-select-option>
+      <ion-select placeholder="Select" [(ngModel)]="travelInfo.departureFrom" [disabled]="isReadOnly">
+        <ion-select-option value="khi">Karachi</ion-select-option>
+        <ion-select-option value="lhr">Lahore</ion-select-option>
+        <ion-select-option value="isl">Islamabad</ion-select-option>
+        <ion-select-option value="fsl">Faisalabad</ion-select-option>
+        <ion-select-option value="lar">Larkana</ion-select-option>
       </ion-select>
     </ion-item>
 
     <ion-item>
       <ion-label>To</ion-label>
-      <ion-select placeholder="Select">
-        <ion-select-option value="f">Value 1</ion-select-option>
-        <ion-select-option value="f">Value 2</ion-select-option>
-        <ion-select-option value="f">Value 3</ion-select-option>
-        <ion-select-option value="f">Value 4</ion-select-option>
-        <ion-select-option value="f">Value 5</ion-select-option>
-        <ion-select-option value="f">Value 6</ion-select-option>
-      </ion-select>
-    </ion-item>
-
-
-    <ion-item>
-      <ion-label>To</ion-label>
-      <ion-select placeholder="Select">
-        <ion-select-option value="f">Value 1</ion-select-option>
-        <ion-select-option value="f">Value 2</ion-select-option>
-        <ion-select-option value="f">Value 3</ion-select-option>
-        <ion-select-option value="f">Value 4</ion-select-option>
-        <ion-select-option value="f">Value 5</ion-select-option>
-        <ion-select-option value="f">Value 6</ion-select-option>
+      <ion-select placeholder="" [(ngModel)]="travelInfo.departureFrom" disabled="true">
+        <ion-select-option value="khi">Karachi</ion-select-option>
+        <ion-select-option value="lhr">Lahore</ion-select-option>
+        <ion-select-option value="isl">Islamabad</ion-select-option>
+        <ion-select-option value="fsl">Faisalabad</ion-select-option>
+        <ion-select-option value="lar">Larkana</ion-select-option>
       </ion-select>
     </ion-item>
 
 
     <ion-item>
       <ion-label>To</ion-label>
-      <ion-select placeholder="Select">
-        <ion-select-option value="f">Value 1</ion-select-option>
-        <ion-select-option value="f">Value 2</ion-select-option>
-        <ion-select-option value="f">Value 3</ion-select-option>
-        <ion-select-option value="f">Value 4</ion-select-option>
-        <ion-select-option value="f">Value 5</ion-select-option>
-        <ion-select-option value="f">Value 6</ion-select-option>
+      <ion-select placeholder="Select" [(ngModel)]="travelInfo.departureToTwo" [disabled]="isReadOnly">
+        <ion-select-option value="khi">Karachi</ion-select-option>
+        <ion-select-option value="lhr">Lahore</ion-select-option>
+        <ion-select-option value="isl">Islamabad</ion-select-option>
+        <ion-select-option value="fsl">Faisalabad</ion-select-option>
+        <ion-select-option value="lar">Larkana</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label>To</ion-label>
+      <ion-select placeholder="" [(ngModel)]="travelInfo.departureToTwo" disabled="true">
+        <ion-select-option value="khi">Karachi</ion-select-option>
+        <ion-select-option value="lhr">Lahore</ion-select-option>
+        <ion-select-option value="isl">Islamabad</ion-select-option>
+        <ion-select-option value="fsl">Faisalabad</ion-select-option>
+        <ion-select-option value="lar">Larkana</ion-select-option>
       </ion-select>
     </ion-item>
 
     <ion-item>
       <ion-label>Preferable Date From</ion-label>
-      <ion-datetime displayFormat="MM/DD/YYYY"></ion-datetime>
+      <ion-datetime [(ngModel)]="travelInfo.preferableDateFrom" displayFormat="MM/DD/YYYY" placeholder="Select"
+        [disabled]="isReadOnly" (ionChange)="preferableDateFromChange()">
+      </ion-datetime>
     </ion-item>
 
     <ion-item>
       <ion-label>To</ion-label>
-      <ion-select placeholder="Select">
-        <ion-select-option value="f">Value 1</ion-select-option>
-        <ion-select-option value="f">Value 2</ion-select-option>
-        <ion-select-option value="f">Value 3</ion-select-option>
-        <ion-select-option value="f">Value 4</ion-select-option>
-        <ion-select-option value="f">Value 5</ion-select-option>
-        <ion-select-option value="f">Value 6</ion-select-option>
-      </ion-select>
-    </ion-item>
-
-
-    <ion-item>
-      <ion-label>To</ion-label>
-      <ion-select placeholder="Select">
-        <ion-select-option value="f">Value 1</ion-select-option>
-        <ion-select-option value="f">Value 2</ion-select-option>
-        <ion-select-option value="f">Value 3</ion-select-option>
-        <ion-select-option value="f">Value 4</ion-select-option>
-        <ion-select-option value="f">Value 5</ion-select-option>
-        <ion-select-option value="f">Value 6</ion-select-option>
-      </ion-select>
+      <!-- <ion-select placeholder="Select" [(ngModel)]="travelInfo.preferableDateToOne" [disabled]="isReadOnly">
+        <ion-select-option value="1">Value 1</ion-select-option>
+        <ion-select-option value="2">Value 2</ion-select-option>
+        <ion-select-option value="3">Value 3</ion-select-option>
+        <ion-select-option value="4">Value 4</ion-select-option>
+        <ion-select-option value="5">Value 5</ion-select-option>
+        <ion-select-option value="6">Value 6</ion-select-option>
+      </ion-select> -->
+      <ion-datetime [(ngModel)]="travelInfo.preferableDateFrom" displayFormat="MM/DD/YYYY" placeholder=""
+        disabled="isReadOnly">
+      </ion-datetime>
     </ion-item>
 
 
     <ion-item>
       <ion-label>To</ion-label>
-      <ion-select placeholder="Select">
-        <ion-select-option value="f">Value 1</ion-select-option>
-        <ion-select-option value="f">Value 2</ion-select-option>
-        <ion-select-option value="f">Value 3</ion-select-option>
-        <ion-select-option value="f">Value 4</ion-select-option>
-        <ion-select-option value="f">Value 5</ion-select-option>
-        <ion-select-option value="f">Value 6</ion-select-option>
-      </ion-select>
+      <!-- <ion-select placeholder="Select" [(ngModel)]="travelInfo.preferableDateToTwo" [disabled]="isReadOnly">
+        <ion-select-option value="1">Value 1</ion-select-option>
+        <ion-select-option value="2">Value 2</ion-select-option>
+        <ion-select-option value="3">Value 3</ion-select-option>
+        <ion-select-option value="4">Value 4</ion-select-option>
+        <ion-select-option value="5">Value 5</ion-select-option>
+        <ion-select-option value="6">Value 6</ion-select-option>
+      </ion-select> -->
+      <ion-datetime [(ngModel)]="travelInfo.preferableDateToTwo" displayFormat="MM/DD/YYYY" placeholder="Select"
+        [disabled]="isReadOnly" (ionChange)="preferableDateToTwoChange()">
+      </ion-datetime>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label>To</ion-label>
+      <!-- <ion-select placeholder="Select" [(ngModel)]="travelInfo.preferableDateToThree" [disabled]="isReadOnly">
+        <ion-select-option value="1">Value 1</ion-select-option>
+        <ion-select-option value="2">Value 2</ion-select-option>
+        <ion-select-option value="3">Value 3</ion-select-option>
+        <ion-select-option value="4">Value 4</ion-select-option>
+        <ion-select-option value="5">Value 5</ion-select-option>
+        <ion-select-option value="6">Value 6</ion-select-option>
+      </ion-select> -->
+      <ion-datetime [(ngModel)]="travelInfo.preferableDateToTwo" displayFormat="MM/DD/YYYY" placeholder=""
+        disabled="true">
+      </ion-datetime>
     </ion-item>
 
 
     <ion-item>
       <ion-label>Preferable Time From</ion-label>
-      <ion-datetime displayFormat="hh:mm"></ion-datetime>
+      <ion-datetime displayFormat="hh:mm" placeholder="Select" [(ngModel)]="travelInfo.preferableTimeFrom"
+        [disabled]="isReadOnly">
+      </ion-datetime>
     </ion-item>
 
     <ion-item>
       <ion-label>To</ion-label>
-      <ion-select placeholder="Select">
-        <ion-select-option value="f">Value 1</ion-select-option>
-        <ion-select-option value="f">Value 2</ion-select-option>
-        <ion-select-option value="f">Value 3</ion-select-option>
-        <ion-select-option value="f">Value 4</ion-select-option>
-        <ion-select-option value="f">Value 5</ion-select-option>
-        <ion-select-option value="f">Value 6</ion-select-option>
-      </ion-select>
-    </ion-item>
-
-
-    <ion-item>
-      <ion-label>To</ion-label>
-      <ion-select placeholder="Select">
-        <ion-select-option value="f">Value 1</ion-select-option>
-        <ion-select-option value="f">Value 2</ion-select-option>
-        <ion-select-option value="f">Value 3</ion-select-option>
-        <ion-select-option value="f">Value 4</ion-select-option>
-        <ion-select-option value="f">Value 5</ion-select-option>
-        <ion-select-option value="f">Value 6</ion-select-option>
-      </ion-select>
+      <!-- <ion-select placeholder=" Select" [(ngModel)]="travelInfo.preferableTimeToOne" [disabled]="isReadOnly">
+        <ion-select-option value="1">Value 1</ion-select-option>
+        <ion-select-option value="2">Value 2</ion-select-option>
+        <ion-select-option value="3">Value 3</ion-select-option>
+        <ion-select-option value="4">Value 4</ion-select-option>
+        <ion-select-option value="5">Value 5</ion-select-option>
+        <ion-select-option value="6">Value 6</ion-select-option>
+      </ion-select> -->
+      <ion-datetime displayFormat="hh:mm" placeholder="Select" [(ngModel)]="travelInfo.preferableTimeFrom"
+        disabled="true">
+      </ion-datetime>
     </ion-item>
 
 
     <ion-item>
       <ion-label>To</ion-label>
-      <ion-select placeholder="Select">
-        <ion-select-option value="f">Value 1</ion-select-option>
-        <ion-select-option value="f">Value 2</ion-select-option>
-        <ion-select-option value="f">Value 3</ion-select-option>
-        <ion-select-option value="f">Value 4</ion-select-option>
-        <ion-select-option value="f">Value 5</ion-select-option>
-        <ion-select-option value="f">Value 6</ion-select-option>
-      </ion-select>
+      <!-- <ion-select placeholder="Select" [(ngModel)]="travelInfo.preferableTimeToTwo" [disabled]="isReadOnly">
+        <ion-select-option value="1">Value 1</ion-select-option>
+        <ion-select-option value="2">Value 2</ion-select-option>
+        <ion-select-option value="3">Value 3</ion-select-option>
+        <ion-select-option value="4">Value 4</ion-select-option>
+        <ion-select-option value="5">Value 5</ion-select-option>
+        <ion-select-option value="6">Value 6</ion-select-option>
+      </ion-select> -->
+      <ion-datetime displayFormat="hh:mm" placeholder="Select" [(ngModel)]="travelInfo.preferableTimeToTwo"
+        [disabled]="isReadOnly">
+      </ion-datetime>
     </ion-item>
 
 
+    <ion-item>
+      <ion-label>To</ion-label>
+      <!-- <ion-select placeholder="Select" [(ngModel)]="travelInfo.preferableTimeToThree" [disabled]="isReadOnly">
+        <ion-select-option value="1">Value 1</ion-select-option>
+        <ion-select-option value="2">Value 2</ion-select-option>
+        <ion-select-option value="3">Value 3</ion-select-option>
+        <ion-select-option value="4">Value 4</ion-select-option>
+        <ion-select-option value="5">Value 5</ion-select-option>
+        <ion-select-option value="6">Value 6</ion-select-option>
+      </ion-select> -->
+      <ion-datetime displayFormat="hh:mm" placeholder="Select" [(ngModel)]="travelInfo.preferableTimeToTwo"
+        disabled="true">
+      </ion-datetime>
+    </ion-item>
+
+    <!-- ---------------------||||||||||||||||||||||||||||||||---------------------- -->
     <ion-list-header class="list-header-custom">
       <ion-label>AIRLINE INFORMATION</ion-label>
     </ion-list-header>
 
     <ion-item>
       <ion-label>Preferable Flight</ion-label>
-      <ion-select placeholder="Select">
-        <ion-select-option value="f">Value 1</ion-select-option>
-        <ion-select-option value="f">Value 2</ion-select-option>
-        <ion-select-option value="f">Value 3</ion-select-option>
-        <ion-select-option value="f">Value 4</ion-select-option>
-        <ion-select-option value="f">Value 5</ion-select-option>
-        <ion-select-option value="f">Value 6</ion-select-option>
+      <ion-select placeholder="Select" [(ngModel)]="airlineInfo.preferableFlight" [disabled]="isReadOnly">
+        <ion-select-option value="1">PIA</ion-select-option>
+        <ion-select-option value="2">Emirates </ion-select-option>
+        <ion-select-option value="3">Shaheen </ion-select-option>
+        <ion-select-option value="4">Sarene </ion-select-option>
+        <ion-select-option value="5">Srilankan </ion-select-option>
       </ion-select>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Duration Of Visit (in Days) </ion-label>
-      <ion-input></ion-input>
+      <ion-input [(ngModel)]="airlineInfo.durationOfVisit" disabled="true"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Expected Date Of Return</ion-label>
-      <ion-input></ion-input>
+      <ion-input [(ngModel)]="travelInfo.preferableDateToTwo" disabled="true"></ion-input>
     </ion-item>
 
 
-
+    <!-- ---------------------||||||||||||||||||||||||||||||||---------------------- -->
     <ion-list-header class="list-header-custom">
       <ion-label>OTHER INFORMATION</ion-label>
     </ion-list-header>
 
     <ion-item>
       <ion-label>Mode Of Travel</ion-label>
-      <ion-select placeholder="Select">
-        <ion-select-option value="f">Value 1</ion-select-option>
-        <ion-select-option value="f">Value 2</ion-select-option>
-        <ion-select-option value="f">Value 3</ion-select-option>
-        <ion-select-option value="f">Value 4</ion-select-option>
-        <ion-select-option value="f">Value 5</ion-select-option>
-        <ion-select-option value="f">Value 6</ion-select-option>
+      <ion-select placeholder="Select" [(ngModel)]="otherInfo.modeOfTravel" [disabled]="isReadOnly">
+        <ion-select-option value="1">Air Economy</ion-select-option>
+        <ion-select-option value="2">Air Business</ion-select-option>
+        <ion-select-option value="3">Train </ion-select-option>
+        <ion-select-option value="4">Bus </ion-select-option>
       </ion-select>
     </ion-item>
 
     <ion-item>
       <ion-label>Hotel Booking Required</ion-label>
-      <ion-select placeholder="Select">
-        <ion-select-option value="f">YES</ion-select-option>
-        <ion-select-option value="m">NO</ion-select-option>
+      <ion-select placeholder="Select" [(ngModel)]="otherInfo.hotelBookingRequired" [disabled]="isReadOnly">
+        <ion-select-option value="yes">YES</ion-select-option>
+        <ion-select-option value="no">NO</ion-select-option>
       </ion-select>
     </ion-item>
 
 
     <ion-item>
       <ion-label>Visa Required</ion-label>
-      <ion-select placeholder="Select">
-        <ion-select-option value="f">YES</ion-select-option>
-        <ion-select-option value="m">NO</ion-select-option>
+      <ion-select placeholder="Select" [(ngModel)]="otherInfo.viseRequired" [disabled]="isReadOnly">
+        <ion-select-option value="yes">YES</ion-select-option>
+        <ion-select-option value="no">NO</ion-select-option>
       </ion-select>
     </ion-item>
 
 
     <ion-item>
       <ion-label>Rent a Car Required</ion-label>
-      <ion-select placeholder="Select">
-        <ion-select-option value="f">YES</ion-select-option>
-        <ion-select-option value="m">NO</ion-select-option>
+      <ion-select placeholder="Select" [(ngModel)]="otherInfo.rentACarRequired" [disabled]="isReadOnly">
+        <ion-select-option value="yes">YES</ion-select-option>
+        <ion-select-option value="no">NO</ion-select-option>
       </ion-select>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Other Arrangements</ion-label>
-      <ion-input></ion-input>
+      <ion-input [(ngModel)]="otherInfo.otherArrangements" [disabled]="isReadOnly"></ion-input>
     </ion-item>
 
+    <!-- ---------------------||||||||||||||||||||||||||||||||---------------------- -->
     <ion-list-header class="list-header-custom">
       <ion-label>TRAVELING ADVANCE (FOR FINANCE DEPARTMENT)</ion-label>
     </ion-list-header>
 
     <ion-item>
       <ion-label>Advance Required</ion-label>
-      <ion-select placeholder="Select">
-        <ion-select-option value="f">YES</ion-select-option>
-        <ion-select-option value="m">NO</ion-select-option>
+      <ion-select placeholder="Select" [(ngModel)]="travelingAdvance.advanceRequired" [disabled]="isReadOnly">
+        <ion-select-option value="yes">YES</ion-select-option>
+        <ion-select-option value="no">NO</ion-select-option>
       </ion-select>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Advance Amount (PKR)</ion-label>
-      <ion-input></ion-input>
+      <ion-input [(ngModel)]="travelingAdvance.advanceAmount" [disabled]="isReadOnly"></ion-input>
     </ion-item>
 
   </ion-list>
