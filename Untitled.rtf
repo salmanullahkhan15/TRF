@@ -1,0 +1,1022 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf600
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 Login\
+\
+select TOP 1 * from vi_User_info where Usr_Name = @Usr_Name AND Password = @Password AND Status = 'True'\
+\
+Example: http://mytravelrequest.com/Home/CheckLogin?Username=hammad.hammad&Password=hammad123\
+\
+Type : GET\
+\
+If Record Found : \
+[\
+    \{\
+        "PKID": 1,\
+        "Usr_Name": "hammad.hammad",\
+        "Password": "hammad123",\
+        "status": true\
+    \}\
+]\
+\
+If no record Found : \
+\
+[\
+    \{\
+        "Message": "Inavlid Username or Password!"\
+    \}\
+]\
+\
+Error Msg : [\{"Message":"Exception Msg"\}]\
+\
+--------------------------------------------------------------------------------------------------------------------------------------------------------------\
+\
+Destination\
+\
+select * from Destination order by Destination\
+\
+Example:http://mytravelrequest.com/Home/GetDestinations\
+\
+Type : GET\
+\
+If Record Found : [\
+    \{\
+        "PKID": 34,\
+        "Destination": "fsdf"\
+    \},\
+    \{\
+        "PKID": 33,\
+        "Destination": "hammad"\
+    \},\
+    \{\
+        "PKID": 31,\
+        "Destination": "Hyderabad"\
+    \},\
+    \{\
+        "PKID": 5,\
+        "Destination": "Islamabad"\
+    \},\
+    \{\
+        "PKID": 6,\
+        "Destination": "Karachi"\
+    \},\
+    \{\
+        "PKID": 1,\
+        "Destination": "Lahore"\
+    \},\
+    \{\
+        "PKID": 2,\
+        "Destination": "Multan"\
+    \},\
+    \{\
+        "PKID": 4,\
+        "Destination": "Peshawer"\
+    \},\
+    \{\
+        "PKID": 32,\
+        "Destination": "rrr"\
+    \},\
+    \{\
+        "PKID": 7,\
+        "Destination": "ssaad"\
+    \},\
+    \{\
+        "PKID": 3,\
+        "Destination": "xzczxc"\
+    \}\
+]\
+\
+If no record Found : [\{"Message":"No Record Found!"\}]\
+\
+Error Msg : [\{"Message":"Exception Msg"\}]\
+\
+-------------------------------------------------------------------------------------------------------------------------------------------------------------- \
+\
+\
+\
+Flights\
+\
+select * from Flights order by Flights\
+\
+Example:http://mytravelrequest.com/Home/GetFlights\
+\
+Type : GET\
+\
+If Record Found : \
+\
+[\
+    \{\
+        "PKID": 2,\
+        "Flights": "Air Bluee"\
+    \},\
+    \{\
+        "PKID": 3,\
+        "Flights": "Emirates"\
+    \},\
+    \{\
+        "PKID": 7,\
+        "Flights": "ooo"\
+    \},\
+    \{\
+        "PKID": 1,\
+        "Flights": "PIA"\
+    \},\
+    \{\
+        "PKID": 6,\
+        "Flights": "Qatar Air Ways"\
+    \},\
+    \{\
+        "PKID": 5,\
+        "Flights": "Shaheen"\
+    \},\
+    \{\
+        "PKID": 4,\
+        "Flights": "Sky Waves"\
+    \},\
+    \{\
+        "PKID": 8,\
+        "Flights": "tttt"\
+    \}\
+]\
+\
+If no record Found : [\{"Message":"No Record Found!"\}]\
+\
+Error Msg : [\{"Message":"Exception Msg"\}]\
+ \
+ --------------------------------------------------------------------------------------------------------------------------------------------------------------\
+\
+\
+\
+\
+Clients\
+\
+select * from Client_TRF order by Client_Name\
+ \
+Example:http://mytravelrequest.com/Home/GetClients\
+\
+Type : GET\
+\
+If Record Found : \
+\
+[\
+    \{\
+        "PKID": 3,\
+        "Client_Name": "aarora123"\
+    \},\
+    \{\
+        "PKID": 1,\
+        "Client_Name": "hammad"\
+    \},\
+    \{\
+        "PKID": 2,\
+        "Client_Name": "hanif"\
+    \},\
+    \{\
+        "PKID": 6,\
+        "Client_Name": "My Testing"\
+    \},\
+    \{\
+        "PKID": 5,\
+        "Client_Name": "rrr"\
+    \},\
+    \{\
+        "PKID": 7,\
+        "Client_Name": "rtrt"\
+    \},\
+    \{\
+        "PKID": 4,\
+        "Client_Name": "ttt"\
+    \}\
+]\
+\
+If no record Found : [\{"Message":"No Record Found!"\}]\
+\
+Error Msg : [\{"Message":"Exception Msg"\}]\
+\
+--------------------------------------------------------------------------------------------------------------------------------------------------------------\
+purpose\
+\
+select * from Purpose order by purpose_desc\
+ \
+Example:http://mytravelrequest.com/Home/GetPurpose\
+\
+\
+Type : GET\
+\
+\
+If Record Found : \
+\
+[\
+    \{\
+        "PKID": 1,\
+        "Purpose_desc": "abc"\
+    \},\
+    \{\
+        "PKID": 3,\
+        "Purpose_desc": "def"\
+    \},\
+    \{\
+        "PKID": 2,\
+        "Purpose_desc": "xyz"\
+    \}\
+]\
+\
+If no record Found : [\{"Message":"No Record Found!"\}]\
+\
+Error Msg : [\{"Message":"Exception Msg"\}]\
+\
+\
+--------------------------------------------------------------------------------------------------------------------------------------------------------------\
+Employee detail like (designation, department)\
+\
+select * from VI_Employee where usr_name = @PKID\
+\
+Example:http://mytravelrequest.com/Home/GetEmployeeDetails?Username=farhan.arif\
+\
+Type : GET\
+\
+\
+If Record Found : \
+\
+[\
+    \{\
+        "PKID": 1,\
+        "EmployeeName": "Hammad Ahmed",\
+        "Usr_name": "hammad.hammad",\
+        "StaffCode": "vvv",\
+        "Department": "Information Technology",\
+        "Designation": "I.T Manager",\
+        "AgencyName": "vv",\
+        "Location": "Karachi",\
+        "AgencyID": 1\
+    \}\
+]\
+\
+If no record Found : [\{"Message":"No Record Found!"\}]\
+\
+Error Msg : [\{"Message":"Exception Msg"\}]\
+\
+--------------------------------------------------------------------------------------------------------------------------------------------------------------\
+PE list client wise\
+\
+(store procedure) SP_get_balanced_PE\
+\
+\
+Example:http://mytravelrequest.com/Home/GetPEListClientWise?ClientName=aarora123\
+\
+Type : GET\
+\
+If Record Found : \
+\
+[\
+    \{\
+        "PKID": 2,\
+        "PE": "586",\
+        "ClientName": "aarora123",\
+        "Balance": 36495\
+    \},\
+    \{\
+        "PKID": 4,\
+        "PE": "5896",\
+        "ClientName": "aarora123",\
+        "Balance": 96495\
+    \}\
+]\
+\
+If no record Found : [\{"Message":"No Record Found!"\}]\
+\
+Error Msg : [\{"Message":"Exception Msg"\}]\
+\
+--------------------------------------------------------------------------------------------------------------------------------------------------------------\
+Get airline price when blur 3rd destination to \
+\
+SP_get_rates_ap\
+\
+Example:http://mytravelrequest.com/Home/GetAirlinePrice?Destination=Islamabad\
+\
+\
+Type : GET\
+\
+If Record Found : \
+[\
+    \{\
+        "Amount": 500\
+    \}\
+]\
+\
+If no record Found : [\{"Message":"No Record Found!"\}]\
+\
+Error Msg : [\{"Message":"Exception Msg"\}]\
+\
+--------------------------------------------------------------------------------------------------------------------------------------------------------------\
+Get visa price when select yes from visa required\
+\
+SP_get_rates_vp\
+\
+\
+\
+Example:http://mytravelrequest.com/Home/GetVisaPrice?Destination=hammad\
+\
+\
+Type : GET\
+\
+If Record Found :\
+\
+[\
+    \{\
+        "Amount": 500\
+    \}\
+]\
+\
+If no record Found : [\{"Message":"No Record Found!"\}]\
+\
+Error Msg : [\{"Message":"Exception Msg"\}]\
+\
+--------------------------------------------------------------------------------------------------------------------------------------------------------------\
+\
+Get hotel price and transport price\
+\
+SP_get_rates\
+\
+\
+\
+Example:http://mytravelrequest.com/Home/GetHotelAndTransportPrice?Type=International\
+\
+\
+Type : GET\
+\
+If Record Found : \
+\
+[\
+    \{\
+        "hpamount": 50,\
+        "tpamount": 500\
+    \}\
+]\
+\
+If no record Found : [\{"Message":"No Record Found!"\}]\
+\
+Error Msg : [\{"Message":"Exception Msg"\}]\
+\
+--------------------------------------------------------------------------------------------------------------------------------------------------------------\
+Insert Application form\
+\
+insert into TRF (TRFNum,EmployeeID,IsChargeToClient,Client_Region,PE,Nature,Purpose,Purpose_reason,DestinationIDFrom,DestinationIDTo1,DestinationIDTo2,DestinationIDTo3,PreferDateFrom,PreferDateTo1,PreferDateTo2,PreferDateTo3,PreferTimeFrom,PreferTimeTo1,PreferTimeTo2,PreferTimeTo3,PreferFlight,Duration,ReturnDate,Mode,IsHotel,IsVisa,Isrentacar,Others,IsAdvance,AdvAmount,RequestedBy,RequestedDate,EstCost,AgencyHeadID,CFOID,CEOID,AdminCompleteID,FCost) values (@TRFNum,@EmployeeID,@IsChargeToClient,@Client_Region,@PE,@Nature,@Purpose,@ddl_purpose,@DestinationIDFrom,@DestinationIDTo1,@DestinationIDTo2,@DestinationIDTo3,@PreferDateFrom,@PreferDateTo1,@PreferDateTo2,@PreferDateTo3,@PreferTimeFrom,@PreferTimeTo1,@PreferTimeTo2,@PreferTimeTo3,@PreferFlight,@Duration,@ReturnDate,@Mode,@IsHotel,@IsVisa,@Isrentacar,@Others,@IsAdvance,@AdvAmount,@RequestedBy,GETDATE(),0,0,0,0,0,0\
+\
+\
+)\
+\
+Example:http://mytravelrequest.com/Home/InsertApplication?TRFNum=TR-5&EmployeeID=hammad.hammad&IsChargeToClient=No&Client_Region=hammad&PE=1&Nature=Domestic&Purpose=test&Purpose_reason=def&DestinationIDFrom=Islamabad&DestinationIDTo1=rrr&DestinationIDTo2=Karachi&DestinationIDTo3=Lahore&PreferDateFrom=2019-06-18&PreferDateTo1=2019-06-19&PreferDateTo2=2019-06-20&PreferDateTo3=2019-06-21&PreferTimeFrom=13:00&PreferTimeTo1=16:00&PreferTimeTo2=17:00&PreferTimeTo3=18:00&PreferFlight=PIA&Duration=5&ReturnDate=2019-06-21&Mode=First Class&IsHotel=Yes&IsVisa=No&Isrentacar=Yes&Others=No&IsAdvance=Yes&AdvAmount=10000&RequestedBy=hammad.hammad\
+\
+\
+Type : POST\
+\
+If Successfully Inserted : [\{"Message":"Inserted Successfully!"\}]\
+\
+If not inserted : [\{"Message":"No row was inserted!"\}]\
+\
+Error Msg : [\{"Message":"Exception Msg"\}]\
+\
+--------------------------------------------------------------------------------------------------------------------------------------------------------------\
+head approval (drop down)\
+\
+select * from TRF as trf inner join Employee as e on e.Usr_Name = trf.EmployeeID where trf.agencyHeadID <> 'Approved' and trf.agencyHeadID <> 'Cancel' and trf.agencyHeadID <> 'Reject' and e.HeadEmailID = (Select Email from Employee Where Usr_Name = @usr_Name) Order By trf.PKID Desc\
+\
+\
+\
+\
+Example:http://mytravelrequest.com/Home/GetHeadApproval?Username=hammad.hammad\
+\
+\
+Type : GET\
+\
+If Record Found \
+[\
+    \{\
+        "PKID": 3,\
+        "TRFNum": "TR-3",\
+        "EmployeeID": "hammad.hammad",\
+        "IsChargeToClient": "No",\
+        "Client_Region": "",\
+        "PE": "",\
+        "Nature": "Domestic",\
+        "Purpose": "testing",\
+        "Purpose_reason": "abc",\
+        "DestinationIDFrom": "Multan",\
+        "DestinationIDTo1": "rrr",\
+        "DestinationIDTo2": "hammad",\
+        "DestinationIDTo3": "fsdf",\
+        "PreferDateFrom": "2019-05-24T00:00:00",\
+        "PreferDateTo1": "2019-05-24T00:00:00",\
+        "PreferDateTo2": "2019-05-29T00:00:00",\
+        "PreferDateTo3": "2019-05-29T00:00:00",\
+        "PreferTimeFrom": "",\
+        "PreferTimeTo1": "",\
+        "PreferTimeTo2": "",\
+        "PreferTimeTo3": "",\
+        "PreferFlight": "",\
+        "Duration": 6,\
+        "ReturnDate": "2019-05-29T00:00:00",\
+        "Mode": "",\
+        "IsHotel": "Yes",\
+        "Others": "",\
+        "IsVisa": "",\
+        "Isrentacar": "Yes",\
+        "EstCost": 0,\
+        "IsAdvance": "",\
+        "AdvAmount": 0,\
+        "AmontSettledDays": null,\
+        "AmountKeepInBudget": null,\
+        "RequestedBy": "hammad.hammad",\
+        "RequestedDate": "2019-05-24T17:30:00",\
+        "AgencyHeadID": "0",\
+        "AgencyHeadDate": null,\
+        "Reason_Head": null,\
+        "Updated_by_agency_head": null,\
+        "CFOID": "0",\
+        "CFODate": null,\
+        "Updated_by_CFO": null,\
+        "Reason_CFO": null,\
+        "CEOID": "0",\
+        "CEODate": null,\
+        "Updated_by_CEO": null,\
+        "FDestinationIDFrom": null,\
+        "FDestinationIDTo1": null,\
+        "FDestinationIDTo2": null,\
+        "FDestinationIDTo3": null,\
+        "FPreferDateFrom": null,\
+        "FPreferDateTo1": null,\
+        "FPreferDateTo2": null,\
+        "FPreferDateTo3": null,\
+        "FPreferTimeFrom": null,\
+        "FPreferTimeTo1": null,\
+        "FPreferTimeTo2": null,\
+        "FPreferTimeTo3": null,\
+        "Airlines": null,\
+        "FlightNos": null,\
+        "FCost": 0,\
+        "TravelAgent": null,\
+        "ContactPerson": null,\
+        "Contactnumber": null,\
+        "Airline_cost": null,\
+        "Hotel_cost": null,\
+        "Transport_cost": null,\
+        "Visa_cost": null,\
+        "Other_cost": null,\
+        "AdminDate": null,\
+        "AdminCompleteID": "0",\
+        "PayemntMode": null,\
+        "FIsPaytoStaff": null,\
+        "IsTravel_cost_charged": null,\
+        "Airline_amount_finance": null,\
+        "Airline_invoice_finance": null,\
+        "Airline_supp_finance": null,\
+        "Hotel_amount_finance": null,\
+        "Hotel_invoice_finance": null,\
+        "Hotel_supp_finance": null,\
+        "Transport_amountsupp_finance": null,\
+        "Transport_invoice_finance": null,\
+        "Transport_supp_finance": null,\
+        "Visa_amount_finance": null,\
+        "Visa_invoice_finance": null,\
+        "Visa_supp_finance": null,\
+        "Other_amount_finance": null,\
+        "Other_invoice_finance": null,\
+        "Other_supp_finance": null,\
+        "dateFrom_finance_airline": null,\
+        "dateto1_finance_hotel": null,\
+        "dateto2_finance_transport": null,\
+        "dateto3_finance_visa": null,\
+        "dateto4_finance_others": null,\
+        "FinDate": null,\
+        "FinApprovedID": null,\
+        "IsHAEmail": null,\
+        "IsCFOEmail": null,\
+        "IsCEOEmail": null,\
+        "airlineprint": null,\
+        "hotelprint": null,\
+        "transportprint": null,\
+        "visaprint": null,\
+        "otherprint": null,\
+        "IsApproved_admin": null,\
+        "PKID1": 1,\
+        "EmployeeName": "Hammad Ahmed",\
+        "DepartmentID": 1,\
+        "DesignationID": 1,\
+        "LocationID": 1,\
+        "AgencyID": 1,\
+        "StaffCode": "vvv",\
+        "Usr_Name": "hammad.hammad",\
+        "Password": "hammad123",\
+        "Address": null,\
+        "Contact_num": null,\
+        "Email": "1",\
+        "Desc": null,\
+        "Created_by": null,\
+        "Created_on": null,\
+        "Status": true,\
+        "HeadEmailID": "1"\
+    \}\
+]\
+\
+If no record Found : [\{"Message":"No Record Found!"\}]\
+\
+Error Msg : [\{"Message":"Exception Msg"\}]\
+\
+--------------------------------------------------------------------------------------------------------------------------------------------------------------\
+Get application inputs by application ID (PKID) for head\
+select peb.PE as Realpeb,* from trf as trf inner join VI_Employee as emp on trf.employeeid = emp.usr_name left outer join PE_budget peb on trf.PE = peb.PKID inner join TRF_Expenses_detail ted on trf.TRFNum = ted.TRFNum where trf.TRFNum = @TRFNum\
+\
+Example:http://mytravelrequest.com/Home/GetApplicationInputs?TRFNum=TR-1\
+\
+\
+Type : GET\
+\
+If Record Found : [\
+    \{\
+        "Realpeb": "586",\
+        "PKID": 1,\
+        "TRFNum": "TR-1",\
+        "EmployeeID": "hammad.hammad",\
+        "IsChargeToClient": "Yes",\
+        "Client_Region": "aarora123",\
+        "PE": "2",\
+        "Nature": "Domestic",\
+        "Purpose": "testing",\
+        "Purpose_reason": "abc",\
+        "DestinationIDFrom": "rrr",\
+        "DestinationIDTo1": "rrr",\
+        "DestinationIDTo2": "rrr",\
+        "DestinationIDTo3": "rrr",\
+        "PreferDateFrom": "2019-05-23T00:00:00",\
+        "PreferDateTo1": "2019-05-23T00:00:00",\
+        "PreferDateTo2": "2019-05-25T00:00:00",\
+        "PreferDateTo3": "2019-05-25T00:00:00",\
+        "PreferTimeFrom": "16:30",\
+        "PreferTimeTo1": "16:30",\
+        "PreferTimeTo2": "16:25",\
+        "PreferTimeTo3": "16:25",\
+        "PreferFlight": "Air Bluee",\
+        "Duration": 3,\
+        "ReturnDate": "2019-05-25T00:00:00",\
+        "Mode": "Air Economy",\
+        "IsHotel": "Yes",\
+        "Others": "no",\
+        "IsVisa": "",\
+        "Isrentacar": "Yes",\
+        "EstCost": 0,\
+        "IsAdvance": "Yes",\
+        "AdvAmount": 5000,\
+        "AmontSettledDays": null,\
+        "AmountKeepInBudget": null,\
+        "RequestedBy": "hammad.hammad",\
+        "RequestedDate": "2019-05-23T13:10:00",\
+        "AgencyHeadID": "Approved",\
+        "AgencyHeadDate": "2019-05-23T13:15:00",\
+        "Reason_Head": "",\
+        "Updated_by_agency_head": "hammad.hammad",\
+        "CFOID": "Approved",\
+        "CFODate": "2019-05-27T02:34:00",\
+        "Updated_by_CFO": "hammad.hammad",\
+        "Reason_CFO": "",\
+        "CEOID": "0",\
+        "CEODate": null,\
+        "Updated_by_CEO": null,\
+        "FDestinationIDFrom": null,\
+        "FDestinationIDTo1": null,\
+        "FDestinationIDTo2": null,\
+        "FDestinationIDTo3": null,\
+        "FPreferDateFrom": null,\
+        "FPreferDateTo1": null,\
+        "FPreferDateTo2": null,\
+        "FPreferDateTo3": null,\
+        "FPreferTimeFrom": null,\
+        "FPreferTimeTo1": null,\
+        "FPreferTimeTo2": null,\
+        "FPreferTimeTo3": null,\
+        "Airlines": null,\
+        "FlightNos": null,\
+        "FCost": 0,\
+        "TravelAgent": null,\
+        "ContactPerson": null,\
+        "Contactnumber": null,\
+        "Airline_cost": null,\
+        "Hotel_cost": null,\
+        "Transport_cost": null,\
+        "Visa_cost": null,\
+        "Other_cost": null,\
+        "AdminDate": null,\
+        "AdminCompleteID": "0",\
+        "PayemntMode": null,\
+        "FIsPaytoStaff": null,\
+        "IsTravel_cost_charged": null,\
+        "Airline_amount_finance": null,\
+        "Airline_invoice_finance": null,\
+        "Airline_supp_finance": null,\
+        "Hotel_amount_finance": null,\
+        "Hotel_invoice_finance": null,\
+        "Hotel_supp_finance": null,\
+        "Transport_amountsupp_finance": null,\
+        "Transport_invoice_finance": null,\
+        "Transport_supp_finance": null,\
+        "Visa_amount_finance": null,\
+        "Visa_invoice_finance": null,\
+        "Visa_supp_finance": null,\
+        "Other_amount_finance": null,\
+        "Other_invoice_finance": null,\
+        "Other_supp_finance": null,\
+        "dateFrom_finance_airline": null,\
+        "dateto1_finance_hotel": null,\
+        "dateto2_finance_transport": null,\
+        "dateto3_finance_visa": null,\
+        "dateto4_finance_others": null,\
+        "FinDate": null,\
+        "FinApprovedID": null,\
+        "IsHAEmail": null,\
+        "IsCFOEmail": null,\
+        "IsCEOEmail": null,\
+        "airlineprint": null,\
+        "hotelprint": null,\
+        "transportprint": null,\
+        "visaprint": null,\
+        "otherprint": null,\
+        "IsApproved_admin": null,\
+        "PKID1": 1,\
+        "EmployeeName": "Hammad Ahmed",\
+        "Usr_name": "hammad.hammad",\
+        "StaffCode": "vvv",\
+        "Department": "Information Technology",\
+        "Designation": "I.T Manager",\
+        "AgencyName": "vv",\
+        "Location": "Karachi",\
+        "AgencyID": 1,\
+        "PKID2": 2,\
+        "ClientName": "aarora123",\
+        "PE1": "586",\
+        "Budget": 40000,\
+        "Month": 1,\
+        "Year": 2019,\
+        "Updated_by": null,\
+        "Updated_on": null,\
+        "Status": true,\
+        "PKID3": 1,\
+        "TRFNum1": "TR-1",\
+        "PE2": null,\
+        "Hotel_price_bud": 1503,\
+        "Visa_price_bud": 0,\
+        "Trans_price_bud": 501,\
+        "Airline_price_bud": 500,\
+        "Other_price_bud": 0,\
+        "IsClient": null,\
+        "Updated_by1": "hammad.hammad",\
+        "Updated_on1": "2019-05-23T13:10:00"\
+    \}\
+]\
+\
+If no record Found : [\{"Message":"No Record Found!"\}]\
+\
+Error Msg : [\{"Message":"Exception Msg"\}]\
+\
+ --------------------------------------------------------------------------------------------------------------------------------------------------------------\
+\
+\
+\
+Get budget balance for head\
+\
+SP_Get_Balances\
+\
+Example:http://mytravelrequest.com/Home/GetBudgetBalance?TRFNum=TR-1\
+\
+Type : GET\
+\
+If Record Found : \
+[\
+    \{\
+        "Total_Budget": 40000,\
+        "This_TRF": 2504,\
+        "Actual_cost": 0,\
+        "Total_Budget_Used": 3505,\
+        "Balance": 33991\
+    \}\
+]\
+\
+If no record Found : [\{"Message":"No Record Found!"\}]\
+\
+Error Msg : [\{"Message":"Exception Msg"\}]\
+\
+ --------------------------------------------------------------------------------------------------------------------------------------------------------------\
+\
+\
+\
+Update or reject query if head reject application\
+\
+\
+update TRF set AgencyHeadDate = getdate(), Updated_by_agency_head = @UnBlockBy, AgencyHeadID = @Status, Reason_Head = @reason_head where TRFNum = @exix_request\
+\
+\
+\
+Example:http://mytravelrequest.com/Home/PostHeadRejection?UnBlockBy=hammad.hammad&Status=Approved&Reason=test&TRFNum=TR-1\
+\
+\
+Type : POST\
+\
+If Successfully Updated : [\{"Message":"Updated Successfully!"\}]\
+\
+If not updated : [\{"Message":"No row was updated!"\}]\
+\
+Error Msg : [\{"Message":"Exception Msg"\}]\
+\
+--------------------------------------------------------------------------------------------------------------------------------------------------------------\
+cfo approval (drop down)\
+\
+select *, E.EmployeeName from TRF Inner Join Employee E with (nolock) on E.usr_name = TRF.EmployeeID where agencyHeadID = 'Approved' and CFOID <> 'Approved' and CFOID <> 'Cancel' and CFOID <> 'Reject' Order By TRF.PKID Desc\
+\
+Example:http://mytravelrequest.com/Home/GetCFOApproval\
+\
+Type : GET\
+\
+If Record Found : \
+\
+If no record Found : \
+[\
+    \{\
+        "Message": "No Record Found!"\
+    \}\
+]\
+\
+Error Msg : [\{"Message":"Exception Msg"\}]\
+\
+ --------------------------------------------------------------------------------------------------------------------------------------------------------------\
+\
+\
+\
+Get application inputs by application ID (PKID) for cfo\
+\
+select peb.PE as Realpeb,* from trf as trf inner join VI_Employee as emp on trf.employeeid = emp.usr_name left outer join PE_budget peb on trf.PE = peb.PKID inner join TRF_Expenses_detail ted on trf.TRFNum = ted.TRFNum where trf.TRFNum = @TRFNum\
+\
+Example:http://mytravelrequest.com/Home/GetApplicationInputs?TRFNum=TR-1\
+\
+\
+\
+Type : GET\
+\
+If Record Found :\
+\
+[\
+    \{\
+        "Realpeb": "586",\
+        "PKID": 1,\
+        "TRFNum": "TR-1",\
+        "EmployeeID": "hammad.hammad",\
+        "IsChargeToClient": "Yes",\
+        "Client_Region": "aarora123",\
+        "PE": "2",\
+        "Nature": "Domestic",\
+        "Purpose": "testing",\
+        "Purpose_reason": "abc",\
+        "DestinationIDFrom": "rrr",\
+        "DestinationIDTo1": "rrr",\
+        "DestinationIDTo2": "rrr",\
+        "DestinationIDTo3": "rrr",\
+        "PreferDateFrom": "2019-05-23T00:00:00",\
+        "PreferDateTo1": "2019-05-23T00:00:00",\
+        "PreferDateTo2": "2019-05-25T00:00:00",\
+        "PreferDateTo3": "2019-05-25T00:00:00",\
+        "PreferTimeFrom": "16:30",\
+        "PreferTimeTo1": "16:30",\
+        "PreferTimeTo2": "16:25",\
+        "PreferTimeTo3": "16:25",\
+        "PreferFlight": "Air Bluee",\
+        "Duration": 3,\
+        "ReturnDate": "2019-05-25T00:00:00",\
+        "Mode": "Air Economy",\
+        "IsHotel": "Yes",\
+        "Others": "no",\
+        "IsVisa": "",\
+        "Isrentacar": "Yes",\
+        "EstCost": 0,\
+        "IsAdvance": "Yes",\
+        "AdvAmount": 5000,\
+        "AmontSettledDays": null,\
+        "AmountKeepInBudget": null,\
+        "RequestedBy": "hammad.hammad",\
+        "RequestedDate": "2019-05-23T13:10:00",\
+        "AgencyHeadID": "Approved",\
+        "AgencyHeadDate": "2019-05-23T13:15:00",\
+        "Reason_Head": "",\
+        "Updated_by_agency_head": "hammad.hammad",\
+        "CFOID": "Approved",\
+        "CFODate": "2019-05-27T02:34:00",\
+        "Updated_by_CFO": "hammad.hammad",\
+        "Reason_CFO": "",\
+        "CEOID": "0",\
+        "CEODate": null,\
+        "Updated_by_CEO": null,\
+        "FDestinationIDFrom": null,\
+        "FDestinationIDTo1": null,\
+        "FDestinationIDTo2": null,\
+        "FDestinationIDTo3": null,\
+        "FPreferDateFrom": null,\
+        "FPreferDateTo1": null,\
+        "FPreferDateTo2": null,\
+        "FPreferDateTo3": null,\
+        "FPreferTimeFrom": null,\
+        "FPreferTimeTo1": null,\
+        "FPreferTimeTo2": null,\
+        "FPreferTimeTo3": null,\
+        "Airlines": null,\
+        "FlightNos": null,\
+        "FCost": 0,\
+        "TravelAgent": null,\
+        "ContactPerson": null,\
+        "Contactnumber": null,\
+        "Airline_cost": null,\
+        "Hotel_cost": null,\
+        "Transport_cost": null,\
+        "Visa_cost": null,\
+        "Other_cost": null,\
+        "AdminDate": null,\
+        "AdminCompleteID": "0",\
+        "PayemntMode": null,\
+        "FIsPaytoStaff": null,\
+        "IsTravel_cost_charged": null,\
+        "Airline_amount_finance": null,\
+        "Airline_invoice_finance": null,\
+        "Airline_supp_finance": null,\
+        "Hotel_amount_finance": null,\
+        "Hotel_invoice_finance": null,\
+        "Hotel_supp_finance": null,\
+        "Transport_amountsupp_finance": null,\
+        "Transport_invoice_finance": null,\
+        "Transport_supp_finance": null,\
+        "Visa_amount_finance": null,\
+        "Visa_invoice_finance": null,\
+        "Visa_supp_finance": null,\
+        "Other_amount_finance": null,\
+        "Other_invoice_finance": null,\
+        "Other_supp_finance": null,\
+        "dateFrom_finance_airline": null,\
+        "dateto1_finance_hotel": null,\
+        "dateto2_finance_transport": null,\
+        "dateto3_finance_visa": null,\
+        "dateto4_finance_others": null,\
+        "FinDate": null,\
+        "FinApprovedID": null,\
+        "IsHAEmail": null,\
+        "IsCFOEmail": null,\
+        "IsCEOEmail": null,\
+        "airlineprint": null,\
+        "hotelprint": null,\
+        "transportprint": null,\
+        "visaprint": null,\
+        "otherprint": null,\
+        "IsApproved_admin": null,\
+        "PKID1": 1,\
+        "EmployeeName": "Hammad Ahmed",\
+        "Usr_name": "hammad.hammad",\
+        "StaffCode": "vvv",\
+        "Department": "Information Technology",\
+        "Designation": "I.T Manager",\
+        "AgencyName": "vv",\
+        "Location": "Karachi",\
+        "AgencyID": 1,\
+        "PKID2": 2,\
+        "ClientName": "aarora123",\
+        "PE1": "586",\
+        "Budget": 40000,\
+        "Month": 1,\
+        "Year": 2019,\
+        "Updated_by": null,\
+        "Updated_on": null,\
+        "Status": true,\
+        "PKID3": 1,\
+        "TRFNum1": "TR-1",\
+        "PE2": null,\
+        "Hotel_price_bud": 1503,\
+        "Visa_price_bud": 0,\
+        "Trans_price_bud": 501,\
+        "Airline_price_bud": 500,\
+        "Other_price_bud": 0,\
+        "IsClient": null,\
+        "Updated_by1": "hammad.hammad",\
+        "Updated_on1": "2019-05-23T13:10:00"\
+    \}\
+]\
+\
+If no record Found : [\{"Message":"No Record Found!"\}]\
+\
+Error Msg : [\{"Message":"Exception Msg"\}]\
+\
+ --------------------------------------------------------------------------------------------------------------------------------------------------------------\
+\
+\
+\
+Get budget balance for cfo\
+\
+SP_Get_Balances\
+\
+Example:http://mytravelrequest.com/Home/GetBudgetBalance?TRFNum=TR-1\
+\
+Type : GET\
+\
+If Record Found : \
+[\
+    \{\
+        "Total_Budget": 40000,\
+        "This_TRF": 2504,\
+        "Actual_cost": 0,\
+        "Total_Budget_Used": 3505,\
+        "Balance": 33991\
+    \}\
+]\
+\
+If no record Found : [\{"Message":"No Record Found!"\}]\
+\
+Error Msg : [\{"Message":"Exception Msg"\}]\
+\
+--------------------------------------------------------------------------------------------------------------------------------------------------------------\
+\
+\
+Update or reject query if cfo reject application\
+\
+update TRF set CFODate = getdate(), Updated_by_CFO = @UnBlockBy, CFOID = @Status, Reason_CFO = @reason_cfo where TRFNum = @exix_request\
+\
+\
+\
+Example:http://mytravelrequest.com/Home/PostCFORejection?UnBlockBy=hammad.hammad&Status=Reject&Reason=test&TRFNum=TR-1\
+\
+\
+Type : POST\
+\
+If Successfully Updated : [\{"Message":"Updated Successfully!"\}]\
+\
+If not updated : [\{"Message":"No row was updated!"\}]\
+\
+Error Msg : [\{"Message":"Exception Msg"\}]\
+\
+--------------------------------------------------------------------------------------------------------------------------------------------------------------\
+CEO Pending approvals\
+\
+select T.PKID, T.TRFNum, T.EmployeeID, T.RequestedDate, E.EmployeeName, T.Purpose, T.DestinationIDFrom, T.DestinationIDTo1, T.DestinationIDTo2, T.DestinationIDTo3, convert(varchar(10), T.PreferDateFrom, 121) as PreferDateFrom from TRF T with (nolock) Inner Join Employee E with (nolock) on E.usr_name = T.EmployeeID where agencyHeadID = 'Approved' and CFOID = 'Approved' and CEOID <> 'Approved' Order By T.PKID Desc\
+\
+\
+Example:http://mytravelrequest.com/Home/GetCEOPendingApprovals\
+\
+\
+Type : GET\
+\
+If Record Found : \
+[\
+    \{\
+        "PKID": 1002,\
+        "TRFNum": "TR-4",\
+        "EmployeeID": "hammad.hammad",\
+        "RequestedDate": "2019-06-14T00:31:00",\
+        "EmployeeName": "Hammad Ahmed",\
+        "Purpose": "testing",\
+        "DestinationIDFrom": "Lahore",\
+        "DestinationIDTo1": "rrr",\
+        "DestinationIDTo2": "Karachi",\
+        "DestinationIDTo3": "hammad",\
+        "PreferDateFrom": "2019-06-14"\
+    \},\
+    \{\
+        "PKID": 1,\
+        "TRFNum": "TR-1",\
+        "EmployeeID": "hammad.hammad",\
+        "RequestedDate": "2019-05-23T13:10:00",\
+        "EmployeeName": "Hammad Ahmed",\
+        "Purpose": "testing",\
+        "DestinationIDFrom": "rrr",\
+        "DestinationIDTo1": "rrr",\
+        "DestinationIDTo2": "rrr",\
+        "DestinationIDTo3": "rrr",\
+        "PreferDateFrom": "2019-05-23"\
+    \}\
+]\
+\
+If no record Found : [\{"Message":"No Record Found!"\}]\
+\
+Error Msg : [\{"Message":"Exception Msg"\}]\
+\
+ --------------------------------------------------------------------------------------------------------------------------------------------------------------\
+\
+\
+update query if ceo approved application\
+\
+update TRF set CEODate = getdate(), Updated_by_CEO = @UnBlockBy, CEOID = 'Approved' where PKID = @PKID\
+\
+Example:http://mytravelrequest.com/Home/PostCEOApproval?UnBlockBy=hammad.hammad&PKID=1\
+\
+\
+Type : POST\
+\
+If Successfully Updated : [\{"Message":"Updated Successfully!"\}]\
+\
+If not updated : [\{"Message":"No row was updated!"\}]\
+\
+Error Msg : [\{"Message":"Exception Msg"\}]}

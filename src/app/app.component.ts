@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { GeneralService } from './general.service';
 import { Router } from '@angular/router';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-root',
@@ -43,7 +44,8 @@ export class AppComponent {
     private statusBar: StatusBar,
     public generalService: GeneralService,
     public events: Events,
-    private router: Router
+    private router: Router,
+    public localStorrage: Storage
   ) {
     this.initializeApp();
 
@@ -63,14 +65,22 @@ export class AppComponent {
 
   manageSideMenu() {
 
+    this.localStorrage.get("user_detail").then((res) => {
+      console.log("sidemenu")
+      console.log(res.Usr_Name)
+      this.userName = res.Usr_Name
+      this.userDesignation = "Employee"
+    })
+
+
     console.log("asdfasdf")
     console.log(this.generalService.userTypeGlobal)
     console.log(this.generalService.userTypeGlobal)
     console.log(this.generalService.userTypeGlobal)
 
     if (this.generalService.userTypeGlobal == 1) {
-      this.userName = "Ahmed"
-      this.userDesignation = "Employee"
+      // this.userName = "Ahmed"
+      // this.userDesignation = "Employee"
       this.appPages = [
         {
           title: 'Add Travel Request',
@@ -89,8 +99,8 @@ export class AppComponent {
         }
       ];
     } else if (this.generalService.userTypeGlobal == 2) {
-      this.userName = "Jawad"
-      this.userDesignation = "CFO"
+      // this.userName = "Jawad"
+      // this.userDesignation = "CFO"
 
       this.appPages = [
         {
@@ -116,8 +126,8 @@ export class AppComponent {
       ];
     }
     else if (this.generalService.userTypeGlobal == 3) {
-      this.userName = "Imran"
-      this.userDesignation = "CEO"
+      // this.userName = "Imran"
+      // this.userDesignation = "CEO"
       this.appPages = [
         {
           title: 'Add Travel Request',
@@ -143,8 +153,8 @@ export class AppComponent {
     }
 
     else if (this.generalService.userTypeGlobal == 4) {
-      this.userName = "Zeeshan"
-      this.userDesignation = "HEAD"
+      // this.userName = "Zeeshan"
+      // this.userDesignation = "HEAD"
 
       this.appPages = [
         {

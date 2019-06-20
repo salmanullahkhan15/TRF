@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
+import { GeneralService } from '../general.service';
+import { Storage } from '@ionic/storage';
+import { LoadingController } from '@ionic/angular';
 @Component({
   selector: 'app-add-travel-reqeust',
   templateUrl: './add-travel-reqeust.page.html',
@@ -11,6 +13,11 @@ export class AddTravelReqeustPage implements OnInit {
   pageTitle: string;
   chargableToClients: string;
   isReadOnly: boolean = false;
+  designations: any = []
+  flights: any = []
+  clients: any = []
+  reasonPurpose: any = []
+  peList: any = []
   userInfo: any = {
     staffCode: "0001",
     designation: "employee",
@@ -59,50 +66,8 @@ export class AddTravelReqeustPage implements OnInit {
   }
 
 
-
-
-  // basicInfo: any = {
-  //   natureOfTravel: "domestic",
-  //   purposeOfTravel: "Business",
-  //   reason: "Travel",
-  //   chargableToClients: "yes",
-  //   nameOfClients: "Yasir Khan",
-  //   pe: "1",
-  // }
-
-  // travelingAdvance: any = {
-  //   advanceRequired: "yes",
-  //   advanceAmount: "1000"
-  // }
-  // otherInfo: any = {
-  //   modeOfTravel: "1",
-  //   hotelBookingRequired: "yes",
-  //   viseRequired: "yes",
-  //   rentACarRequired: "yes",
-  //   otherArrangements: "something"
-  // }
-  // airlineInfo: any = {
-  //   preferableFlight: "2",
-  //   durationOfVisit: "5",
-  //   expectedDateOfReturn: "11/11/2019"
-  // }
-  // travelInfo: any = {
-  //   departureFrom: "khi",
-  //   departureToOne: "khi",
-  //   departureToTwo: "lhr",
-  //   departureToThree: "lhr",
-  //   preferableDateFrom: "02/04/2019",
-  //   preferableDateToOne: "02/04/2019",
-  //   preferableDateToTwo: "08/04/2019",
-  //   preferableDateToThree: "08/04/2019",
-  //   preferableTimeFrom: "09:10",
-  //   preferableTimeToOne: "09:10",
-  //   preferableTimeToTwo: "12:10",
-  //   preferableTimeToThree: "12:10",
-  // }
-
-
-  constructor(private activatedRoute: ActivatedRoute) { }
+  constructor(private activatedRoute: ActivatedRoute, public generalService: GeneralService,
+    public localStorrage: Storage, public loadingCtrl: LoadingController) { }
 
   ngOnInit() {
     this.isReadOnly = this.activatedRoute.snapshot.paramMap.get('isReadOnly') == "true" ? true : false
@@ -115,7 +80,7 @@ export class AddTravelReqeustPage implements OnInit {
 
       this.basicInfo = {
         natureOfTravel: "domestic",
-        purposeOfTravel: "Business",
+        purposeOfTravel: "asdf",
         reason: "2",
         chargableToClients: "yes",
         nameOfClients: "Yasir Khan",
@@ -156,7 +121,7 @@ export class AddTravelReqeustPage implements OnInit {
     }
 
 
-
+    this.getUserData()
   }
 
   chargableToClientsChange(val) {
@@ -193,5 +158,51 @@ export class AddTravelReqeustPage implements OnInit {
 
     }
   }
+
+  async getUserData() {
+
+    this.localStorrage.get("user_detail").then(async (res) => {
+      console.log(res)
+      if (res != null) {
+        var userName = res.Usr_Name
+        const loading = await this.loadingCtrl.create({
+          message: 'Loading'
+        });
+        await loading.present();
+        this.generalService.getData(userName)
+          .subscribe(res => {
+            console.log(res);
+            var user = res[0][0]
+            this.designations = res[1]
+            this.flights = res[2]
+            this.clients = res[3]
+            this.reasonPurpose = res[4]
+            this.userInfo = {
+              staffCode: user.StaffCode,
+              designation: user.Designation,
+              department: user.Department,
+              agency: user.AgencyName,
+              location: user.Location
+            }
+            loading.dismiss();
+          }, err => {
+            console.log(err);
+            loading.dismiss();
+          });
+      }
+    })
+
+  }
+
+  clientSelect(clientName) {
+    console.log(clientName)
+    this.generalService.getRequest(this.generalService.API_GET_PE_LIST + clientName).then((res) => {
+      console.log(res)
+      this.peList = res
+    })
+
+  }
+
+
 
 }
