@@ -13,26 +13,7 @@ import { Storage } from '@ionic/storage';
 })
 export class AppComponent {
   public appPages = [
-    {
-      title: 'Add Travel Request',
-      url: '/add-travel-reqeust',
-      icon: 'home'
-    },
-    {
-      title: 'My Travel Request',
-      url: '/my-travel-request',
-      icon: 'home'
-    },
-    {
-      title: 'Approve/Reject',
-      url: '/approve-reject',
-      icon: 'home'
-    },
-    {
-      title: 'Logout',
-      url: '/',
-      icon: 'home'
-    }
+
   ];
 
 
@@ -50,9 +31,7 @@ export class AppComponent {
     this.initializeApp();
 
     this.events.subscribe('sidemenuEvent', (data) => {
-      console.log('testevent');
-      console.log(data);
-      this.manageSideMenu()
+      this.manageSideMenu(data)
     });
   }
 
@@ -63,122 +42,73 @@ export class AppComponent {
     });
   }
 
-  manageSideMenu() {
+  manageSideMenu(data) {
 
-    this.localStorrage.get("user_detail").then((res) => {
-      console.log("sidemenu")
-      console.log(res.Usr_Name)
-      this.userName = res.Usr_Name
-      this.userDesignation = "Employee"
-    })
+    this.userName = data[0].Usr_Name
+    this.userDesignation = data[0].Group_Name
 
 
-    console.log("asdfasdf")
-    console.log(this.generalService.userTypeGlobal)
-    console.log(this.generalService.userTypeGlobal)
-    console.log(this.generalService.userTypeGlobal)
 
-    if (this.generalService.userTypeGlobal == 1) {
-      // this.userName = "Ahmed"
-      // this.userDesignation = "Employee"
-      this.appPages = [
-        {
-          title: 'Add Travel Request',
-          url: '/add-travel-reqeust',
-          icon: 'home'
-        },
-        {
-          title: 'My Travel Request',
-          url: '/my-travel-request',
-          icon: 'home'
-        },
-        {
-          title: 'Logout',
-          url: '/',
-          icon: 'home'
-        }
-      ];
-    } else if (this.generalService.userTypeGlobal == 2) {
-      // this.userName = "Jawad"
-      // this.userDesignation = "CFO"
+    this.appPages = []
 
-      this.appPages = [
-        {
-          title: 'Add Travel Request',
-          url: '/add-travel-reqeust',
-          icon: 'home'
-        },
-        {
-          title: 'My Travel Request',
-          url: '/my-travel-request',
-          icon: 'home'
-        },
-        {
-          title: 'Approve/Reject',
-          url: '/approve-reject',
-          icon: 'home'
-        },
-        {
-          title: 'Logout',
-          url: '/',
-          icon: 'home'
-        }
-      ];
+
+    var oneMenu = {
+      title: 'Home',
+      url: '/home',
+      icon: 'home'
     }
-    else if (this.generalService.userTypeGlobal == 3) {
-      // this.userName = "Imran"
-      // this.userDesignation = "CEO"
-      this.appPages = [
-        {
-          title: 'Add Travel Request',
-          url: '/add-travel-reqeust',
-          icon: 'home'
-        },
-        {
-          title: 'My Travel Request',
-          url: '/my-travel-request',
-          icon: 'home'
-        },
-        {
-          title: 'Approve/Reject',
-          url: '/approve-reject',
-          icon: 'home'
-        },
-        {
-          title: 'Logout',
-          url: '/',
+    this.appPages.push(oneMenu)
+
+    var twoMenu = {
+      title: 'Add Travel Request',
+      url: '/add-travel-reqeust',
+      icon: 'home'
+    }
+    this.appPages.push(twoMenu)
+
+    var threeMenu = {
+      title: 'My Travel Request',
+      url: '/my-travel-request',
+      icon: 'home'
+    }
+    this.appPages.push(threeMenu)
+
+    for (let i = 0; i < data.length; i++) {
+
+      if (data[i].page_name == "travel_request_form_approved_head") {
+        var fourMenu = {
+          title: 'Approve/Reject Head',
+          url: '/approve-reject/4',
           icon: 'home'
         }
-      ];
+        this.appPages.push(fourMenu)
+      }
+
+      if (data[i].page_name == "travel_request_form_approved_cfo") {
+        var fourMenu = {
+          title: 'Approve/Reject Cfo',
+          url: '/approve-reject/2',
+          icon: 'home'
+        }
+        this.appPages.push(fourMenu)
+      }
+
+      if (data[i].page_name == "travel_request_form_approved_ceo") {
+        var fourMenu = {
+          title: 'Approve/Reject Ceo',
+          url: '/approve-reject/3',
+          icon: 'home'
+        }
+        this.appPages.push(fourMenu)
+      }
+
     }
 
-    else if (this.generalService.userTypeGlobal == 4) {
-      // this.userName = "Zeeshan"
-      // this.userDesignation = "HEAD"
+    var result = this.appPages.filter(function (a) {
+      return !this[a.url] && (this[a.url] = true);
+    }, Object.create(null));
 
-      this.appPages = [
-        {
-          title: 'Add Travel Request',
-          url: '/add-travel-reqeust',
-          icon: 'home'
-        },
-        {
-          title: 'My Travel Request',
-          url: '/my-travel-request',
-          icon: 'home'
-        },
-        {
-          title: 'Approve/Reject',
-          url: '/approve-reject',
-          icon: 'home'
-        },
-        {
-          title: 'Logout',
-          url: '/',
-          icon: 'home'
-        }
-      ];
-    }
+    this.appPages = result
 
   }
 
@@ -189,5 +119,12 @@ export class AppComponent {
     } else {
       this.router.navigateByUrl(url);
     }
+  }
+
+
+  logout() {
+    this.localStorrage.clear();
+    this.router.navigateByUrl('/login');
+
   }
 }

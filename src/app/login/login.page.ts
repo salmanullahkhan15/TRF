@@ -23,7 +23,7 @@ export class LoginPage implements OnInit {
     this.localStorrage.get("user_detail").then((res) => {
       console.log(res)
       if (res != null) {
-        this.router.navigateByUrl('/home/' + 1);
+        this.router.navigateByUrl('/home');
       }
     })
 
@@ -35,8 +35,25 @@ export class LoginPage implements OnInit {
     console.log(this.checkRemember);
     this.generalService.getRequest(this.generalService.API_LOGIN + "Username=" + this.username + "&Password=" + this.password).then((res) => {
       console.log(res)
-      this.localStorrage.set("user_detail", res[0]).then((res) => {
-        this.router.navigateByUrl('/home/' + 1);
+      this.localStorrage.set("user_detail", res).then((res) => {
+        this.router.navigateByUrl('/home');
+        this.events.publish('sidemenuEvent', res);
+
+        // Group_Name: "admin"
+        // Group_Name1: "admin"
+        // PKID: 1
+        // PKID1: 1
+        // Status: true
+        // Status1: true
+        // Updated_by1: "hammad"
+        // Updated_on1: "2018-01-30T23:57:00"
+        // Usr_Name: "hammad.hammad"
+        // page_name: "admin_department_travel_form"
+        // updated_by: "hammad.hammad"
+        // updated_on: "2018-09-20T22:07:00"
+
+
+
       })
     })
 

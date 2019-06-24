@@ -66,7 +66,8 @@
       <ion-label>Reason</ion-label>
       <!-- <ion-input [(ngModel)]="basicInfo.reason" [disabled]="isReadOnly"></ion-input> -->
       <ion-select placeholder="Select" [(ngModel)]="basicInfo.reason" [disabled]="isReadOnly">
-        <ion-select-option *ngFor="let item of reasonPurpose" [value]="item.PKID">{{item.Purpose_desc}}</ion-select-option>
+        <ion-select-option *ngFor="let item of reasonPurpose" [value]="item.Purpose_desc">{{item.Purpose_desc}}
+        </ion-select-option>
 
         <!-- <ion-select-option value="1">Value 1</ion-select-option>
         <ion-select-option value="2">Value 2</ion-select-option>
@@ -79,8 +80,8 @@
 
     <ion-item>
       <ion-label>Chargeable to Clients</ion-label>
-      <ion-select placeholder="Select" [(ngModel)]="basicInfo.chargableToClients" (ionChange)="chargableToClientsChange(basicInfo.chargableToClients)"
-        [disabled]="isReadOnly">
+      <ion-select placeholder="Select" [(ngModel)]="basicInfo.chargableToClients"
+        (ionChange)="chargableToClientsChange(basicInfo.chargableToClients)" [disabled]="isReadOnly">
         <ion-select-option value="yes">YES</ion-select-option>
         <ion-select-option value="no">NO</ion-select-option>
       </ion-select>
@@ -90,17 +91,20 @@
       <ion-label>Name of Clients/Regions</ion-label>
       <!-- <ion-input [(ngModel)]="basicInfo.nameOfClients" [disabled]="basicInfo.chargableToClients == 'no' || isReadOnly">
       </ion-input> -->
-      <ion-select placeholder="Select" [(ngModel)]="basicInfo.nameOfClients" [disabled]="basicInfo.chargableToClients == 'no' || isReadOnly"
+      <ion-select placeholder="Select" [(ngModel)]="basicInfo.nameOfClients"
+        [disabled]="basicInfo.chargableToClients == 'no' || isReadOnly"
         (ionChange)="clientSelect(basicInfo.nameOfClients)">
-        <ion-select-option *ngFor="let item of clients" [value]="item.Client_Name">{{item.Client_Name}}</ion-select-option>
+        <ion-select-option *ngFor="let item of clients" [value]="item.Client_Name">{{item.Client_Name}}
+        </ion-select-option>
       </ion-select>
     </ion-item>
 
 
     <ion-item>
       <ion-label>PE</ion-label>
-      <ion-select placeholder="Select" [(ngModel)]="basicInfo.pe" [disabled]="basicInfo.chargableToClients == 'no' || isReadOnly || peList.length == 0">
-        <ion-select-option *ngFor="let item of peList" [value]="item.PKID">{{item.PE}}</ion-select-option>
+      <ion-select placeholder="Select" [(ngModel)]="basicInfo.pe"
+        [disabled]="basicInfo.chargableToClients == 'no' || isReadOnly || peList.length == 0">
+        <ion-select-option *ngFor="let item of peList" [value]="item.PE">{{item.PE}}</ion-select-option>
 
         <!-- <ion-select-option value="1">0001</ion-select-option>
         <ion-select-option value="2">1234</ion-select-option>
@@ -120,14 +124,16 @@
     <ion-item>
       <ion-label>Departure From</ion-label>
       <ion-select placeholder="Select" [(ngModel)]="travelInfo.departureFrom" [disabled]="isReadOnly">
-        <ion-select-option *ngFor="let item of designations" [value]="item.PKID">{{item.Destination}}</ion-select-option>
+        <ion-select-option *ngFor="let item of designations" [value]="item.Destination">{{item.Destination}}
+        </ion-select-option>
       </ion-select>
     </ion-item>
 
     <ion-item>
       <ion-label>To</ion-label>
       <ion-select placeholder="" [(ngModel)]="travelInfo.departureFrom" disabled="true">
-        <ion-select-option *ngFor="let item of designations" [value]="item.PKID">{{item.Destination}}</ion-select-option>
+        <ion-select-option *ngFor="let item of designations" [value]="item.Destination">{{item.Destination}}
+        </ion-select-option>
 
       </ion-select>
     </ion-item>
@@ -136,7 +142,8 @@
     <ion-item>
       <ion-label>To</ion-label>
       <ion-select placeholder="Select" [(ngModel)]="travelInfo.departureToTwo" [disabled]="isReadOnly">
-        <ion-select-option *ngFor="let item of designations" [value]="item.PKID">{{item.Destination}}</ion-select-option>
+        <ion-select-option *ngFor="let item of designations" [value]="item.Destination">{{item.Destination}}
+        </ion-select-option>
 
       </ion-select>
     </ion-item>
@@ -145,7 +152,8 @@
     <ion-item>
       <ion-label>To</ion-label>
       <ion-select placeholder="" [(ngModel)]="travelInfo.departureToTwo" disabled="true">
-        <ion-select-option *ngFor="let item of designations" [value]="item.PKID">{{item.Destination}}</ion-select-option>
+        <ion-select-option *ngFor="let item of designations" [value]="item.Destination">{{item.Destination}}
+        </ion-select-option>
 
       </ion-select>
     </ion-item>
@@ -159,7 +167,8 @@
 
     <ion-item>
       <ion-label>To</ion-label>
-      <ion-datetime [(ngModel)]="travelInfo.preferableDateFrom" displayFormat="MM/DD/YYYY" placeholder="" disabled="isReadOnly">
+      <ion-datetime [(ngModel)]="travelInfo.preferableDateFrom" displayFormat="MM/DD/YYYY" placeholder=""
+        disabled="isReadOnly">
       </ion-datetime>
     </ion-item>
 
@@ -174,34 +183,39 @@
 
     <ion-item>
       <ion-label>To</ion-label>
-      <ion-datetime [(ngModel)]="travelInfo.preferableDateToTwo" displayFormat="MM/DD/YYYY" placeholder="" disabled="true">
+      <ion-datetime [(ngModel)]="travelInfo.preferableDateToTwo" displayFormat="MM/DD/YYYY" placeholder=""
+        disabled="true">
       </ion-datetime>
     </ion-item>
 
 
     <ion-item>
       <ion-label>Preferable Time From</ion-label>
-      <ion-datetime displayFormat="hh:mm" placeholder="Select" [(ngModel)]="travelInfo.preferableTimeFrom" [disabled]="isReadOnly">
+      <ion-datetime displayFormat="hh:mm" placeholder="Select" [(ngModel)]="travelInfo.preferableTimeFrom"
+        [disabled]="isReadOnly">
       </ion-datetime>
     </ion-item>
 
     <ion-item>
       <ion-label>To</ion-label>
-      <ion-datetime displayFormat="hh:mm" placeholder="Select" [(ngModel)]="travelInfo.preferableTimeFrom" disabled="true">
-      </ion-datetime>
-    </ion-item>
-
-
-    <ion-item>
-      <ion-label>To</ion-label>
-      <ion-datetime displayFormat="hh:mm" placeholder="Select" [(ngModel)]="travelInfo.preferableTimeToTwo" [disabled]="isReadOnly">
+      <ion-datetime displayFormat="hh:mm" placeholder="Select" [(ngModel)]="travelInfo.preferableTimeFrom"
+        disabled="true">
       </ion-datetime>
     </ion-item>
 
 
     <ion-item>
       <ion-label>To</ion-label>
-      <ion-datetime displayFormat="hh:mm" placeholder="Select" [(ngModel)]="travelInfo.preferableTimeToTwo" disabled="true">
+      <ion-datetime displayFormat="hh:mm" placeholder="Select" [(ngModel)]="travelInfo.preferableTimeToTwo"
+        [disabled]="isReadOnly">
+      </ion-datetime>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label>To</ion-label>
+      <ion-datetime displayFormat="hh:mm" placeholder="Select" [(ngModel)]="travelInfo.preferableTimeToTwo"
+        disabled="true">
       </ion-datetime>
     </ion-item>
 
@@ -213,7 +227,7 @@
     <ion-item>
       <ion-label>Preferable Flight</ion-label>
       <ion-select placeholder="Select" [(ngModel)]="airlineInfo.preferableFlight" [disabled]="isReadOnly">
-        <ion-select-option *ngFor="let item of flights" [value]="item.PKID">{{item.Flights}}</ion-select-option>
+        <ion-select-option *ngFor="let item of flights" [value]="item.Flights">{{item.Flights}}</ion-select-option>
 
       </ion-select>
     </ion-item>
@@ -224,8 +238,12 @@
     </ion-item>
 
     <ion-item>
-      <ion-label position="floating">Expected Date Of Return</ion-label>
-      <ion-input [(ngModel)]="travelInfo.preferableDateToTwo" disabled="true"></ion-input>
+      <!-- <ion-label position="floating">Expected Date Of Return</ion-label> -->
+      <!-- <ion-input [(ngModel)]="travelInfo.preferableDateToTwo" disabled="true"></ion-input> -->
+      <ion-label>Expected Date Of Return</ion-label>
+      <ion-datetime displayFormat="MM/DD/YYYY" placeholder="Select" [(ngModel)]="travelInfo.preferableDateToTwo"
+        disabled="true">
+      </ion-datetime>
     </ion-item>
 
 
@@ -296,6 +314,6 @@
   </ion-list>
 
   <!-- <ion-button expand="full" fill="outline">Submit</ion-button> -->
-  <ion-button expand="block" fill="outline">Submit</ion-button>
+  <ion-button expand="block" fill="outline" (click)="submitInsertForm()">Submit</ion-button>
 
 </ion-content>

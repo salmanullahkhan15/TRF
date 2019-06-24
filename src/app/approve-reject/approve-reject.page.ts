@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GeneralService } from '../general.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-approve-reject',
@@ -44,10 +44,10 @@ export class ApproveRejectPage implements OnInit {
     },
   ]
   userRole: any;
-  constructor(public generalService: GeneralService, private router: Router) { }
+  constructor(public generalService: GeneralService, private router: Router, private activatedRoute: ActivatedRoute, ) { }
 
   ngOnInit() {
-    this.userRole = this.generalService.userTypeGlobal
+    this.userRole = this.activatedRoute.snapshot.paramMap.get('userType')
   }
   segmentChanged(e) {
     console.log(this.segment)

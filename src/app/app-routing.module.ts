@@ -12,7 +12,7 @@ const routes: Routes = [
     loadChildren: './login/login.module#LoginPageModule'
   },
   {
-    path: 'home/:userType',
+    path: 'home',
     loadChildren: './home/home.module#HomePageModule'
   },
   {
@@ -21,7 +21,7 @@ const routes: Routes = [
   },
   { path: 'add-travel-reqeust/:isReadOnly', loadChildren: './add-travel-reqeust/add-travel-reqeust.module#AddTravelReqeustPageModule' },
   { path: 'my-travel-request', loadChildren: './my-travel-request/my-travel-request.module#MyTravelRequestPageModule' },
-  { path: 'approve-reject', loadChildren: './approve-reject/approve-reject.module#ApproveRejectPageModule' }
+  { path: 'approve-reject/:userType', loadChildren: './approve-reject/approve-reject.module#ApproveRejectPageModule' }
 ];
 
 @NgModule({

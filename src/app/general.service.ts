@@ -22,7 +22,7 @@ export class GeneralService {
   API_GET_CLIENTS = "Home/GetClients"
   API_GET_GET__REASON_PURPOSE = "Home/GetPurpose"
   API_GET_PE_LIST = "Home/GetPEListClientWise?ClientName="
-
+  API_POST_USER_FORM = "Home/InsertApplication"
 
   // /Home/GetDestinations
   // /Home/GetFlights
