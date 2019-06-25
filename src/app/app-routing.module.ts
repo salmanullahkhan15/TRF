@@ -19,7 +19,7 @@ const routes: Routes = [
     path: 'list',
     loadChildren: './list/list.module#ListPageModule'
   },
-  { path: 'add-travel-reqeust/:isReadOnly', loadChildren: './add-travel-reqeust/add-travel-reqeust.module#AddTravelReqeustPageModule' },
+  { path: 'add-travel-reqeust/:isReadOnly/:readData', loadChildren: './add-travel-reqeust/add-travel-reqeust.module#AddTravelReqeustPageModule' },
   { path: 'my-travel-request', loadChildren: './my-travel-request/my-travel-request.module#MyTravelRequestPageModule' },
   { path: 'approve-reject/:userType', loadChildren: './approve-reject/approve-reject.module#ApproveRejectPageModule' }
 ];

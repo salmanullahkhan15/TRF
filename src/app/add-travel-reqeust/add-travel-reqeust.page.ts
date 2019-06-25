@@ -9,6 +9,10 @@ import { LoadingController } from '@ionic/angular';
   styleUrls: ['./add-travel-reqeust.page.scss'],
 })
 export class AddTravelReqeustPage implements OnInit {
+
+  userNameGlobe: any;
+  trfNum: any = 0
+  readTRFNum: any = 0
   staffCode: string;
   pageTitle: string;
   chargableToClients: string;
@@ -45,11 +49,6 @@ export class AddTravelReqeustPage implements OnInit {
     rentACarRequired: "",
     otherArrangements: ""
   }
-  airlineInfo: any = {
-    preferableFlight: "",
-    durationOfVisit: "",
-    expectedDateOfReturn: ""
-  }
   travelInfo: any = {
     departureFrom: "",
     departureToOne: "",
@@ -65,62 +64,71 @@ export class AddTravelReqeustPage implements OnInit {
     preferableTimeToThree: "",
   }
 
+  airlineInfo: any = {
+    preferableFlight: "",
+    durationOfVisit: "",
+    expectedDateOfReturn: ""
+  }
 
 
-  userNameGlobe: any;
+
   constructor(private activatedRoute: ActivatedRoute, public generalService: GeneralService,
     public localStorrage: Storage, public loadingCtrl: LoadingController) { }
 
   ngOnInit() {
+    var readData = this.activatedRoute.snapshot.paramMap.get('readData')
     this.isReadOnly = this.activatedRoute.snapshot.paramMap.get('isReadOnly') == "true" ? true : false
+    console.log(readData)
     console.log(this.isReadOnly)
     this.pageTitle = this.isReadOnly ? "Travel Request Detail" : "Add Travel Request"
-
-
-
-    if (this.isReadOnly) {
-
-      this.basicInfo = {
-        natureOfTravel: "domestic",
-        purposeOfTravel: "asdf",
-        reason: "2",
-        chargableToClients: "yes",
-        nameOfClients: "Yasir Khan",
-        pe: "1",
-      }
-
-      this.travelingAdvance = {
-        advanceRequired: "yes",
-        advanceAmount: "1000"
-      }
-      this.otherInfo = {
-        modeOfTravel: "1",
-        hotelBookingRequired: "yes",
-        viseRequired: "yes",
-        rentACarRequired: "yes",
-        otherArrangements: "something"
-      }
-      this.airlineInfo = {
-        preferableFlight: "2",
-        durationOfVisit: "5",
-        expectedDateOfReturn: "11/11/2019"
-      }
-      this.travelInfo = {
-        departureFrom: "khi",
-        departureToOne: "khi",
-        departureToTwo: "lhr",
-        departureToThree: "lhr",
-        preferableDateFrom: "02/04/2019",
-        preferableDateToOne: "02/04/2019",
-        preferableDateToTwo: "08/04/2019",
-        preferableDateToThree: "08/04/2019",
-        preferableTimeFrom: "09:10",
-        preferableTimeToOne: "09:10",
-        preferableTimeToTwo: "12:10",
-        preferableTimeToThree: "12:10",
-      }
-
+    // this.getReadOnlyData(readData)
+    if (this.isReadOnly == true && readData != null) {
+      this.getReadOnlyData(readData)
     }
+
+    // if (this.isReadOnly) {
+
+    //   this.basicInfo = {
+    //     natureOfTravel: "domestic",
+    //     purposeOfTravel: "asdf",
+    //     reason: "2",
+    //     chargableToClients: "yes",
+    //     nameOfClients: "Yasir Khan",
+    //     pe: "1",
+    //   }
+
+    //   this.travelingAdvance = {
+    //     advanceRequired: "yes",
+    //     advanceAmount: "1000"
+    //   }
+    //   this.otherInfo = {
+    //     modeOfTravel: "1",
+    //     hotelBookingRequired: "yes",
+    //     viseRequired: "yes",
+    //     rentACarRequired: "yes",
+    //     otherArrangements: "something"
+    //   }
+    //   this.airlineInfo = {
+    //     preferableFlight: "2",
+    //     durationOfVisit: "5",
+    //     expectedDateOfReturn: "11/11/2019"
+    //   }
+    //   this.travelInfo = {
+    //     departureFrom: "khi",
+    //     departureToOne: "khi",
+    //     departureToTwo: "lhr",
+    //     departureToThree: "lhr",
+    //     preferableDateFrom: "02/04/2019",
+    //     preferableDateToOne: "02/04/2019",
+    //     preferableDateToTwo: "08/04/2019",
+    //     preferableDateToThree: "08/04/2019",
+    //     preferableTimeFrom: "09:10",
+    //     preferableTimeToOne: "09:10",
+    //     preferableTimeToTwo: "12:10",
+    //     preferableTimeToThree: "12:10",
+    //   }
+
+    // }
 
 
     this.getUserData()
@@ -180,6 +188,7 @@ export class AddTravelReqeustPage implements OnInit {
             this.flights = res[2]
             this.clients = res[3]
             this.reasonPurpose = res[4]
+            this.trfNum = res[5]
             this.userInfo = {
               staffCode: user.StaffCode,
               designation: user.Designation,
@@ -209,9 +218,9 @@ export class AddTravelReqeustPage implements OnInit {
 
 
   submitInsertForm() {
-
+    console.log(this.trfNum)
     var obj = {
-      TRFNum: "TR-5",
+      TRFNum: "TR-" + (parseInt(this.trfNum[0].TRFNum) + 1),
       EmployeeID: this.userNameGlobe,
       IsChargeToClient: this.basicInfo.chargableToClients,
       Client_Region: this.basicInfo.nameOfClients,
@@ -244,10 +253,8 @@ export class AddTravelReqeustPage implements OnInit {
       RequestedBy: this.userNameGlobe
     }
 
-
     console.log(obj)
     console.log(JSON.stringify(obj))
-
 
     this.generalService.postRequest(this.generalService.API_POST_USER_FORM, obj).then((res) => {
       console.log(res)
@@ -274,18 +281,100 @@ export class AddTravelReqeustPage implements OnInit {
     return hour + ":" + min
   }
 
+
+  getReadOnlyData(trfNum) {
+    // API_GET_APPLICATION_BY_TRFNUM
+    this.generalService.getRequest(this.generalService.API_GET_APPLICATION_BY_TRFNUM + trfNum).then((res) => {
+      console.log(res)
+      var formData = res[0]
+      if (this.isReadOnly) {
+        this.readTRFNum = formData.TRFNum
+
+        this.userInfo = {
+          staffCode: formData.StaffCode,
+          designation: formData.Designation,
+          department: formData.Department,
+          agency: formData.AgencyName,
+          location: formData.Location
+        }
+
+        this.basicInfo = {
+          natureOfTravel: formData.Nature,
+          purposeOfTravel: formData.Purpose,
+          reason: formData.Purpose_reason,
+          chargableToClients: formData.IsChargeToClient,
+          nameOfClients: formData.Client_Region,
+          pe: formData.PE,
+        }
+
+        this.travelingAdvance = {
+          advanceRequired: formData.IsAdvance,
+          advanceAmount: formData.AdvAmount
+        }
+        this.otherInfo = {
+          modeOfTravel: formData.Mode,
+          hotelBookingRequired: formData.IsHotel,
+          viseRequired: formData.IsVisa,
+          rentACarRequired: formData.Isrentacar,
+          otherArrangements: formData.Others
+        }
+        this.airlineInfo = {
+          preferableFlight: formData.PreferFlight,
+          durationOfVisit: formData.Duration,
+          expectedDateOfReturn: formData.ReturnDate
+        }
+        this.travelInfo = {
+          departureFrom: formData.DestinationIDFrom,
+          departureToOne: formData.DestinationIDTo1,
+          departureToTwo: formData.DestinationIDTo2,
+          departureToThree: formData.DestinationIDTo3,
+          preferableDateFrom: formData.PreferDateFrom,
+          preferableDateToOne: formData.PreferDateTo1,
+          preferableDateToTwo: formData.PreferDateTo2,
+          preferableDateToThree: formData.PreferDateTo3,
+          preferableTimeFrom: formData.PreferTimeFrom,
+          preferableTimeToOne: formData.PreferTimeTo1,
+          preferableTimeToTwo: formData.PreferTimeTo2,
+          preferableTimeToThree: formData.PreferTimeTo3,
+        }
+      }
+    })
+  }
+  // CFO = 2
+  // CEO = 3
+  // HEAD = 4
+
+  approveRejectCfoHead(isApprove) {
+    // this.generalService.userRole
+
+    // userNameGlobe
+    // readTRFNum
+
+    // HEAD = 4
+
+    var status = isApprove == 1 ? "Approved" : "Reject"
+
+    if (this.generalService.userRole == 4) {
+
+      // UnBlockBy = hammad.hammad & Status=Reject & Reason=test & TRFNum=TR - 1
+
+      this.generalService.postRequestUrl(this.generalService.API_APPROVE_BY_HEAD + "UnBlockBy=" + this.userNameGlobe + "&Status=" + status + "&Reason=test" + "&TRFNum=" + this.readTRFNum).then((res) => {
+        console.log(res)
+      })
+    }
+
+    // CFO = 2
+    if (this.generalService.userRole == 2) {
+      this.generalService.postRequestUrl(this.generalService.API_APPROVE_BY_CFO + "UnBlockBy=" + this.userNameGlobe + "&Status=" + status + "&Reason=test" + "&TRFNum=" + this.readTRFNum).then((res) => {
+        console.log(res)
+      })
+    }
+
+  }
 }
 
 
-// Group_Name: "admin"
-// Group_Name1: "admin"
-// PKID: 1
-// PKID1: 1
-// Status: true
-// Status1: true
-// Updated_by1: "hammad"
-// Updated_on1: "2018-01-30T23:57:00"
-// Usr_Name: "hammad.hammad"
-// page_name: "admin_department_travel_form"
-// updated_by: "hammad.hammad"
-// updated_on: "2018-09-20T22:07:00"
+
+// Example:http://mytravelrequest.com/Home/PostCFORejection?UnBlockBy=hammad.hammad&Status=Reject&Reason=test&TRFNum=TR-1
+
+// Example:http://mytravelrequest.com/Home/PostHeadRejection?UnBlockBy=hammad.hammad&Status=Approved&Reason=test&TRFNum=TR-1

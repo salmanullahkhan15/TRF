@@ -23,12 +23,34 @@ export class GeneralService {
   API_GET_GET__REASON_PURPOSE = "Home/GetPurpose"
   API_GET_PE_LIST = "Home/GetPEListClientWise?ClientName="
   API_POST_USER_FORM = "Home/InsertApplication"
+  API_GET_LAST_TRF_ID = "home/GetLastTRF_ID"
 
-  // /Home/GetDestinations
-  // /Home/GetFlights
-  // /Home/GetClients
-  // /Home/GetPurpose
+  API_GET_USER_APPROVED_FORMS = "home/GetApprovedRequests?username="
 
+  API_GET_USER_PENDING_FORMS = "home/GetrejectRequests?username="
+
+  API_GET_HEAD_APPROVAL_LIST = "Home/GetHeadApproval?Username="
+
+
+  API_GET_CFO_APPROVAL_LIST = "Home/GetCFOApproval"
+
+
+  API_GET_CEO_APPROVAL_LIST = "Home/GetCEOPendingApprovals"
+
+
+  API_GET_APPLICATION_BY_TRFNUM = "Home/GetApplicationInputs?TRFNum="
+
+  API_APPROVE_BY_CEO = "Home/PostCEOApproval?"
+
+  API_APPROVE_BY_CFO = "Home/PostCFORejection?"
+
+  API_APPROVE_BY_HEAD = "Home/PostHeadRejection?"
+
+
+  //   Home/PostCFORejection
+  // Home / PostHeadRejection
+
+  userRole: any = 0
   constructor(public http: HttpClient, public localStorrage: Storage, public alertCtrl: AlertController,
     public modalCtrl: ModalController,
     private router: Router
@@ -41,6 +63,28 @@ export class GeneralService {
 
       var resp;
       this.http.get(this.BASE_URL + url)
+        .subscribe((res) => {
+          console.log(res)
+          resp = res;
+          resolve(resp)
+        }, (err) => {
+          console.log(err, 'err')
+          if (err.status == 0) {
+            this.presentErrorAlert()
+          }
+          resolve(err)
+        })
+      // })
+    })
+  }
+
+
+  postRequestUrl(url) {
+    return new Promise(resolve => {
+      // this.localStorrage.get(Constants.USER_LOG_TOKEN).then((res) => {
+
+      var resp;
+      this.http.post(this.BASE_URL + url, null)
         .subscribe((res) => {
           console.log(res)
           resp = res;
@@ -115,8 +159,9 @@ export class GeneralService {
     let response3 = this.http.get(this.BASE_URL + this.API_GET_FLIGHTS);
     let response4 = this.http.get(this.BASE_URL + this.API_GET_CLIENTS);
     let response5 = this.http.get(this.BASE_URL + this.API_GET_GET__REASON_PURPOSE);
+    let response6 = this.http.get(this.BASE_URL + this.API_GET_LAST_TRF_ID);
 
-    return forkJoin([response1, response2, response3, response4, response5]);
+    return forkJoin([response1, response2, response3, response4, response5, response6]);
 
   }
 

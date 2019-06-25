@@ -114,8 +114,8 @@ export class AppComponent {
 
   gotoUrl(url) {
     if (url == "/add-travel-reqeust") {
-      var isReadOnly = false;
-      this.router.navigateByUrl(url + "/" + isReadOnly);
+      this.generalService.userRole = 0
+      this.router.navigateByUrl(url + "/" + null + "/" + false);
     } else {
       this.router.navigateByUrl(url);
     }

@@ -3,7 +3,7 @@
     <ion-buttons slot="start" class="burger-icon">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Approve Reject</ion-title>
+    <ion-title>Approve Reject {{userRole==3? 'Ceo':userRole==2? 'Cfo':userRole==4? 'Head':''}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -26,29 +26,29 @@
     <!-- pending -->
     <div class="pending-seg" *ngIf="segment == 'pending'">
 
-      <div class="seg-list" *ngFor="let item of requests; let i=index" (click)="selectCard(i)" [ngClass]="item.selected?'selectedClass':''">
-        <h6>Ahmed Saleem</h6>
-        <p class="loc">Karachi to Multan</p>
-        <p class="from">From: 10/04/2019</p>
-        <p class="to">To: 24/04/2019</p>
-        <p class="req">Requested date: 10/04/2019</p>
+      <div class="seg-list" *ngFor="let item of approvalRequests; let i=index" (click)="selectCard(i, item)" [ngClass]="item.selected?'selectedClass':''">
+        <h6>{{item.EmployeeName}}</h6>
+        <p class="loc">{{item.DestinationIDFrom}} to {{item.DestinationIDTo2}}</p>
+        <p class="from">From: {{item.PreferDateFrom}}</p>
+        <p class="to">To: {{item.PreferDateTo2}}</p>
+        <p class="req">Requested date: {{item.RequestedDate}}</p>
         <p class="status pending-st">Status: Pending</p>
-        <div class="btns" *ngIf="userRole != 3">
+        <!-- <div class="btns" *ngIf="userRole != 3">
           <ion-button size="small" class="approve-btn">Approve</ion-button>
           <ion-button size="small" class="reject-btn">Reject</ion-button>
-        </div>
+        </div> -->
       </div>
 
     </div>
 
     <!-- approved -->
     <div *ngIf="segment == 'approved'">
-      <div class="seg-list" *ngFor="let item of requests">
-        <h6>Ahmed Saleem</h6>
-        <p class="loc">Karachi to Multan</p>
-        <p class="from">From: 10/04/2019</p>
-        <p class="to">To: 24/04/2019</p>
-        <p class="req">Requested date: 10/04/2019</p>
+      <div class="seg-list" *ngFor="let item of approvalRequests">
+        <h6>{{item.EmployeeName}}</h6>
+        <p class="loc">{{item.DestinationIDFrom}} to {{item.DestinationIDTo2}}</p>
+        <p class="from">From: {{item.PreferDateFrom}}</p>
+        <p class="to">To: {{item.PreferDateTo2}}</p>
+        <p class="req">Requested date: {{item.RequestedDate}}</p>
         <p class="status approved-st">Status: Approved</p>
       </div>
     </div>
@@ -59,6 +59,6 @@
 </ion-content>
 
 <div class="btns" *ngIf="userRole == 3 && segment == 'pending'">
-  <ion-button size="small" class="approve-btn">Approve</ion-button>
-  <ion-button size="small" class="reject-btn">Reject</ion-button>
+  <ion-button size="small" class="approve-btn" (click)="approveByCeo(1)">Approve</ion-button>
+  <!-- <ion-button size="small" class="reject-btn" (click)="approveByCeo(0)">Reject</ion-button> -->
 </div>

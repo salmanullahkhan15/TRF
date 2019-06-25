@@ -80,8 +80,8 @@
 
     <ion-item>
       <ion-label>Chargeable to Clients</ion-label>
-      <ion-select placeholder="Select" [(ngModel)]="basicInfo.chargableToClients"
-        (ionChange)="chargableToClientsChange(basicInfo.chargableToClients)" [disabled]="isReadOnly">
+      <ion-select placeholder="Select" [(ngModel)]="basicInfo.chargableToClients" (ionChange)="chargableToClientsChange(basicInfo.chargableToClients)"
+        [disabled]="isReadOnly">
         <ion-select-option value="yes">YES</ion-select-option>
         <ion-select-option value="no">NO</ion-select-option>
       </ion-select>
@@ -91,8 +91,7 @@
       <ion-label>Name of Clients/Regions</ion-label>
       <!-- <ion-input [(ngModel)]="basicInfo.nameOfClients" [disabled]="basicInfo.chargableToClients == 'no' || isReadOnly">
       </ion-input> -->
-      <ion-select placeholder="Select" [(ngModel)]="basicInfo.nameOfClients"
-        [disabled]="basicInfo.chargableToClients == 'no' || isReadOnly"
+      <ion-select placeholder="Select" [(ngModel)]="basicInfo.nameOfClients" [disabled]="basicInfo.chargableToClients == 'no' || isReadOnly"
         (ionChange)="clientSelect(basicInfo.nameOfClients)">
         <ion-select-option *ngFor="let item of clients" [value]="item.Client_Name">{{item.Client_Name}}
         </ion-select-option>
@@ -102,8 +101,7 @@
 
     <ion-item>
       <ion-label>PE</ion-label>
-      <ion-select placeholder="Select" [(ngModel)]="basicInfo.pe"
-        [disabled]="basicInfo.chargableToClients == 'no' || isReadOnly || peList.length == 0">
+      <ion-select placeholder="Select" [(ngModel)]="basicInfo.pe" [disabled]="basicInfo.chargableToClients == 'no' || isReadOnly || peList.length == 0">
         <ion-select-option *ngFor="let item of peList" [value]="item.PE">{{item.PE}}</ion-select-option>
 
         <!-- <ion-select-option value="1">0001</ion-select-option>
@@ -167,8 +165,7 @@
 
     <ion-item>
       <ion-label>To</ion-label>
-      <ion-datetime [(ngModel)]="travelInfo.preferableDateFrom" displayFormat="MM/DD/YYYY" placeholder=""
-        disabled="isReadOnly">
+      <ion-datetime [(ngModel)]="travelInfo.preferableDateFrom" displayFormat="MM/DD/YYYY" placeholder="" disabled="isReadOnly">
       </ion-datetime>
     </ion-item>
 
@@ -183,39 +180,34 @@
 
     <ion-item>
       <ion-label>To</ion-label>
-      <ion-datetime [(ngModel)]="travelInfo.preferableDateToTwo" displayFormat="MM/DD/YYYY" placeholder=""
-        disabled="true">
+      <ion-datetime [(ngModel)]="travelInfo.preferableDateToTwo" displayFormat="MM/DD/YYYY" placeholder="" disabled="true">
       </ion-datetime>
     </ion-item>
 
 
     <ion-item>
       <ion-label>Preferable Time From</ion-label>
-      <ion-datetime displayFormat="hh:mm" placeholder="Select" [(ngModel)]="travelInfo.preferableTimeFrom"
-        [disabled]="isReadOnly">
+      <ion-datetime displayFormat="hh:mm" placeholder="Select" [(ngModel)]="travelInfo.preferableTimeFrom" [disabled]="isReadOnly">
       </ion-datetime>
     </ion-item>
 
     <ion-item>
       <ion-label>To</ion-label>
-      <ion-datetime displayFormat="hh:mm" placeholder="Select" [(ngModel)]="travelInfo.preferableTimeFrom"
-        disabled="true">
-      </ion-datetime>
-    </ion-item>
-
-
-    <ion-item>
-      <ion-label>To</ion-label>
-      <ion-datetime displayFormat="hh:mm" placeholder="Select" [(ngModel)]="travelInfo.preferableTimeToTwo"
-        [disabled]="isReadOnly">
+      <ion-datetime displayFormat="hh:mm" placeholder="Select" [(ngModel)]="travelInfo.preferableTimeFrom" disabled="true">
       </ion-datetime>
     </ion-item>
 
 
     <ion-item>
       <ion-label>To</ion-label>
-      <ion-datetime displayFormat="hh:mm" placeholder="Select" [(ngModel)]="travelInfo.preferableTimeToTwo"
-        disabled="true">
+      <ion-datetime displayFormat="hh:mm" placeholder="Select" [(ngModel)]="travelInfo.preferableTimeToTwo" [disabled]="isReadOnly">
+      </ion-datetime>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label>To</ion-label>
+      <ion-datetime displayFormat="hh:mm" placeholder="Select" [(ngModel)]="travelInfo.preferableTimeToTwo" disabled="true">
       </ion-datetime>
     </ion-item>
 
@@ -314,6 +306,12 @@
   </ion-list>
 
   <!-- <ion-button expand="full" fill="outline">Submit</ion-button> -->
-  <ion-button expand="block" fill="outline" (click)="submitInsertForm()">Submit</ion-button>
+  <ion-button expand="block" fill="outline" *ngIf="generalService.userRole != 2 && generalService.userRole != 4"
+    (click)="submitInsertForm()" [disabled]="isReadOnly">Submit</ion-button>
+
+  <div class="btns" *ngIf="generalService.userRole == 2 || generalService.userRole == 4 ">
+    <ion-button size="small" class="approve-btn" (click)="approveRejectCfoHead(1)">Approve</ion-button>
+    <ion-button size="small" class="reject-btn" (click)="approveRejectCfoHead(0)">Reject</ion-button>
+  </div>
 
 </ion-content>

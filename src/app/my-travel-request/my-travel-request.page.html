@@ -22,27 +22,27 @@
 
   <div class="contents-segment">
     <!-- pending -->
-    <div class="pending-seg" *ngIf="segment == 'pending'" (click)="gotoDetail()">
+    <div class="pending-seg" *ngIf="segment == 'pending'">
 
-      <div class="seg-list" *ngFor="let item of requests">
-        <h6>Ahmed Saleem</h6>
-        <p class="loc">Karachi to Multan</p>
-        <p class="from">From: 10/04/2019</p>
-        <p class="to">To: 24/04/2019</p>
-        <p class="req">Requested date: 10/04/2019</p>
+      <div class="seg-list" *ngFor="let item of pendingForms" (click)="gotoDetail(item)">
+        <h6>{{userName}}</h6>
+        <p class="loc">{{item.DestinationIDFrom}} to {{item.DestinationIDTo2}}</p>
+        <p class="from">From: {{item.PreferDateFrom}}</p>
+        <p class="to">To: {{item.PreferDateTo2}}</p>
+        <p class="req">Requested date: {{item.RequestedDate}}</p>
         <p class="status pending-st">Status: Pending</p>
       </div>
 
     </div>
 
     <!-- approved -->
-    <div *ngIf="segment == 'approved'" (click)="gotoDetail()">
-      <div class="seg-list" *ngFor="let item of requests">
-        <h6>Ahmed Saleem</h6>
-        <p class="loc">Karachi to Multan</p>
-        <p class="from">From: 10/04/2019</p>
-        <p class="to">To: 24/04/2019</p>
-        <p class="req">Requested date: 10/04/2019</p>
+    <div *ngIf="segment == 'approved'">
+      <div class="seg-list" *ngFor="let item of approvedForms" (click)="gotoDetail(item)">
+        <h6>{{userName}}</h6>
+        <p class="loc">{{item.DestinationIDFrom}} to {{item.DestinationIDTo2}}</p>
+        <p class="from">From: {{item.PreferDateFrom}}</p>
+        <p class="to">To: {{item.PreferDateTo2}}</p>
+        <p class="req">Requested date: {{item.RequestedDate}}</p>
         <p class="status approved-st">Status: Approved</p>
       </div>
     </div>
