@@ -60,8 +60,9 @@ export class MyTravelRequestPage implements OnInit {
     // var isReadOnly = true;
     var isReadOnly = true
     var trfNum = item.TRFNum
+    var isApproveBtn = false
 
-    this.router.navigateByUrl('/add-travel-reqeust/' + isReadOnly + "/" + trfNum);
+    this.router.navigateByUrl('/add-travel-reqeust/' + isReadOnly + "/" + trfNum + "/" + isApproveBtn);
   }
 
   getUserApprovedForms(user) {

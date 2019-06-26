@@ -47,6 +47,8 @@ export class GeneralService {
   API_APPROVE_BY_HEAD = "Home/PostHeadRejection?"
 
 
+  API_GET_BUDGET = "Home/GetBudgetBalance?TRFNum="
+
   //   Home/PostCFORejection
   // Home / PostHeadRejection
 

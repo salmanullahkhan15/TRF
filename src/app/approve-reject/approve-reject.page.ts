@@ -52,6 +52,7 @@ export class ApproveRejectPage implements OnInit {
 
   ngOnInit() {
     this.userRole = this.activatedRoute.snapshot.paramMap.get('userType')
+
     this.localStorage.get("user_detail")
       .then((res) => {
         this.userName = res[0].Usr_Name
@@ -82,10 +83,10 @@ export class ApproveRejectPage implements OnInit {
     } else {
       var isReadOnly = true
       var readData = item.TRFNum
-
+      var isApproveBtn = true
       // var role = this.userRole == 3 ? "ceo" : this.userRole == 4 ? "cfo" : this.userRole == 2 ? "head"
 
-      this.router.navigateByUrl('/add-travel-reqeust/' + isReadOnly + "/" + readData);
+      this.router.navigateByUrl('/add-travel-reqeust/' + isReadOnly + "/" + readData + "/" + isApproveBtn);
     }
   }
 

@@ -115,7 +115,7 @@ export class AppComponent {
   gotoUrl(url) {
     if (url == "/add-travel-reqeust") {
       this.generalService.userRole = 0
-      this.router.navigateByUrl(url + "/" + null + "/" + false);
+      this.router.navigateByUrl(url + "/" + null + "/" + false + "/" + false);
     } else {
       this.router.navigateByUrl(url);
     }

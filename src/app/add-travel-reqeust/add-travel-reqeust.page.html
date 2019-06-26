@@ -9,6 +9,31 @@
 
 <ion-content>
   <ion-list>
+    <div *ngIf="isApproveBtn">
+      <ion-list-header class="list-header-custom">
+        <ion-label>BUDGET INFORMATION</ion-label>
+      </ion-list-header>
+      <ion-item>
+        <ion-label position="floating">Budget</ion-label>
+        <ion-input disabled="true" [(ngModel)]="budget.budget"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Used Budget</ion-label>
+        <ion-input disabled="true" [(ngModel)]="budget.used"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Selected TRF Expenses</ion-label>
+        <ion-input disabled="true" [(ngModel)]="budget.selected"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Balance</ion-label>
+        <ion-input disabled="true" [(ngModel)]="budget.balance"></ion-input>
+      </ion-item>
+    </div>
+
     <ion-list-header class="list-header-custom">
       <ion-label>USER INFORMATION</ion-label>
     </ion-list-header>
@@ -306,10 +331,10 @@
   </ion-list>
 
   <!-- <ion-button expand="full" fill="outline">Submit</ion-button> -->
-  <ion-button expand="block" fill="outline" *ngIf="generalService.userRole != 2 && generalService.userRole != 4"
-    (click)="submitInsertForm()" [disabled]="isReadOnly">Submit</ion-button>
+  <ion-button expand="block" fill="outline" *ngIf="!isApproveBtn" (click)="submitInsertForm()" [disabled]="isReadOnly">Submit</ion-button>
 
-  <div class="btns" *ngIf="generalService.userRole == 2 || generalService.userRole == 4 ">
+  <!-- <div class="btns" *ngIf="generalService.userRole == 2 || generalService.userRole == 4"> -->
+  <div class="btns" *ngIf="isApproveBtn">
     <ion-button size="small" class="approve-btn" (click)="approveRejectCfoHead(1)">Approve</ion-button>
     <ion-button size="small" class="reject-btn" (click)="approveRejectCfoHead(0)">Reject</ion-button>
   </div>

@@ -70,13 +70,21 @@ export class AddTravelReqeustPage implements OnInit {
     expectedDateOfReturn: ""
   }
 
+  budget: any = {
+    budget: "",
+    used: "",
+    selected: "",
+    balance: "",
 
+  }
+  isApproveBtn: boolean;
 
   constructor(private activatedRoute: ActivatedRoute, public generalService: GeneralService,
     public localStorrage: Storage, public loadingCtrl: LoadingController) { }
 
   ngOnInit() {
     var readData = this.activatedRoute.snapshot.paramMap.get('readData')
+    this.isApproveBtn = this.activatedRoute.snapshot.paramMap.get('isApproveBtn') == "true" ? true : false
     this.isReadOnly = this.activatedRoute.snapshot.paramMap.get('isReadOnly') == "true" ? true : false
     console.log(readData)
     console.log(this.isReadOnly)
@@ -84,6 +92,7 @@ export class AddTravelReqeustPage implements OnInit {
     // this.getReadOnlyData(readData)
     if (this.isReadOnly == true && readData != null) {
       this.getReadOnlyData(readData)
+      this.getBudget()
     }
 
     // if (this.isReadOnly) {
@@ -371,10 +380,33 @@ export class AddTravelReqeustPage implements OnInit {
     }
 
   }
+
+
+  getBudget() {
+    // API_GET_BUDGET + this.readTRFNum
+    this.generalService.getRequest(this.generalService.API_GET_BUDGET + this.readTRFNum).then((res) => {
+      this.budget = {
+        budget: res[0].Total_Budget,
+        used: res[0].Total_Budget_Used,
+        selected: res[0].This_TRF,
+        balance: res[0].Balance,
+      }
+
+    })
+  }
+
+
+
 }
 
+// cfo
+// http://mytravelrequest.com/Home/GetBudgetBalance?TRFNum=TR-1
+// head
+// http://mytravelrequest.com/Home/GetBudgetBalance?TRFNum=TR-1
 
 
-// Example:http://mytravelrequest.com/Home/PostCFORejection?UnBlockBy=hammad.hammad&Status=Reject&Reason=test&TRFNum=TR-1
-
-// Example:http://mytravelrequest.com/Home/PostHeadRejection?UnBlockBy=hammad.hammad&Status=Approved&Reason=test&TRFNum=TR-1
+// "Total_Budget": 40000,
+// "This_TRF": 2504,
+// "Actual_cost": 0,
+// "Total_Budget_Used": 3505,
+// "Balance": 33991
