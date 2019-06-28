@@ -1,0 +1,117 @@
+1.	Agar (Chargeable to Client / Region (Y/N)) yes hay to (If Chargeable, add name of Client/Region) aur PE active hoga aur agar  Agar (Chargeable to Client / Region (Y/N)) NO hay to (If Chargeable, add name of Client/Region) aur PE dono disable hongay.
+
+2.	(If Chargeable, add name of Client/Region) ki base par PE load hongay.
+
+
+3.	Jab Nature of travel select hoga chahay wo international hoya domestic to us par ye API call hogi jo k kuch rates degi wo app nay kahin textbox m show karanay hain. Hidden bad m karaingy testing bad filhal ye show karanaay hain lakin dihan rahay k agar (Hotel booking required) YES hay to hi price batain textbox m.
+
+Example:http://mytravelrequest.com/Home/GetHotelAndTransportPrice?Type=International
+
+
+Type : GET
+
+If Record Found : 
+
+[
+    {
+        "hpamount": 50,
+        "tpamount": 500
+    }
+]
+
+Hpamount means Hotel Price and Tpamount meas transport price.
+
+
+4.	Departure from k bad walay TO m ye API call hogi jo k destination k price la k degi ye b app ko ek textbox m show karani hay Hidden bad m karaingy testing bad filhal ye show karanaay hain.
+
+Example:http://mytravelrequest.com/Home/GetAirlinePrice?Destination=Islamabad
+
+
+Type : GET
+
+If Record Found : 
+[
+    {
+        "Amount": 500
+    }
+]
+Yahan is amount ka matlab Air line price hay jo k ek textbox may show karanay hain hidden bad m karingy testing k bad 
+
+5.	Destination from and aur k agay wala TO select karna lazmi hay dono ko required kardein.
+
+6.	Preferable Date From aur second To k date ka Days difference (Duration of Visit (in days)) m show karna hay k itnay din ka travel hay.
+
+7.	Agar Nature of Travel Domestic hay to Visa required ka option disable hoga aur agar YES hay to Enable hoga aur agar VISA required yes hay to us k YES par ye api chalaygi.
+
+Example:http://mytravelrequest.com/Home/GetVisaPrice?Destination=hammad
+
+
+Type : GET
+
+If Record Found :
+
+[
+    {
+        "Amount": 500
+    }
+]
+Ye amount b app ko ek textbox m show karani hay b ad m hidden kar deingy testing k bad.
+
+8.	Hotel k jo b app ko price malaingy wo number of duration of days say multiply hoga for exsmple hotel k price milay 2 aur days hain 5 to (2*5) = 10 app hotel k textbox m show karaingy.
+
+
+9.	Jo jo API Select karnay par call hongin us ka behtreen solution ye hay k app ek function banain jis par sari select wali API likh dein aur hare k k select par wo function call Karain to amount kahin miss nai hogi.
+
+10.	Jo jo textbpx m show karanay ka kha hay aur bad m hidden karanay ka kha hay wo sab database m jayga same waqt m jab application submit hogi us par ye API call hogi.
+
+Example:http://mytravelrequest.com/Home/InsertExpenses?TRFNum=TR-5&Hotel_price_bud=0&Visa_price_bud=0&Trans_price_bud=501&Airline_price_bud=1000&Updated_by=hammad.hammad&Updated_on=2019-06-19 00:33:00
+
+Type : POST
+
+If Successfully Inserted : [{"Message":"Inserted Successfully!"}]
+
+If not inserted : [{"Message":"No row was inserted!"}]
+
+
+11.	Departure From k selection par agla To auto fill horaha hay. is m aisa nai. sirf date and time m aisa hay .
+
+12.	departure k select m kafi values hain scroll dikhadein is m takay pata lagay k aur b hain destinations
+
+13.	App k andar like (USER INFORMATION) hay b sab capital letter m hay usay only first letter capital rakhain baki sab small m.
+
+14.	Head k approve aur reject m  dono m same data aaraha hay.
+
+15.	Ceo ki list jab empty hay to approve ka button m show na karain. Jab requsts hon to approve ka button show ho.
+
+16.	Head aur cfo k request view par aur fields k sath sath budget b uth k ayega jis par ye api call hogi
+
+Example:http://mytravelrequest.com/Home/GetBudgetBalance?TRFNum=TR-1
+
+Type : GET
+
+If Record Found : 
+[
+    {
+        "Total_Budget": 40000,
+        "This_TRF": 2504,
+        "Actual_cost": 0,
+        "Total_Budget_Used": 3505,
+        "Balance": 33991
+    }
+]
+
+
+17.	application submit nai horai.
+18.	Head submit nai horaha
+19.	CFO submit nai horaha.
+20.	Vlidation lagani hain.
+
+Aur b kuch cheezain hain wo app milo app ko batata hoon aur ye kal tak kardein. 29 last date hay apnay pas with testing.
+
+
+
+
+
+
+ 
+Head and cfo k login k bad budget show nai hota selected trf ka.
