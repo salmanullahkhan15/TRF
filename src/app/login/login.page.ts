@@ -38,37 +38,23 @@ export class LoginPage implements OnInit {
     console.log(this.checkRemember);
     this.generalService.getRequest(this.generalService.API_LOGIN + "Username=" + this.username + "&Password=" + this.password).then((res) => {
       console.log(res)
-      this.localStorrage.set("user_detail", res).then((res) => {
-        this.router.navigateByUrl('/home');
-        this.events.publish('sidemenuEvent', res);
-
-        // Group_Name: "admin"
-        // Group_Name1: "admin"
-        // PKID: 1
-        // PKID1: 1
-        // Status: true
-        // Status1: true
-        // Updated_by1: "hammad"
-        // Updated_on1: "2018-01-30T23:57:00"
-        // Usr_Name: "hammad.hammad"
-        // page_name: "admin_department_travel_form"
-        // updated_by: "hammad.hammad"
-        // updated_on: "2018-09-20T22:07:00"
 
 
+      if (res[0].Usr_Name == this.username) {
+        this.localStorrage.set("user_detail", res).then((res) => {
+          this.router.navigateByUrl('/home');
+          this.events.publish('sidemenuEvent', res);
+        })
+      } else {
+        this.generalService.presentToast('Invalid username or password')
+      }
 
-      })
+
     })
 
 
   }
 
-  async presentToast() {
-    const toast = await this.toastController.create({
-      message: 'Invalid username or password',
-      duration: 2000
-    });
-    toast.present();
-  }
+
 
 }

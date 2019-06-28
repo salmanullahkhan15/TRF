@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ModalController, AlertController } from '@ionic/angular';
+import { ModalController, AlertController, ToastController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
 import { LoginPage } from './login/login.page';
 import { Router } from '@angular/router';
@@ -49,13 +49,25 @@ export class GeneralService {
 
   API_GET_BUDGET = "Home/GetBudgetBalance?TRFNum="
 
+  API_GET_TRANSPORT_HOTEL_PRICE = "Home/GetHotelAndTransportPrice?Type="
+
+  API_GET_AIRLINE_PRICE = "Home/GetAirlinePrice?Destination="
+
+
+  API_GET_VISA_PRICE = "Home/GetVisaPrice?Destination="
+
+
+  API_POST_EXTRA_FORM_DATA = "Home/InsertExpenses?"
+
+
   //   Home/PostCFORejection
   // Home / PostHeadRejection
 
   userRole: any = 0
   constructor(public http: HttpClient, public localStorrage: Storage, public alertCtrl: AlertController,
     public modalCtrl: ModalController,
-    private router: Router
+    private router: Router,
+    public toastController: ToastController
   ) { }
 
 
@@ -165,6 +177,14 @@ export class GeneralService {
 
     return forkJoin([response1, response2, response3, response4, response5, response6]);
 
+  }
+
+  async presentToast(msg) {
+    const toast = await this.toastController.create({
+      message: msg,
+      duration: 3000
+    });
+    toast.present();
   }
 
 }

@@ -11,7 +11,7 @@
   <ion-list>
     <div *ngIf="isApproveBtn">
       <ion-list-header class="list-header-custom">
-        <ion-label>BUDGET INFORMATION</ion-label>
+        <ion-label>Budget Information</ion-label>
       </ion-list-header>
       <ion-item>
         <ion-label position="floating">Budget</ion-label>
@@ -35,7 +35,7 @@
     </div>
 
     <ion-list-header class="list-header-custom">
-      <ion-label>USER INFORMATION</ion-label>
+      <ion-label>User Information</ion-label>
     </ion-list-header>
     <ion-item>
       <ion-label position="floating">Staff Code</ion-label>
@@ -68,16 +68,28 @@
 
     <!-- ---------------------||||||||||||||||||||||||||||||||---------------------- -->
     <ion-list-header class="list-header-custom">
-      <ion-label>BASIC INFORMATION</ion-label>
+      <ion-label>Basic Information</ion-label>
     </ion-list-header>
 
     <ion-item>
       <ion-label>Nature Of Travel</ion-label>
-      <ion-select placeholder="Select" [(ngModel)]="basicInfo.natureOfTravel" [disabled]="isReadOnly">
+      <ion-select placeholder="Select" [(ngModel)]="basicInfo.natureOfTravel" [disabled]="isReadOnly"
+        (ionChange)="natureOfTravelSelect()">
         <ion-select-option value="domestic">Domestic</ion-select-option>
         <ion-select-option value="international">International</ion-select-option>
       </ion-select>
     </ion-item>
+
+    <ion-item *ngIf="otherInfo.hotelBookingRequired == 'yes'">
+      <ion-label position="floating">Hotel Price</ion-label>
+      <ion-input disabled="true" [(ngModel)]="basicInfo.hpamount" (ngModelChange)="calcTotalHotelPrice()"></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="otherInfo.hotelBookingRequired == 'yes'">
+      <ion-label position="floating">Transport Price</ion-label>
+      <ion-input disabled="true" [(ngModel)]="basicInfo.tpamount"></ion-input>
+    </ion-item>
+
 
     <ion-item>
       <ion-label position="floating">Purpose Of Travel</ion-label>
@@ -105,8 +117,8 @@
 
     <ion-item>
       <ion-label>Chargeable to Clients</ion-label>
-      <ion-select placeholder="Select" [(ngModel)]="basicInfo.chargableToClients" (ionChange)="chargableToClientsChange(basicInfo.chargableToClients)"
-        [disabled]="isReadOnly">
+      <ion-select placeholder="Select" [(ngModel)]="basicInfo.chargableToClients"
+        (ionChange)="chargableToClientsChange(basicInfo.chargableToClients)" [disabled]="isReadOnly">
         <ion-select-option value="yes">YES</ion-select-option>
         <ion-select-option value="no">NO</ion-select-option>
       </ion-select>
@@ -116,7 +128,8 @@
       <ion-label>Name of Clients/Regions</ion-label>
       <!-- <ion-input [(ngModel)]="basicInfo.nameOfClients" [disabled]="basicInfo.chargableToClients == 'no' || isReadOnly">
       </ion-input> -->
-      <ion-select placeholder="Select" [(ngModel)]="basicInfo.nameOfClients" [disabled]="basicInfo.chargableToClients == 'no' || isReadOnly"
+      <ion-select placeholder="Select" [(ngModel)]="basicInfo.nameOfClients"
+        [disabled]="basicInfo.chargableToClients == 'no' || isReadOnly"
         (ionChange)="clientSelect(basicInfo.nameOfClients)">
         <ion-select-option *ngFor="let item of clients" [value]="item.Client_Name">{{item.Client_Name}}
         </ion-select-option>
@@ -126,7 +139,8 @@
 
     <ion-item>
       <ion-label>PE</ion-label>
-      <ion-select placeholder="Select" [(ngModel)]="basicInfo.pe" [disabled]="basicInfo.chargableToClients == 'no' || isReadOnly || peList.length == 0">
+      <ion-select placeholder="Select" [(ngModel)]="basicInfo.pe"
+        [disabled]="basicInfo.chargableToClients == 'no' || isReadOnly || peList.length == 0">
         <ion-select-option *ngFor="let item of peList" [value]="item.PE">{{item.PE}}</ion-select-option>
 
         <!-- <ion-select-option value="1">0001</ion-select-option>
@@ -141,7 +155,7 @@
 
     <!-- ---------------------||||||||||||||||||||||||||||||||---------------------- -->
     <ion-list-header class="list-header-custom">
-      <ion-label>TRAVEL INFORMATION</ion-label>
+      <ion-label>Travel Information</ion-label>
     </ion-list-header>
 
     <ion-item>
@@ -154,27 +168,34 @@
 
     <ion-item>
       <ion-label>To</ion-label>
+      <ion-select placeholder="" [(ngModel)]="travelInfo.departureToTwo" [disabled]="isReadOnly"
+        (ionChange)="departureToSelect()">
+        <ion-select-option *ngFor="let item of designations" [value]="item.Destination">{{item.Destination}}
+        </ion-select-option>
+
+      </ion-select>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label position="floating">Airline Price</ion-label>
+      <ion-input disabled="true" [(ngModel)]="travelInfo.airlinePrice"></ion-input>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label>To</ion-label>
+      <ion-select placeholder="Select" [(ngModel)]="travelInfo.departureToTwo" disabled="true">
+        <ion-select-option *ngFor="let item of designations" [value]="item.Destination">{{item.Destination}}
+        </ion-select-option>
+
+      </ion-select>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label>To</ion-label>
       <ion-select placeholder="" [(ngModel)]="travelInfo.departureFrom" disabled="true">
-        <ion-select-option *ngFor="let item of designations" [value]="item.Destination">{{item.Destination}}
-        </ion-select-option>
-
-      </ion-select>
-    </ion-item>
-
-
-    <ion-item>
-      <ion-label>To</ion-label>
-      <ion-select placeholder="Select" [(ngModel)]="travelInfo.departureToTwo" [disabled]="isReadOnly">
-        <ion-select-option *ngFor="let item of designations" [value]="item.Destination">{{item.Destination}}
-        </ion-select-option>
-
-      </ion-select>
-    </ion-item>
-
-
-    <ion-item>
-      <ion-label>To</ion-label>
-      <ion-select placeholder="" [(ngModel)]="travelInfo.departureToTwo" disabled="true">
         <ion-select-option *ngFor="let item of designations" [value]="item.Destination">{{item.Destination}}
         </ion-select-option>
 
@@ -190,7 +211,8 @@
 
     <ion-item>
       <ion-label>To</ion-label>
-      <ion-datetime [(ngModel)]="travelInfo.preferableDateFrom" displayFormat="MM/DD/YYYY" placeholder="" disabled="isReadOnly">
+      <ion-datetime [(ngModel)]="travelInfo.preferableDateFrom" displayFormat="MM/DD/YYYY" placeholder=""
+        disabled="isReadOnly">
       </ion-datetime>
     </ion-item>
 
@@ -205,40 +227,45 @@
 
     <ion-item>
       <ion-label>To</ion-label>
-      <ion-datetime [(ngModel)]="travelInfo.preferableDateToTwo" displayFormat="MM/DD/YYYY" placeholder="" disabled="true">
+      <ion-datetime [(ngModel)]="travelInfo.preferableDateToTwo" displayFormat="MM/DD/YYYY" placeholder=""
+        disabled="true">
       </ion-datetime>
     </ion-item>
 
 
     <ion-item>
       <ion-label>Preferable Time From</ion-label>
-      <ion-datetime displayFormat="hh:mm" placeholder="Select" [(ngModel)]="travelInfo.preferableTimeFrom" [disabled]="isReadOnly">
+      <ion-datetime displayFormat="hh:mm" placeholder="Select" [(ngModel)]="travelInfo.preferableTimeFrom"
+        [disabled]="isReadOnly">
       </ion-datetime>
     </ion-item>
 
     <ion-item>
       <ion-label>To</ion-label>
-      <ion-datetime displayFormat="hh:mm" placeholder="Select" [(ngModel)]="travelInfo.preferableTimeFrom" disabled="true">
-      </ion-datetime>
-    </ion-item>
-
-
-    <ion-item>
-      <ion-label>To</ion-label>
-      <ion-datetime displayFormat="hh:mm" placeholder="Select" [(ngModel)]="travelInfo.preferableTimeToTwo" [disabled]="isReadOnly">
+      <ion-datetime displayFormat="hh:mm" placeholder="Select" [(ngModel)]="travelInfo.preferableTimeFrom"
+        disabled="true">
       </ion-datetime>
     </ion-item>
 
 
     <ion-item>
       <ion-label>To</ion-label>
-      <ion-datetime displayFormat="hh:mm" placeholder="Select" [(ngModel)]="travelInfo.preferableTimeToTwo" disabled="true">
+      <ion-datetime displayFormat="hh:mm" placeholder="Select" [(ngModel)]="travelInfo.preferableTimeToTwo"
+        [disabled]="isReadOnly">
+      </ion-datetime>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label>To</ion-label>
+      <ion-datetime displayFormat="hh:mm" placeholder="Select" [(ngModel)]="travelInfo.preferableTimeToTwo"
+        disabled="true">
       </ion-datetime>
     </ion-item>
 
     <!-- ---------------------||||||||||||||||||||||||||||||||---------------------- -->
     <ion-list-header class="list-header-custom">
-      <ion-label>AIRLINE INFORMATION</ion-label>
+      <ion-label>Airline Information</ion-label>
     </ion-list-header>
 
     <ion-item>
@@ -251,8 +278,16 @@
 
     <ion-item>
       <ion-label position="floating">Duration Of Visit (in Days) </ion-label>
-      <ion-input [(ngModel)]="airlineInfo.durationOfVisit" disabled="true"></ion-input>
+      <ion-input [(ngModel)]="airlineInfo.durationOfVisit" disabled="true" (ngModelChange)="calcTotalHotelPrice()">
+      </ion-input>
     </ion-item>
+
+
+    <ion-item>
+      <ion-label position="floating">(Hotel Price) x (No. of days) </ion-label>
+      <ion-input [(ngModel)]="basicInfo.totalHotelPrice" disabled="true"></ion-input>
+    </ion-item>
+
 
     <ion-item>
       <!-- <ion-label position="floating">Expected Date Of Return</ion-label> -->
@@ -266,7 +301,7 @@
 
     <!-- ---------------------||||||||||||||||||||||||||||||||---------------------- -->
     <ion-list-header class="list-header-custom">
-      <ion-label>OTHER INFORMATION</ion-label>
+      <ion-label>Other Information</ion-label>
     </ion-list-header>
 
     <ion-item>
@@ -290,12 +325,17 @@
 
     <ion-item>
       <ion-label>Visa Required</ion-label>
-      <ion-select placeholder="Select" [(ngModel)]="otherInfo.viseRequired" [disabled]="isReadOnly">
+      <ion-select placeholder="Select" [(ngModel)]="otherInfo.viseRequired"
+        [disabled]="isReadOnly || basicInfo.natureOfTravel == 'domestic' " (ionChange)="visaRequiredSelect()">
         <ion-select-option value="yes">YES</ion-select-option>
         <ion-select-option value="no">NO</ion-select-option>
       </ion-select>
     </ion-item>
 
+    <ion-item>
+      <ion-label position="floating">Visa Price</ion-label>
+      <ion-input disabled="true" [(ngModel)]="otherInfo.visaPrice"></ion-input>
+    </ion-item>
 
     <ion-item>
       <ion-label>Rent a Car Required</ion-label>
@@ -312,7 +352,7 @@
 
     <!-- ---------------------||||||||||||||||||||||||||||||||---------------------- -->
     <ion-list-header class="list-header-custom">
-      <ion-label>TRAVELING ADVANCE (FOR FINANCE DEPARTMENT)</ion-label>
+      <ion-label>Traveling Advance (For Finance Department)</ion-label>
     </ion-list-header>
 
     <ion-item>
@@ -331,7 +371,8 @@
   </ion-list>
 
   <!-- <ion-button expand="full" fill="outline">Submit</ion-button> -->
-  <ion-button expand="block" fill="outline" *ngIf="!isApproveBtn" (click)="submitInsertForm()" [disabled]="isReadOnly">Submit</ion-button>
+  <ion-button expand="block" fill="outline" *ngIf="!isApproveBtn" (click)="submitInsertForm()" [disabled]="isReadOnly">
+    Submit</ion-button>
 
   <!-- <div class="btns" *ngIf="generalService.userRole == 2 || generalService.userRole == 4"> -->
   <div class="btns" *ngIf="isApproveBtn">

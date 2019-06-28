@@ -267,6 +267,17 @@ export class AddTravelReqeustPage implements OnInit {
 
     this.generalService.postRequest(this.generalService.API_POST_USER_FORM, obj).then((res) => {
       console.log(res)
+      if (res[0] != undefined) {
+
+        if (res[0].Message == "Inserted Successfully!") {
+          this.generalService.presentToast("Form Inserted Successfully")
+        } else {
+          this.generalService.presentToast("Something went wrong!")
+        }
+      } else {
+        this.generalService.presentToast("Something went wrong!")
+      }
+
     })
   }
 
@@ -395,18 +406,53 @@ export class AddTravelReqeustPage implements OnInit {
     })
   }
 
+  // NEW WORK---------------\\
+
+  natureOfTravelSelect() {
+    var param = this.basicInfo.natureOfTravel == "domestic" ? "Domestic" : "International"
+    this.generalService.getRequest(this.generalService.API_GET_TRANSPORT_HOTEL_PRICE + param).then((res) => {
+      this.basicInfo.hpamount = res[0].hpamount
+      this.basicInfo.tpamount = res[0].tpamount
+    })
+
+  }
+
+
+  departureToSelect() {
+    this.generalService.getRequest(this.generalService.API_GET_AIRLINE_PRICE + this.travelInfo.departureToTwo).then((res) => {
+      this.travelInfo.airlinePrice = res[0].Amount
+    })
+
+  }
+
+
+  // Example:http://mytravelrequest.com/Home/GetVisaPrice?Destination=hammad
+  visaRequiredSelect() {
+    this.otherInfo.viseRequired
+
+    if (this.otherInfo.viseRequired == "yes") {
+      this.generalService.getRequest(this.generalService.API_GET_VISA_PRICE + this.travelInfo.departureToTwo).then((res) => {
+        this.otherInfo.visaPrice = res[0].Amount
+      })
+    }
+
+  }
+
+  calcTotalHotelPrice() {
+    // this.airlineInfo.durationOfVisit
+    // this.basicInfo.hpamount
+    this.basicInfo.totalHotelPrice = this.airlineInfo.durationOfVisit * this.basicInfo.hpamount
+  }
+
+
+  // Example:http://mytravelrequest.com/Home/InsertExpenses?TRFNum=TR-5&Hotel_price_bud=0&Visa_price_bud=0&Trans_price_bud=501&Airline_price_bud=1000&Updated_by=hammad.hammad&Updated_on=2019-06-19 00:33:00
+
+  postExtraData() {
+    this.generalService.postRequestUrl(this.generalService.API_POST_EXTRA_FORM_DATA + "TRFNum=" + status + "&Hotel_price_bud=" + status + "&Visa_price_bud=" + status + "&Trans_price_bud=" + status + "&Airline_price_bud=" + status + "&Updated_by=" + status + "&Updated_on=" + status).then((res) => {
+      console.log(res)
+    })
+  }
 
 
 }
 
-// cfo
-// http://mytravelrequest.com/Home/GetBudgetBalance?TRFNum=TR-1
-// head
-// http://mytravelrequest.com/Home/GetBudgetBalance?TRFNum=TR-1
-
-
-// "Total_Budget": 40000,
-// "This_TRF": 2504,
-// "Actual_cost": 0,
-// "Total_Budget_Used": 3505,
-// "Balance": 33991
