@@ -139,7 +139,7 @@ export class ApproveRejectPage implements OnInit {
   dateFormat(date) {
     var newDate = new Date(date)
     var year = newDate.getFullYear()
-    var month = newDate.getMonth()
+    var month = newDate.getMonth() + 1
     var day = newDate.getDate()
     return year + "-" + month + "-" + day
   }

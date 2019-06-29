@@ -76,10 +76,11 @@ export class AddTravelReqeustPage implements OnInit {
     used: "",
     selected: "",
     balance: "",
-
   }
   isApproveBtn: boolean;
 
+
+  trfNumNew: any
   constructor(private activatedRoute: ActivatedRoute, public generalService: GeneralService,
     public localStorrage: Storage, public loadingCtrl: LoadingController) { }
 
@@ -92,14 +93,81 @@ export class AddTravelReqeustPage implements OnInit {
     this.pageTitle = this.isReadOnly ? "Travel Request Detail" : "Add Travel Request"
     // this.getReadOnlyData(readData)
     if (this.isReadOnly == true && readData != null) {
+
+      console.log("asdfasdfasdf")
+
       this.getReadOnlyData(readData)
-      this.getBudget()
     }
     this.getUserData()
   }
 
   chargableToClientsChange(val) {
     console.log(val)
+  }
+
+  clearForm() {
+    this.basicInfo = {
+      natureOfTravel: "",
+      purposeOfTravel: "",
+      reason: "",
+      chargableToClients: "",
+      nameOfClients: "",
+      pe: "",
+    }
+
+    this.travelingAdvance = {
+      advanceRequired: "",
+      advanceAmount: ""
+    }
+    this.otherInfo = {
+      modeOfTravel: "",
+      hotelBookingRequired: "",
+      viseRequired: "",
+      rentACarRequired: "",
+      otherArrangements: ""
+    }
+    this.travelInfo = {
+      departureFrom: "",
+      departureToOne: "",
+      departureToTwo: "",
+      departureToThree: "",
+      departureToFour: "",
+      preferableDateFrom: "",
+      preferableDateToOne: "",
+      preferableDateToTwo: "",
+      preferableDateToThree: "",
+      preferableTimeFrom: "",
+      preferableTimeToOne: "",
+      preferableTimeToTwo: "",
+      preferableTimeToThree: "",
+    }
+
+    this.airlineInfo = {
+      preferableFlight: "",
+      durationOfVisit: "",
+      expectedDateOfReturn: ""
+    }
+
+    this.budget = {
+      budget: "",
+      used: "",
+      selected: "",
+      balance: "",
+    }
+
+    this.otherInfo.hotelBookingRequired = ""
+    this.basicInfo.totalHotelPrice = ""
+    this.basicInfo.tpamount = ""
+    this.travelInfo.airlinePrice = ""
+
+    // var hotelPrice = this.otherInfo.hotelBookingRequired == "yes" ? this.basicInfo.totalHotelPrice : 0
+
+    // var visaPrice = this.otherInfo.viseRequired == "yes" ? this.otherInfo.visaPrice : 0
+
+    // var transportPrice = this.basicInfo.tpamount == "yes" ? this.basicInfo.tpamount : 0
+
+    // var airlinePrice = this.travelInfo.airlinePrice
+
   }
 
   preferableDateFromChange() {
@@ -147,6 +215,8 @@ export class AddTravelReqeustPage implements OnInit {
         this.generalService.getData(userName)
           .subscribe(res => {
             console.log(res);
+
+
             var user = res[0][0]
             this.designations = res[1]
             this.flights = res[2]
@@ -181,63 +251,89 @@ export class AddTravelReqeustPage implements OnInit {
 
 
 
-  submitInsertForm() {
+  async submitInsertForm() {
     console.log(this.trfNum)
-    var obj = {
-      TRFNum: "TR-" + (parseInt(this.trfNum[0].TRFNum) + 1),
-      EmployeeID: this.userNameGlobe,
-      IsChargeToClient: this.basicInfo.chargableToClients,
-      Client_Region: this.basicInfo.nameOfClients,
-      PE: this.basicInfo.pe,
-      Nature: this.basicInfo.natureOfTravel,
-      Purpose: this.basicInfo.purposeOfTravel,
-      Purpose_reason: this.basicInfo.purposeOfTravel,
-      DestinationIDFrom: this.travelInfo.departureFrom,
-      DestinationIDTo1: this.travelInfo.departureToTwo,
-      DestinationIDTo2: this.travelInfo.departureToThree,
-      DestinationIDTo3: this.travelInfo.departureToFour,
+
+
+    const loading = await this.loadingCtrl.create({
+      message: 'Loading'
+    });
+    await loading.present();
+    // let response6 = this.http.get(this.BASE_URL + this.API_GET_LAST_TRF_ID);
+
+    this.generalService.getRequest(this.generalService.API_GET_LAST_TRF_ID).then((trfRes) => {
+      console.log(trfRes)
+
+
+      // })
+      this.trfNumNew = trfRes
+
+      console.log(Number.isNaN(parseInt(this.trfNumNew[0].TRFNum)))
+
+      var trfCheck = (Number.isNaN(parseInt(this.trfNumNew[0].TRFNum)) ? 0 : parseInt(this.trfNumNew[0].TRFNum)) + 1
+
+      // this.trfNum[0].TRFNum
+
+      console.log(trfCheck)
+
+      var obj = {
+        TRFNum: "TR-" + trfCheck,
+        EmployeeID: this.userNameGlobe,
+        IsChargeToClient: this.basicInfo.chargableToClients,
+        Client_Region: this.basicInfo.nameOfClients,
+        PE: this.basicInfo.pe,
+        Nature: this.basicInfo.natureOfTravel,
+        Purpose: this.basicInfo.purposeOfTravel,
+        Purpose_reason: this.basicInfo.reason,
+        DestinationIDFrom: this.travelInfo.departureFrom,
+        DestinationIDTo1: this.travelInfo.departureToTwo,
+        DestinationIDTo2: this.travelInfo.departureToThree,
+        DestinationIDTo3: this.travelInfo.departureToFour,
 
 
 
-      PreferDateFrom: this.dateFormat(this.travelInfo.preferableDateFrom),
-      PreferDateTo1: this.dateFormat(this.travelInfo.preferableDateFrom),
-      PreferDateTo2: this.dateFormat(this.travelInfo.preferableDateToTwo),
-      PreferDateTo3: this.dateFormat(this.travelInfo.preferableDateToTwo),
-      PreferTimeFrom: this.timeFormat(this.travelInfo.preferableTimeFrom),
-      PreferTimeTo1: this.timeFormat(this.travelInfo.preferableTimeFrom),
-      PreferTimeTo2: this.timeFormat(this.travelInfo.preferableTimeToTwo),
-      PreferTimeTo3: this.timeFormat(this.travelInfo.preferableTimeToTwo),
-      PreferFlight: this.airlineInfo.preferableFlight,
-      Duration: this.airlineInfo.durationOfVisit,
-      ReturnDate: this.dateFormat(this.travelInfo.preferableDateToTwo),
-      Mode: this.otherInfo.modeOfTravel,
-      IsHotel: this.otherInfo.hotelBookingRequired,
-      IsVisa: this.otherInfo.viseRequired,
-      Isrentacar: this.otherInfo.rentACarRequired,
-      Others: this.otherInfo.otherArrangements,
-      IsAdvance: this.travelingAdvance.advanceRequired,
-      AdvAmount: this.travelingAdvance.advanceAmount,
-      RequestedBy: this.userNameGlobe
-    }
+        PreferDateFrom: this.dateFormat(this.travelInfo.preferableDateFrom),
+        PreferDateTo1: this.dateFormat(this.travelInfo.preferableDateFrom),
+        PreferDateTo2: this.dateFormat(this.travelInfo.preferableDateToTwo),
+        PreferDateTo3: this.dateFormat(this.travelInfo.preferableDateToTwo),
+        PreferTimeFrom: this.timeFormat(this.travelInfo.preferableTimeFrom),
+        PreferTimeTo1: this.timeFormat(this.travelInfo.preferableTimeFrom),
+        PreferTimeTo2: this.timeFormat(this.travelInfo.preferableTimeToTwo),
+        PreferTimeTo3: this.timeFormat(this.travelInfo.preferableTimeToTwo),
+        PreferFlight: this.airlineInfo.preferableFlight,
+        Duration: this.airlineInfo.durationOfVisit,
+        ReturnDate: this.dateFormat(this.travelInfo.preferableDateToTwo),
+        Mode: this.otherInfo.modeOfTravel,
+        IsHotel: this.otherInfo.hotelBookingRequired,
+        IsVisa: this.otherInfo.viseRequired,
+        Isrentacar: this.otherInfo.rentACarRequired,
+        Others: this.otherInfo.otherArrangements,
+        IsAdvance: this.travelingAdvance.advanceRequired,
+        AdvAmount: this.travelingAdvance.advanceAmount == "" ? 0 : this.travelingAdvance.advanceAmount,
+        RequestedBy: this.userNameGlobe
+      }
 
-    console.log(obj)
-    console.log(JSON.stringify(obj))
+      console.log(obj)
+      console.log(JSON.stringify(obj))
 
-    this.generalService.postRequest(this.generalService.API_POST_USER_FORM, obj).then((res) => {
-      console.log(res)
-      if (res[0] != undefined) {
+      this.generalService.postRequest(this.generalService.API_POST_USER_FORM, obj).then((res) => {
+        console.log(res)
+        loading.dismiss()
 
-        if (res[0].Message == "Inserted Successfully!") {
-          this.postExtraData()
-          this.generalService.presentToast("Form Inserted Successfully")
+        if (res[0] != undefined) {
 
+          if (res[0].Message == "Inserted Successfully!") {
+            this.postExtraData()
+            this.generalService.presentToast("Form Inserted Successfully")
+
+          } else {
+            this.generalService.presentToast("Something went wrong!")
+          }
         } else {
           this.generalService.presentToast("Something went wrong!")
         }
-      } else {
-        this.generalService.presentToast("Something went wrong!")
-      }
 
+      })
     })
   }
 
@@ -269,6 +365,10 @@ export class AddTravelReqeustPage implements OnInit {
       var formData = res[0]
       if (this.isReadOnly) {
         this.readTRFNum = formData.TRFNum
+        console.log(this.readTRFNum)
+
+        this.getBudget()
+
 
         this.userInfo = {
           staffCode: formData.StaffCode,
@@ -336,28 +436,49 @@ export class AddTravelReqeustPage implements OnInit {
 
     var status = isApprove == 1 ? "Approved" : "Reject"
 
-    if (this.generalService.userRole == 4) {
 
-      // UnBlockBy = hammad.hammad & Status=Reject & Reason=test & TRFNum=TR - 1
+    // if (isApprove == 1) {
+    //   this.checkBudget()
+    // }
 
-      this.generalService.postRequestUrl(this.generalService.API_APPROVE_BY_HEAD + "UnBlockBy=" + this.userNameGlobe + "&Status=" + status + "&Reason=test" + "&TRFNum=" + this.readTRFNum).then((res) => {
-        console.log(res)
-      })
+
+    // insufficient balance for selected TRF.Please check budget.
+
+    var isBudgetNegative = (this.budget.budget - this.budget.used) - this.budget.selected < 0 ? true : false
+    if (isBudgetNegative && isApprove == 1) {
+      this.generalService.presentToast("Insufficient balance for selected TRF.Please check budget.")
+    } else {
+
+      if (this.generalService.userRole == 4) {
+
+        // UnBlockBy = hammad.hammad & Status=Reject & Reason=test & TRFNum=TR - 1
+
+        this.generalService.postRequestUrl(this.generalService.API_APPROVE_BY_HEAD + "UnBlockBy=" + this.userNameGlobe + "&Status=" + status + "&Reason=test" + "&TRFNum=" + this.readTRFNum).then((res) => {
+          console.log(res)
+        })
+      }
+
+      // CFO = 2
+      if (this.generalService.userRole == 2) {
+        this.generalService.postRequestUrl(this.generalService.API_APPROVE_BY_CFO + "UnBlockBy=" + this.userNameGlobe + "&Status=" + status + "&Reason=test" + "&TRFNum=" + this.readTRFNum).then((res) => {
+          console.log(res)
+        })
+      }
     }
 
-    // CFO = 2
-    if (this.generalService.userRole == 2) {
-      this.generalService.postRequestUrl(this.generalService.API_APPROVE_BY_CFO + "UnBlockBy=" + this.userNameGlobe + "&Status=" + status + "&Reason=test" + "&TRFNum=" + this.readTRFNum).then((res) => {
-        console.log(res)
-      })
-    }
 
   }
 
 
   getBudget() {
     // API_GET_BUDGET + this.readTRFNum
+
+    console.log(this.generalService.API_GET_BUDGET + this.readTRFNum)
+
     this.generalService.getRequest(this.generalService.API_GET_BUDGET + this.readTRFNum).then((res) => {
+      console.log(res)
+
+
       this.budget = {
         budget: res[0].Total_Budget,
         used: res[0].Total_Budget_Used,
@@ -367,6 +488,7 @@ export class AddTravelReqeustPage implements OnInit {
 
     })
   }
+
 
   // NEW WORK---------------\\
 
@@ -390,7 +512,7 @@ export class AddTravelReqeustPage implements OnInit {
 
   // Example:http://mytravelrequest.com/Home/GetVisaPrice?Destination=hammad
   visaRequiredSelect() {
-    this.otherInfo.viseRequired
+    // this.otherInfo.viseRequired
 
     if (this.otherInfo.viseRequired == "yes") {
       this.generalService.getRequest(this.generalService.API_GET_VISA_PRICE + this.travelInfo.departureToTwo).then((res) => {
@@ -415,17 +537,23 @@ export class AddTravelReqeustPage implements OnInit {
 
     var visaPrice = this.otherInfo.viseRequired == "yes" ? this.otherInfo.visaPrice : 0
 
-    var transportPrice = this.basicInfo.tpamount
+    var transportPrice = this.otherInfo.rentACarRequired == "yes" ? this.basicInfo.tpamount : 0
 
-    var airlinePrice = this.airlineInfo.airlinePrice
+    var airlinePrice = this.travelInfo.airlinePrice
 
     var date = this.dateFormat(new Date()) + " " + this.timeFormat(new Date())
 
+    var trfCheck = (Number.isNaN(parseInt(this.trfNumNew[0].TRFNum)) ? 0 : parseInt(this.trfNumNew[0].TRFNum)) + 1
 
-    this.generalService.postRequestUrl(this.generalService.API_POST_EXTRA_FORM_DATA + "TRFNum=" + "TR-" + (parseInt(this.trfNum[0].TRFNum) + 1) + "&Hotel_price_bud=" + hotelPrice + "&Visa_price_bud=" + visaPrice + "&Trans_price_bud=" + transportPrice + "&Airline_price_bud=" + airlinePrice + "&Updated_by=" + this.userNameGlobe + "&Updated_on=" + date).then((res) => {
+    this.generalService.postRequestUrl(this.generalService.API_POST_EXTRA_FORM_DATA + "TRFNum=" + "TR-" + trfCheck + "&Hotel_price_bud=" + hotelPrice + "&Visa_price_bud=" + visaPrice + "&Trans_price_bud=" + transportPrice + "&Airline_price_bud=" + airlinePrice + "&Updated_by=" + this.userNameGlobe + "&Updated_on=" + date).then((res) => {
+      this.clearForm()
       console.log(res)
+
     })
   }
+
+
+
 
 
 }
