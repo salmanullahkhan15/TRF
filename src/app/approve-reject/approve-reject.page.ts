@@ -78,8 +78,7 @@ export class ApproveRejectPage implements OnInit {
 
   selectCard(i, item) {
     if (this.userRole == 3) {
-      this.approvalRequests[i].selected = this.requests[i].selected == true ? false : true;
-
+      this.approvalRequests[i].selected = this.approvalRequests[i].selected == true ? false : true;
     } else {
       var isReadOnly = true
       var readData = item.TRFNum

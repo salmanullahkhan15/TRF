@@ -54,6 +54,7 @@ export class AddTravelReqeustPage implements OnInit {
     departureToOne: "",
     departureToTwo: "",
     departureToThree: "",
+    departureToFour: "",
     preferableDateFrom: "",
     preferableDateToOne: "",
     preferableDateToTwo: "",
@@ -94,52 +95,6 @@ export class AddTravelReqeustPage implements OnInit {
       this.getReadOnlyData(readData)
       this.getBudget()
     }
-
-    // if (this.isReadOnly) {
-
-    //   this.basicInfo = {
-    //     natureOfTravel: "domestic",
-    //     purposeOfTravel: "asdf",
-    //     reason: "2",
-    //     chargableToClients: "yes",
-    //     nameOfClients: "Yasir Khan",
-    //     pe: "1",
-    //   }
-
-    //   this.travelingAdvance = {
-    //     advanceRequired: "yes",
-    //     advanceAmount: "1000"
-    //   }
-    //   this.otherInfo = {
-    //     modeOfTravel: "1",
-    //     hotelBookingRequired: "yes",
-    //     viseRequired: "yes",
-    //     rentACarRequired: "yes",
-    //     otherArrangements: "something"
-    //   }
-    //   this.airlineInfo = {
-    //     preferableFlight: "2",
-    //     durationOfVisit: "5",
-    //     expectedDateOfReturn: "11/11/2019"
-    //   }
-    //   this.travelInfo = {
-    //     departureFrom: "khi",
-    //     departureToOne: "khi",
-    //     departureToTwo: "lhr",
-    //     departureToThree: "lhr",
-    //     preferableDateFrom: "02/04/2019",
-    //     preferableDateToOne: "02/04/2019",
-    //     preferableDateToTwo: "08/04/2019",
-    //     preferableDateToThree: "08/04/2019",
-    //     preferableTimeFrom: "09:10",
-    //     preferableTimeToOne: "09:10",
-    //     preferableTimeToTwo: "12:10",
-    //     preferableTimeToThree: "12:10",
-    //   }
-
-    // }
-
-
     this.getUserData()
   }
 
@@ -238,9 +193,12 @@ export class AddTravelReqeustPage implements OnInit {
       Purpose: this.basicInfo.purposeOfTravel,
       Purpose_reason: this.basicInfo.purposeOfTravel,
       DestinationIDFrom: this.travelInfo.departureFrom,
-      DestinationIDTo1: this.travelInfo.departureFrom,
-      DestinationIDTo2: this.travelInfo.departureToTwo,
-      DestinationIDTo3: this.travelInfo.departureToTwo,
+      DestinationIDTo1: this.travelInfo.departureToTwo,
+      DestinationIDTo2: this.travelInfo.departureToThree,
+      DestinationIDTo3: this.travelInfo.departureToFour,
+
+
+
       PreferDateFrom: this.dateFormat(this.travelInfo.preferableDateFrom),
       PreferDateTo1: this.dateFormat(this.travelInfo.preferableDateFrom),
       PreferDateTo2: this.dateFormat(this.travelInfo.preferableDateToTwo),
@@ -270,7 +228,9 @@ export class AddTravelReqeustPage implements OnInit {
       if (res[0] != undefined) {
 
         if (res[0].Message == "Inserted Successfully!") {
+          this.postExtraData()
           this.generalService.presentToast("Form Inserted Successfully")
+
         } else {
           this.generalService.presentToast("Something went wrong!")
         }
@@ -344,10 +304,12 @@ export class AddTravelReqeustPage implements OnInit {
           expectedDateOfReturn: formData.ReturnDate
         }
         this.travelInfo = {
+
+
           departureFrom: formData.DestinationIDFrom,
-          departureToOne: formData.DestinationIDTo1,
-          departureToTwo: formData.DestinationIDTo2,
-          departureToThree: formData.DestinationIDTo3,
+          departureToTwo: formData.DestinationIDTo1,
+          departureToThree: formData.DestinationIDTo2,
+          departureToFour: formData.DestinationIDTo3,
           preferableDateFrom: formData.PreferDateFrom,
           preferableDateToOne: formData.PreferDateTo1,
           preferableDateToTwo: formData.PreferDateTo2,
@@ -448,7 +410,19 @@ export class AddTravelReqeustPage implements OnInit {
   // Example:http://mytravelrequest.com/Home/InsertExpenses?TRFNum=TR-5&Hotel_price_bud=0&Visa_price_bud=0&Trans_price_bud=501&Airline_price_bud=1000&Updated_by=hammad.hammad&Updated_on=2019-06-19 00:33:00
 
   postExtraData() {
-    this.generalService.postRequestUrl(this.generalService.API_POST_EXTRA_FORM_DATA + "TRFNum=" + status + "&Hotel_price_bud=" + status + "&Visa_price_bud=" + status + "&Trans_price_bud=" + status + "&Airline_price_bud=" + status + "&Updated_by=" + status + "&Updated_on=" + status).then((res) => {
+
+    var hotelPrice = this.otherInfo.hotelBookingRequired == "yes" ? this.basicInfo.totalHotelPrice : 0
+
+    var visaPrice = this.otherInfo.viseRequired == "yes" ? this.otherInfo.visaPrice : 0
+
+    var transportPrice = this.basicInfo.tpamount
+
+    var airlinePrice = this.airlineInfo.airlinePrice
+
+    var date = this.dateFormat(new Date()) + " " + this.timeFormat(new Date())
+
+
+    this.generalService.postRequestUrl(this.generalService.API_POST_EXTRA_FORM_DATA + "TRFNum=" + "TR-" + (parseInt(this.trfNum[0].TRFNum) + 1) + "&Hotel_price_bud=" + hotelPrice + "&Visa_price_bud=" + visaPrice + "&Trans_price_bud=" + transportPrice + "&Airline_price_bud=" + airlinePrice + "&Updated_by=" + this.userNameGlobe + "&Updated_on=" + date).then((res) => {
       console.log(res)
     })
   }

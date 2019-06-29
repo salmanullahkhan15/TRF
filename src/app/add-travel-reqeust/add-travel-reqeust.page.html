@@ -185,7 +185,7 @@
 
     <ion-item>
       <ion-label>To</ion-label>
-      <ion-select placeholder="Select" [(ngModel)]="travelInfo.departureToTwo" disabled="true">
+      <ion-select placeholder="Select" [(ngModel)]="travelInfo.departureToThree" [disabled]="isReadOnly">
         <ion-select-option *ngFor="let item of designations" [value]="item.Destination">{{item.Destination}}
         </ion-select-option>
 
@@ -195,7 +195,7 @@
 
     <ion-item>
       <ion-label>To</ion-label>
-      <ion-select placeholder="" [(ngModel)]="travelInfo.departureFrom" disabled="true">
+      <ion-select placeholder="" [(ngModel)]="travelInfo.departureToFour" [disabled]="isReadOnly">
         <ion-select-option *ngFor="let item of designations" [value]="item.Destination">{{item.Destination}}
         </ion-select-option>
 
