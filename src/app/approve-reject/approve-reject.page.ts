@@ -126,7 +126,7 @@ export class ApproveRejectPage implements OnInit {
   }
 
   getCEOPendingList(user) {
-    this.generalService.getRequest(this.generalService.API_GET_CFO_APPROVAL_LIST).then((res: any) => {
+    this.generalService.getRequest(this.generalService.API_GET_CEO_APPROVAL_LIST).then((res: any) => {
       console.log(res)
       if (res[0].Message == undefined) {
         for (let i = 0; i < res.length; i++) {

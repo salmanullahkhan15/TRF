@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { GeneralService } from '../general.service';
 import { Storage } from '@ionic/storage';
 import { LoadingController, AlertController } from '@ionic/angular';
+import { Location } from "@angular/common";
 @Component({
   selector: 'app-add-travel-reqeust',
   templateUrl: './add-travel-reqeust.page.html',
@@ -81,10 +82,11 @@ export class AddTravelReqeustPage implements OnInit {
 
 
   trfNumNew: any;
-  actionReason: any;
+  actionReason: any = ""
   constructor(private activatedRoute: ActivatedRoute, public generalService: GeneralService,
     public localStorrage: Storage, public loadingCtrl: LoadingController,
-    public alertCtrl: AlertController) { }
+    public alertCtrl: AlertController,
+    private location: Location) { }
 
   ngOnInit() {
 
@@ -308,18 +310,21 @@ export class AddTravelReqeustPage implements OnInit {
             if (this.otherInfo.viseRequired != "" && this.otherInfo.viseRequired != null && this.otherInfo.viseRequired != undefined) {
               this.postRequestSubmit()
             } else {
+              this.generalService.presentToast("Please fill all required fields")
               return false;
             }
           } else {
             this.postRequestSubmit()
           }
         } else {
+          this.generalService.presentToast("Please fill all required fields")
           return false;
         }
       } else {
         this.postRequestSubmit()
       }
     } else {
+      this.generalService.presentToast("Please fill all required fields")
       return false;
     }
 
@@ -499,6 +504,7 @@ export class AddTravelReqeustPage implements OnInit {
 
 
 
+
     if (this.generalService.userRole == 3) {
       var isBudgetNegative = (this.budget.budget - this.budget.used) - (this.budget.selected + this.budget.balance) < 0 ? true : false
     } else {
@@ -511,9 +517,10 @@ export class AddTravelReqeustPage implements OnInit {
 
       if (this.generalService.userRole == 4) {
 
-
         this.generalService.postRequestUrl(this.generalService.API_APPROVE_BY_HEAD + "UnBlockBy=" + this.userNameGlobe + "&Status=" + status + "&Reason=" + this.actionReason + "&TRFNum=" + this.readTRFNum).then((res) => {
           console.log(res)
+          this.generalService.presentToast("Updated successfully")
+          this.goBack()
         })
       }
 
@@ -521,6 +528,8 @@ export class AddTravelReqeustPage implements OnInit {
       if (this.generalService.userRole == 2) {
         this.generalService.postRequestUrl(this.generalService.API_APPROVE_BY_CFO + "UnBlockBy=" + this.userNameGlobe + "&Status=" + status + "&Reason=" + this.actionReason + "&TRFNum=" + this.readTRFNum).then((res) => {
           console.log(res)
+          this.generalService.presentToast("Updated successfully")
+          this.goBack()
         })
       }
     }
@@ -654,6 +663,14 @@ export class AddTravelReqeustPage implements OnInit {
 
     await alert.present();
   }
+
+
+  goBack() {
+    this.location.back();
+    // this.generalService.presentToast("Please fill all required fields")
+  }
+
+
 
 }
 

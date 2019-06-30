@@ -73,7 +73,7 @@
 
     <ion-item [ngClass]="basicInfo.natureOfTravel == '' || basicInfo.natureOfTravel == null || basicInfo.natureOfTravel == undefined ?
     'in-valid':''">
-      <ion-label>Nature Of Travel</ion-label>
+      <ion-label>Nature Of Travel*</ion-label>
       <ion-select placeholder="Select" [(ngModel)]="basicInfo.natureOfTravel" [disabled]="isReadOnly"
         (ionChange)="natureOfTravelSelect()">
         <ion-select-option value="domestic">Domestic</ion-select-option>
@@ -94,7 +94,7 @@
 
     <ion-item [ngClass]="basicInfo.purposeOfTravel == '' || basicInfo.purposeOfTravel == null || basicInfo.purposeOfTravel == undefined ?
     'in-valid':''">
-      <ion-label position="floating">Purpose Of Travel</ion-label>
+      <ion-label position="floating">Purpose Of Travel*</ion-label>
       <ion-input disabled="true" [(ngModel)]="basicInfo.purposeOfTravel" [disabled]="isReadOnly"></ion-input>
       <!-- <ion-select placeholder="Select" [(ngModel)]="basicInfo.purposeOfTravel" [disabled]="isReadOnly">
         <ion-select-option *ngFor="let item of reasonPurpose" value="item.PKID">{{item.Purpose_desc}}</ion-select-option>
@@ -103,7 +103,7 @@
 
     <ion-item [ngClass]="basicInfo.reason == '' || basicInfo.reason == null || basicInfo.reason == undefined ?
     'in-valid':''">
-      <ion-label>Reason</ion-label>
+      <ion-label>Reason*</ion-label>
       <!-- <ion-input [(ngModel)]="basicInfo.reason" [disabled]="isReadOnly"></ion-input> -->
       <ion-select placeholder="Select" [(ngModel)]="basicInfo.reason" [disabled]="isReadOnly">
         <ion-select-option *ngFor="let item of reasonPurpose" [value]="item.Purpose_desc">{{item.Purpose_desc}}
@@ -114,7 +114,7 @@
     <ion-item [ngClass]="basicInfo.chargableToClients == '' || basicInfo.chargableToClients == null || basicInfo.chargableToClients == undefined ?
     'in-valid':''">
 
-      <ion-label>Chargeable to Clients</ion-label>
+      <ion-label>Chargeable to Clients*</ion-label>
       <ion-select placeholder="Select" [(ngModel)]="basicInfo.chargableToClients"
         (ionChange)="chargableToClientsChange(basicInfo.chargableToClients)" [disabled]="isReadOnly">
         <ion-select-option value="yes">YES</ion-select-option>
@@ -124,7 +124,7 @@
 
     <ion-item [ngClass]="(basicInfo.nameOfClients == '' || basicInfo.nameOfClients == null || basicInfo.nameOfClients == undefined) && 
     basicInfo.chargableToClients == 'yes' ? 'in-valid':''">
-      <ion-label>Name of Clients/Regions</ion-label>
+      <ion-label>Name of Clients/Regions*</ion-label>
       <ion-select placeholder="Select" [(ngModel)]="basicInfo.nameOfClients"
         [disabled]="basicInfo.chargableToClients == 'no' || isReadOnly"
         (ionChange)="clientSelect(basicInfo.nameOfClients)">
@@ -135,7 +135,7 @@
 
     <ion-item [ngClass]="(basicInfo.pe == '' || basicInfo.pe == null || basicInfo.pe == undefined) && 
       basicInfo.chargableToClients == 'yes'?'in-valid':''">
-      <ion-label>PE</ion-label>
+      <ion-label>PE*</ion-label>
       <ion-select placeholder="Select" [(ngModel)]="basicInfo.pe"
         [disabled]="basicInfo.chargableToClients == 'no' || isReadOnly || peList.length == 0">
         <ion-select-option *ngFor="let item of peList" [value]="item.PKID">{{item.PE}}</ion-select-option>
@@ -149,7 +149,7 @@
 
     <ion-item [ngClass]="travelInfo.departureFrom == '' || travelInfo.departureFrom == null || travelInfo.departureFrom == undefined ?
     'in-valid':''">
-      <ion-label>Departure From</ion-label>
+      <ion-label>Departure From*</ion-label>
       <ion-select placeholder="Select" [(ngModel)]="travelInfo.departureFrom" [disabled]="isReadOnly">
         <ion-select-option *ngFor="let item of designations" [value]="item.Destination">{{item.Destination}}
         </ion-select-option>
@@ -158,7 +158,7 @@
 
     <ion-item [ngClass]="travelInfo.departureToTwo == '' || travelInfo.departureToTwo == null || travelInfo.departureToTwo == undefined ?
     'in-valid':''">
-      <ion-label>To</ion-label>
+      <ion-label>To*</ion-label>
       <ion-select placeholder="" [(ngModel)]="travelInfo.departureToTwo" [disabled]="isReadOnly"
         (ionChange)="departureToSelect()">
         <ion-select-option *ngFor="let item of designations" [value]="item.Destination">{{item.Destination}}
@@ -195,7 +195,7 @@
 
     <ion-item [ngClass]="travelInfo.preferableDateFrom=='' || travelInfo.preferableDateFrom==null ||
       travelInfo.preferableDateFrom==undefined ? 'in-valid' :''">
-      <ion-label>Preferable Date From</ion-label>
+      <ion-label>Preferable Date From*</ion-label>
       <ion-datetime [(ngModel)]="travelInfo.preferableDateFrom" displayFormat="MM/DD/YYYY" placeholder="Select"
         [disabled]="isReadOnly" (ionChange)="preferableDateFromChange()">
       </ion-datetime>
@@ -211,7 +211,7 @@
 
     <ion-item [ngClass]="travelInfo.preferableDateToTwo == '' || travelInfo.preferableDateToTwo == null || travelInfo.preferableDateToTwo == undefined ?
     'in-valid':''">
-      <ion-label>To</ion-label>
+      <ion-label>To*</ion-label>
       <ion-datetime [(ngModel)]="travelInfo.preferableDateToTwo" displayFormat="MM/DD/YYYY" placeholder="Select"
         [disabled]="isReadOnly" (ionChange)="preferableDateToTwoChange()">
       </ion-datetime>
@@ -309,7 +309,7 @@
 
     <ion-item [ngClass]="otherInfo.hotelBookingRequired == '' || otherInfo.hotelBookingRequired == null || otherInfo.hotelBookingRequired == undefined ?
     'in-valid':''">
-      <ion-label>Hotel Booking Required</ion-label>
+      <ion-label>Hotel Booking Required*</ion-label>
       <ion-select placeholder="Select" [(ngModel)]="otherInfo.hotelBookingRequired" [disabled]="isReadOnly">
         <ion-select-option value="yes">YES</ion-select-option>
         <ion-select-option value="no">NO</ion-select-option>
@@ -320,7 +320,7 @@
     <ion-item [ngClass]="(otherInfo.viseRequired == '' || otherInfo.viseRequired == null || otherInfo.viseRequired == undefined) 
     && basicInfo.natureOfTravel == 'international' ?
     'in-valid':''">
-      <ion-label>Visa Required</ion-label>
+      <ion-label>Visa Required*</ion-label>
       <ion-select placeholder="Select" [(ngModel)]="otherInfo.viseRequired"
         [disabled]="isReadOnly || basicInfo.natureOfTravel == 'domestic' " (ionChange)="visaRequiredSelect()">
         <ion-select-option value="yes">YES</ion-select-option>
@@ -335,7 +335,7 @@
 
     <ion-item [ngClass]="otherInfo.rentACarRequired == '' || otherInfo.rentACarRequired == null || otherInfo.rentACarRequired == undefined ?
     'in-valid':''">
-      <ion-label>Rent a Car Required</ion-label>
+      <ion-label>Rent a Car Required*</ion-label>
       <ion-select placeholder="Select" [(ngModel)]="otherInfo.rentACarRequired" [disabled]="isReadOnly">
         <ion-select-option value="yes">YES</ion-select-option>
         <ion-select-option value="no">NO</ion-select-option>
@@ -374,7 +374,7 @@
 
   <!-- <div class="btns" *ngIf="generalService.userRole == 2 || generalService.userRole == 4"> -->
   <div class="btns" *ngIf="isApproveBtn">
-    <ion-button size="small" class="approve-btn" (click)="presentAlertPrompt(1)">Approve</ion-button>
+    <ion-button size="small" class="approve-btn" (click)="approveRejectCfoHead(1)">Approve</ion-button>
     <ion-button size="small" class="reject-btn" (click)="presentAlertPrompt(0)">Reject</ion-button>
   </div>
 
