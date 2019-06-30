@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { GeneralService } from '../general.service';
 import { Storage } from '@ionic/storage';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, AlertController } from '@ionic/angular';
 @Component({
   selector: 'app-add-travel-reqeust',
   templateUrl: './add-travel-reqeust.page.html',
@@ -80,11 +80,23 @@ export class AddTravelReqeustPage implements OnInit {
   isApproveBtn: boolean;
 
 
-  trfNumNew: any
+  trfNumNew: any;
+  actionReason: any;
   constructor(private activatedRoute: ActivatedRoute, public generalService: GeneralService,
-    public localStorrage: Storage, public loadingCtrl: LoadingController) { }
+    public localStorrage: Storage, public loadingCtrl: LoadingController,
+    public alertCtrl: AlertController) { }
 
   ngOnInit() {
+
+
+    // console.log(this.generalService.userRole)
+    // console.log(this.generalService.userRole)
+    // console.log(this.generalService.userRole)
+    // console.log(this.generalService.userRole)
+    // console.log(this.generalService.userRole)
+
+
+
     var readData = this.activatedRoute.snapshot.paramMap.get('readData')
     this.isApproveBtn = this.activatedRoute.snapshot.paramMap.get('isApproveBtn') == "true" ? true : false
     this.isReadOnly = this.activatedRoute.snapshot.paramMap.get('isReadOnly') == "true" ? true : false
@@ -93,9 +105,7 @@ export class AddTravelReqeustPage implements OnInit {
     this.pageTitle = this.isReadOnly ? "Travel Request Detail" : "Add Travel Request"
     // this.getReadOnlyData(readData)
     if (this.isReadOnly == true && readData != null) {
-
       console.log("asdfasdfasdf")
-
       this.getReadOnlyData(readData)
     }
     this.getUserData()
@@ -251,28 +261,88 @@ export class AddTravelReqeustPage implements OnInit {
 
 
 
-  async submitInsertForm() {
+  submitInsertForm() {
     console.log(this.trfNum)
 
+
+    // basicInfo.natureOfTravel
+    // basicInfo.chargableToClients
+    // basicInfo.purposeOfTravel
+    // basicInfo.reason
+    // travelInfo.departureFrom
+    // travelInfo.departureToTwo
+    // travelInfo.preferableDateFrom
+    // travelInfo.preferableDateToTwo
+    // otherInfo.hotelBookingRequired
+    // otherInfo.rentACarRequired
+
+    // console.log(this.basicInfo.natureOfTravel != "" && this.basicInfo.natureOfTravel != null && this.basicInfo.natureOfTravel != undefined)
+    // console.log(this.basicInfo.chargableToClients != "" && this.basicInfo.chargableToClients != null && this.basicInfo.chargableToClients != undefined)
+    // console.log(this.basicInfo.purposeOfTravel != "" && this.basicInfo.purposeOfTravel != null && this.basicInfo.purposeOfTravel != undefined)
+    // console.log(this.basicInfo.reason != "" && this.basicInfo.reason != null && this.basicInfo.reason != undefined)
+    // console.log(this.travelInfo.departureFrom != "" && this.travelInfo.departureFrom != null && this.travelInfo.departureFrom != undefined)
+    // console.log(this.travelInfo.departureToTwo != "" && this.travelInfo.departureToTwo != null && this.travelInfo.departureToTwo != undefined)
+    // console.log(this.travelInfo.preferableDateToTwo != "" && this.travelInfo.preferableDateToTwo != null && this.travelInfo.preferableDateToTwo != undefined)
+    // console.log(this.travelInfo.natureOfTravel != "" && this.travelInfo.natureOfTravel != null && this.travelInfo.natureOfTravel != undefined)
+    // console.log(this.otherInfo.hotelBookingRequired != "" && this.otherInfo.hotelBookingRequired != null && this.otherInfo.hotelBookingRequired != undefined)
+    // console.log(this.otherInfo.rentACarRequired != "" && this.otherInfo.rentACarRequired != null && this.otherInfo.rentACarRequired != undefined)
+
+    if (
+      this.basicInfo.natureOfTravel != "" && this.basicInfo.natureOfTravel != null && this.basicInfo.natureOfTravel != undefined &&
+      this.basicInfo.chargableToClients != "" && this.basicInfo.chargableToClients != null && this.basicInfo.chargableToClients != undefined &&
+      this.basicInfo.purposeOfTravel != "" && this.basicInfo.purposeOfTravel != null && this.basicInfo.purposeOfTravel != undefined &&
+      this.basicInfo.reason != "" && this.basicInfo.reason != null && this.basicInfo.reason != undefined &&
+      this.travelInfo.departureFrom != "" && this.travelInfo.departureFrom != null && this.travelInfo.departureFrom != undefined &&
+      this.travelInfo.departureToTwo != "" && this.travelInfo.departureToTwo != null && this.travelInfo.departureToTwo != undefined &&
+      this.travelInfo.preferableDateToTwo != "" && this.travelInfo.preferableDateToTwo != null && this.travelInfo.preferableDateToTwo != undefined &&
+      this.travelInfo.preferableDateFrom != "" && this.travelInfo.preferableDateFrom != null && this.travelInfo.preferableDateFrom != undefined &&
+      // this.travelInfo.natureOfTravel != "" && this.travelInfo.natureOfTravel != null && this.travelInfo.natureOfTravel != undefined &&
+      this.otherInfo.hotelBookingRequired != "" && this.otherInfo.hotelBookingRequired != null && this.otherInfo.hotelBookingRequired != undefined &&
+      this.otherInfo.rentACarRequired != "" && this.otherInfo.rentACarRequired != null && this.otherInfo.rentACarRequired != undefined
+    ) {
+      if (this.basicInfo.chargableToClients == 'yes') {
+        if (this.basicInfo.pe != "" && this.basicInfo.pe != null && this.basicInfo.pe != undefined &&
+          this.basicInfo.nameOfClients != "" && this.basicInfo.nameOfClients != null && this.basicInfo.nameOfClients != undefined
+        ) {
+          if (this.basicInfo.natureOfTravel == "international") {
+            if (this.otherInfo.viseRequired != "" && this.otherInfo.viseRequired != null && this.otherInfo.viseRequired != undefined) {
+              this.postRequestSubmit()
+            } else {
+              return false;
+            }
+          } else {
+            this.postRequestSubmit()
+          }
+        } else {
+          return false;
+        }
+      } else {
+        this.postRequestSubmit()
+      }
+    } else {
+      return false;
+    }
+
+
+  }
+
+
+  async postRequestSubmit() {
 
     const loading = await this.loadingCtrl.create({
       message: 'Loading'
     });
     await loading.present();
-    // let response6 = this.http.get(this.BASE_URL + this.API_GET_LAST_TRF_ID);
 
     this.generalService.getRequest(this.generalService.API_GET_LAST_TRF_ID).then((trfRes) => {
       console.log(trfRes)
 
 
-      // })
       this.trfNumNew = trfRes
 
       console.log(Number.isNaN(parseInt(this.trfNumNew[0].TRFNum)))
 
       var trfCheck = (Number.isNaN(parseInt(this.trfNumNew[0].TRFNum)) ? 0 : parseInt(this.trfNumNew[0].TRFNum)) + 1
-
-      // this.trfNum[0].TRFNum
 
       console.log(trfCheck)
 
@@ -289,9 +359,6 @@ export class AddTravelReqeustPage implements OnInit {
         DestinationIDTo1: this.travelInfo.departureToTwo,
         DestinationIDTo2: this.travelInfo.departureToThree,
         DestinationIDTo3: this.travelInfo.departureToFour,
-
-
-
         PreferDateFrom: this.dateFormat(this.travelInfo.preferableDateFrom),
         PreferDateTo1: this.dateFormat(this.travelInfo.preferableDateFrom),
         PreferDateTo2: this.dateFormat(this.travelInfo.preferableDateToTwo),
@@ -313,9 +380,6 @@ export class AddTravelReqeustPage implements OnInit {
         RequestedBy: this.userNameGlobe
       }
 
-      console.log(obj)
-      console.log(JSON.stringify(obj))
-
       this.generalService.postRequest(this.generalService.API_POST_USER_FORM, obj).then((res) => {
         console.log(res)
         loading.dismiss()
@@ -336,6 +400,7 @@ export class AddTravelReqeustPage implements OnInit {
       })
     })
   }
+
 
 
   dateFormat(date) {
@@ -427,40 +492,34 @@ export class AddTravelReqeustPage implements OnInit {
   // HEAD = 4
 
   approveRejectCfoHead(isApprove) {
-    // this.generalService.userRole
 
-    // userNameGlobe
-    // readTRFNum
-
-    // HEAD = 4
+    // this.presentAlertPrompt()
 
     var status = isApprove == 1 ? "Approved" : "Reject"
 
 
-    // if (isApprove == 1) {
-    //   this.checkBudget()
-    // }
 
+    if (this.generalService.userRole == 3) {
+      var isBudgetNegative = (this.budget.budget - this.budget.used) - (this.budget.selected + this.budget.balance) < 0 ? true : false
+    } else {
+      var isBudgetNegative = (this.budget.budget - this.budget.used) - this.budget.selected < 0 ? true : false
+    }
 
-    // insufficient balance for selected TRF.Please check budget.
-
-    var isBudgetNegative = (this.budget.budget - this.budget.used) - this.budget.selected < 0 ? true : false
     if (isBudgetNegative && isApprove == 1) {
       this.generalService.presentToast("Insufficient balance for selected TRF.Please check budget.")
     } else {
 
       if (this.generalService.userRole == 4) {
 
-        // UnBlockBy = hammad.hammad & Status=Reject & Reason=test & TRFNum=TR - 1
 
-        this.generalService.postRequestUrl(this.generalService.API_APPROVE_BY_HEAD + "UnBlockBy=" + this.userNameGlobe + "&Status=" + status + "&Reason=test" + "&TRFNum=" + this.readTRFNum).then((res) => {
+        this.generalService.postRequestUrl(this.generalService.API_APPROVE_BY_HEAD + "UnBlockBy=" + this.userNameGlobe + "&Status=" + status + "&Reason=" + this.actionReason + "&TRFNum=" + this.readTRFNum).then((res) => {
           console.log(res)
         })
       }
 
       // CFO = 2
       if (this.generalService.userRole == 2) {
-        this.generalService.postRequestUrl(this.generalService.API_APPROVE_BY_CFO + "UnBlockBy=" + this.userNameGlobe + "&Status=" + status + "&Reason=test" + "&TRFNum=" + this.readTRFNum).then((res) => {
+        this.generalService.postRequestUrl(this.generalService.API_APPROVE_BY_CFO + "UnBlockBy=" + this.userNameGlobe + "&Status=" + status + "&Reason=" + this.actionReason + "&TRFNum=" + this.readTRFNum).then((res) => {
           console.log(res)
         })
       }
@@ -479,11 +538,14 @@ export class AddTravelReqeustPage implements OnInit {
       console.log(res)
 
 
+
+
+
       this.budget = {
         budget: res[0].Total_Budget,
         used: res[0].Total_Budget_Used,
         selected: res[0].This_TRF,
-        balance: res[0].Balance,
+        balance: this.generalService.userRole == 3 ? res[0].This_TRF + res[0].Balance : res[0].Balance,
       }
 
     })
@@ -493,6 +555,9 @@ export class AddTravelReqeustPage implements OnInit {
   // NEW WORK---------------\\
 
   natureOfTravelSelect() {
+
+    console.log(this.basicInfo.natureOfTravel)
+
     var param = this.basicInfo.natureOfTravel == "domestic" ? "Domestic" : "International"
     this.generalService.getRequest(this.generalService.API_GET_TRANSPORT_HOTEL_PRICE + param).then((res) => {
       this.basicInfo.hpamount = res[0].hpamount
@@ -554,7 +619,41 @@ export class AddTravelReqeustPage implements OnInit {
 
 
 
+  async presentAlertPrompt(isApprove) {
+    const alert = await this.alertCtrl.create({
+      header: 'Reason',
+      inputs: [
+        {
+          name: 'actionReason',
+          type: 'text',
+          placeholder: 'Enter reason'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        }, {
+          text: 'Ok',
+          handler: (data) => {
+            console.log(data.actionReason);
+            if (data.actionReason != "") {
+              this.actionReason = data.actionReason
+              console.log(data.actionReason);
+              this.approveRejectCfoHead(isApprove)
+            }
 
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
 
 }
 

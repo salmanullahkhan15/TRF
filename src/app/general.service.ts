@@ -35,6 +35,12 @@ export class GeneralService {
   API_GET_CFO_APPROVAL_LIST = "Home/GetCFOApproval"
 
 
+  API_GET_HEAD_REJECT_LIST = "Home/Gethead_ApprovedRequests?username="
+
+
+  API_GET_CFO_REJECT_LIST = "Home/GetCFO_ApprovedRequests"
+
+
   API_GET_CEO_APPROVAL_LIST = "Home/GetCEOPendingApprovals"
 
 
