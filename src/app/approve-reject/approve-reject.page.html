@@ -30,7 +30,7 @@
         [ngClass]="item.selected?'selectedClass':''">
         <h6>{{item.EmployeeName}}</h6>
         <p class="loc">{{item.DestinationIDFrom}} to
-          {{ this.userRole == 3? item.DestinationIDTo1: item.DestinationIDTo2}}</p>
+          {{ item.DestinationIDTo2 == '' ? item.DestinationIDTo1: item.DestinationIDTo2}}</p>
         <p class="from">From: {{item.PreferDateFrom}}</p>
         <p class="to">To: {{item.PreferDateTo2}}</p>
         <p class="req">Requested date: {{item.RequestedDate}}</p>

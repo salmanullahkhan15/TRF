@@ -52,7 +52,53 @@ export class ApproveRejectPage implements OnInit {
   constructor(public generalService: GeneralService, private router: Router, private activatedRoute: ActivatedRoute, public localStorage: Storage) { }
 
   ngOnInit() {
+    // this.userRole = this.activatedRoute.snapshot.paramMap.get('userType')
+
+
+    // console.log(this.userRole)
+
+    // this.localStorage.get("user_detail")
+    //   .then((res) => {
+    //     this.userName = res[0].Usr_Name
+    //     if (this.userRole == 2) {
+    //       this.getCfoPendingList(res[0].Usr_Name)
+    //       this.getCfoApproveList(res[0].Usr_Name)
+    //     }
+
+    //     if (this.userRole == 3) {
+    //       this.getCEOPendingList(res[0].Usr_Name)
+    //     }
+
+    //     if (this.userRole == 4) {
+    //       this.getHeadPendingList(res[0].Usr_Name)
+    //       this.getHeadApproveList(res[0].Usr_Name)
+    //     }
+
+    //     this.generalService.userRole = this.userRole
+    //   })
+
+  }
+
+
+  ionViewWillEnter() {
+    this.initFunction()
+
+  }
+
+
+  initFunction() {
+    console.log("asdfasfasdfasdfasdf");
+
+    this.approvalRequests = []
+    this.approvedRequests = []
+
     this.userRole = this.activatedRoute.snapshot.paramMap.get('userType')
+
+
+    console.log(this.userRole)
+    console.log(this.userRole)
+    console.log(this.userRole)
+    console.log(this.userRole)
 
     this.localStorage.get("user_detail")
       .then((res) => {
@@ -75,6 +121,7 @@ export class ApproveRejectPage implements OnInit {
       })
 
   }
+
   segmentChanged(e) {
     console.log(this.segment)
     // this.segment = e
@@ -101,7 +148,7 @@ export class ApproveRejectPage implements OnInit {
         for (let i = 0; i < res.length; i++) {
           res[i].PreferDateFrom = this.dateFormat(res[i].PreferDateFrom)
           res[i].PreferDateTo2 = this.dateFormat(res[i].PreferDateTo2)
-          res[i].RequestedDate = this.dateFormat(res[i].RequestedDate)
+          res[i].RequestedDate = this.dateFormatNoPlus(res[i].RequestedDate)
         }
         this.approvalRequests = res
       }
@@ -117,7 +164,7 @@ export class ApproveRejectPage implements OnInit {
         for (let i = 0; i < res.length; i++) {
           res[i].PreferDateFrom = this.dateFormat(res[i].PreferDateFrom)
           res[i].PreferDateTo2 = this.dateFormat(res[i].PreferDateTo2)
-          res[i].RequestedDate = this.dateFormat(res[i].RequestedDate)
+          res[i].RequestedDate = this.dateFormatNoPlus(res[i].RequestedDate)
         }
         this.approvalRequests = res
       }
@@ -132,7 +179,7 @@ export class ApproveRejectPage implements OnInit {
         for (let i = 0; i < res.length; i++) {
           res[i].PreferDateFrom = this.dateFormat(res[i].PreferDateFrom)
           res[i].PreferDateTo2 = this.dateFormat(res[i].PreferDateTo2)
-          res[i].RequestedDate = this.dateFormat(res[i].RequestedDate)
+          res[i].RequestedDate = this.dateFormatNoPlus(res[i].RequestedDate)
           res[i].selected = false
         }
         this.approvalRequests = res
@@ -147,7 +194,7 @@ export class ApproveRejectPage implements OnInit {
         for (let i = 0; i < res.length; i++) {
           res[i].PreferDateFrom = this.dateFormat(res[i].PreferDateFrom)
           res[i].PreferDateTo2 = this.dateFormat(res[i].PreferDateTo2)
-          res[i].RequestedDate = this.dateFormat(res[i].RequestedDate)
+          res[i].RequestedDate = this.dateFormatNoPlus(res[i].RequestedDate)
           res[i].selected = false
         }
         this.approvedRequests = res
@@ -165,7 +212,7 @@ export class ApproveRejectPage implements OnInit {
         for (let i = 0; i < res.length; i++) {
           res[i].PreferDateFrom = this.dateFormat(res[i].PreferDateFrom)
           res[i].PreferDateTo2 = this.dateFormat(res[i].PreferDateTo2)
-          res[i].RequestedDate = this.dateFormat(res[i].RequestedDate)
+          res[i].RequestedDate = this.dateFormatNoPlus(res[i].RequestedDate)
           res[i].selected = false
         }
         this.approvedRequests = res
@@ -185,17 +232,27 @@ export class ApproveRejectPage implements OnInit {
     return year + "-" + month + "-" + day
   }
 
+  dateFormatNoPlus(date) {
+    var newDate = new Date(date)
+    var year = newDate.getFullYear()
+    var month = newDate.getMonth()
+    var day = newDate.getDate()
+    return year + "-" + month + "-" + day
+  }
+
 
   approveByCeo(isApprove) {
     // this.approvalRequests[i].selected
     // http://mytravelrequest.com/Home/PostCEOApproval?UnBlockBy=hammad.hammad&PKID=1
     for (let i = 0; i < this.approvalRequests.length; i++) {
       if (this.approvalRequests[i].selected == true) {
-        this.generalService.getRequest(this.generalService.API_APPROVE_BY_CEO + "UnBlockBy=" + this.userName + "&PKID=" + this.approvalRequests[i].PKID).then((res) => {
+        this.generalService.postRequestUrl(this.generalService.API_APPROVE_BY_CEO + "UnBlockBy=" + this.userName + "&PKID=" + this.approvalRequests[i].PKID).then((res) => {
           console.log(res)
         })
       }
     }
+
+    this.initFunction();
 
   }
 

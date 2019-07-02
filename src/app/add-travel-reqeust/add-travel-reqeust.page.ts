@@ -512,7 +512,7 @@ export class AddTravelReqeustPage implements OnInit {
     }
 
     if (isBudgetNegative && isApprove == 1) {
-      this.generalService.presentToast("Insufficient balance for selected TRF.Please check budget.")
+      this.generalService.presentToast("Insufficient balance for selected TRF. Please check budget.")
     } else {
 
       if (this.generalService.userRole == 4) {
