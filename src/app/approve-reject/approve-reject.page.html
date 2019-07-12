@@ -13,7 +13,7 @@
     <ion-segment-button value="pending">
       <ion-label>Pending</ion-label>
     </ion-segment-button>
-    <ion-segment-button value="approved">
+    <ion-segment-button *ngIf="userRole != 3" value="approved">
       <ion-label>Approved</ion-label>
     </ion-segment-button>
     <!-- <ion-segment-button value="rejected">
@@ -26,11 +26,10 @@
     <!-- pending -->
     <div class="pending-seg" *ngIf="segment == 'pending'">
 
-      <div class="seg-list" *ngFor="let item of approvalRequests; let i=index" (click)="selectCard(i, item)"
-        [ngClass]="item.selected?'selectedClass':''">
+      <div class="seg-list" *ngFor="let item of approvalRequests; let i=index" (click)="selectCard(i, item)" [ngClass]="item.selected?'selectedClass':''">
         <h6>{{item.EmployeeName}}</h6>
         <p class="loc">{{item.DestinationIDFrom}} to
-          {{ item.DestinationIDTo2 == '' ? item.DestinationIDTo1: item.DestinationIDTo2}}</p>
+          {{ item.DestinationIDTo1}}</p>
         <p class="from">From: {{item.PreferDateFrom}}</p>
         <p class="to">To: {{item.PreferDateTo2}}</p>
         <p class="req">Requested date: {{item.RequestedDate}}</p>
@@ -47,7 +46,7 @@
     <div *ngIf="segment == 'approved'">
       <div class="seg-list" *ngFor="let item of approvedRequests">
         <h6>{{item.EmployeeName}}</h6>
-        <p class="loc">{{item.DestinationIDFrom}} to {{item.DestinationIDTo2}}</p>
+        <p class="loc">{{item.DestinationIDFrom}} to {{item.DestinationIDTo1}}</p>
         <p class="from">From: {{item.PreferDateFrom}}</p>
         <p class="to">To: {{item.PreferDateTo2}}</p>
         <p class="req">Requested date: {{item.RequestedDate}}</p>

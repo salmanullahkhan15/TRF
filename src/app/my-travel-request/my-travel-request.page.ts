@@ -68,14 +68,17 @@ export class MyTravelRequestPage implements OnInit {
   getUserApprovedForms(user) {
     this.generalService.getRequest(this.generalService.API_GET_USER_APPROVED_FORMS + user).then((res: any) => {
       console.log(res)
+      if (res[0].Message == undefined) {
 
-      for (let i = 0; i < res.length; i++) {
-        res[i].PreferDateFrom = this.dateFormat(res[i].PreferDateFrom)
-        res[i].PreferDateTo2 = this.dateFormat(res[i].PreferDateTo2)
-        res[i].RequestedDate = this.dateFormat(res[i].RequestedDate)
+        for (let i = 0; i < res.length; i++) {
+          res[i].PreferDateFrom = this.dateFormat(res[i].PreferDateFrom)
+          res[i].PreferDateTo2 = this.dateFormat(res[i].PreferDateTo2)
+          res[i].RequestedDate = this.dateFormat(res[i].RequestedDate)
+        }
+
+        this.approvedForms = res
       }
 
-      this.approvedForms = res
     })
   }
 
@@ -83,12 +86,16 @@ export class MyTravelRequestPage implements OnInit {
   getUserPendingForms(user) {
     this.generalService.getRequest(this.generalService.API_GET_USER_PENDING_FORMS + user).then((res: any) => {
       console.log(res)
-      for (let i = 0; i < res.length; i++) {
-        res[i].PreferDateFrom = this.dateFormat(res[i].PreferDateFrom)
-        res[i].PreferDateTo2 = this.dateFormat(res[i].PreferDateTo2)
-        res[i].RequestedDate = this.dateFormat(res[i].RequestedDate)
+      if (res[0].Message == undefined) {
+
+        for (let i = 0; i < res.length; i++) {
+          res[i].PreferDateFrom = this.dateFormat(res[i].PreferDateFrom)
+          res[i].PreferDateTo2 = this.dateFormat(res[i].PreferDateTo2)
+          res[i].RequestedDate = this.dateFormat(res[i].RequestedDate)
+        }
+        this.pendingForms = res
       }
-      this.pendingForms = res
+
     })
   }
 

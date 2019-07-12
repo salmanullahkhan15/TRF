@@ -454,7 +454,7 @@ export class AddTravelReqeustPage implements OnInit {
           reason: formData.Purpose_reason,
           chargableToClients: formData.IsChargeToClient,
           nameOfClients: formData.Client_Region,
-          pe: formData.PE,
+          pe: formData.PKID,
         }
 
         this.travelingAdvance = {
