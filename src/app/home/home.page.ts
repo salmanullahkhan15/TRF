@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastController, Events } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
-
+import { DatePicker } from '@ionic-native/date-picker/ngx';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +14,8 @@ export class HomePage implements OnInit {
   userType: any;
   constructor(private activatedRoute: ActivatedRoute,
     public events: Events,
-    public localStorrage: Storage) { }
+    public localStorrage: Storage,
+    private datePicker: DatePicker) { }
 
   ngOnInit() {
     // this.userType = this.activatedRoute.snapshot.paramMap.get('userType');
@@ -28,7 +29,16 @@ export class HomePage implements OnInit {
 
 
 
-
+  openCalendar() {
+    this.datePicker.show({
+      date: new Date(),
+      mode: 'date',
+      androidTheme: this.datePicker.ANDROID_THEMES.THEME_DEVICE_DEFAULT_LIGHT
+    }).then(
+      date => console.log('Got date: ', date),
+      err => console.log('Error occurred while getting date: ', err)
+    );
+  }
 
 
 

@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HttpClient, HttpRequest, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
+import { DatePicker } from '@ionic-native/date-picker/ngx';
 
 // import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 // import { library } from '@fortawesome/fontawesome-svg-core';
@@ -31,6 +32,7 @@ import { IonicStorageModule } from '@ionic/storage';
   providers: [
     StatusBar,
     SplashScreen,
+    DatePicker,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
