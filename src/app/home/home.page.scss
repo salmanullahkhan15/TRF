@@ -1,3 +1,7 @@
+.bg {
+    --background: url(../../assets/img/bg.png) 0 0/100% 100% no-repeat;
+}
+
 .home-page p {
     font-size: 40px;
     margin: auto;
@@ -7,11 +11,11 @@
     color: #3e3866;
 }
 
-ion-header ion-toolbar{
+ion-header ion-toolbar {
     --background: #3e3866 !important;
 
 }
 
-.burger-icon{
+.burger-icon {
     color: #fff;
 }

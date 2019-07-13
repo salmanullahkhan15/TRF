@@ -1,35 +1,57 @@
 <ion-content class="grad-bg">
 
   <div class="app-logo">
-    <p>TRF</p>
+    <!-- <p>TRF</p> -->
+    <img src="assets/img/trf-logo.png" />
   </div>
 
 
-  <p class="creden-txt">LOGIN CREDENTIALS</p>
+  <p class="creden-txt">Welcome Back</p>
+  <p class="signin-txt">Sign in to continue</p>
 
   <div class="form-login">
-    <ion-icon name="person" class="user-icon"></ion-icon>
 
-    <ion-item class="username-item">
-      <ion-label position="floating">Username</ion-label>
-      <ion-input [(ngModel)]="username" type="text"></ion-input>
-    </ion-item>
+    <div class="input-field-custom">
+      <p class="lbl-input">User name</p>
+      <div class="input-parent">
+        <ion-icon name="person" class="user-icon"></ion-icon>
+        <ion-item class="username-item ">
+          <ion-input placeholder="USERNAME" [(ngModel)]="username" type="text"></ion-input>
+        </ion-item>
+      </div>
+    </div>
 
-    <ion-icon name="lock" class="pass-icon"></ion-icon>
+
+    <div class="input-field-custom">
+      <p class="lbl-input">Password</p>
+      <div class="input-parent">
+        <ion-icon name="lock" class="user-icon"></ion-icon>
+        <ion-item class="username-item">
+          <ion-input placeholder="PASSWORD" [(ngModel)]="password" type="password"></ion-input>
+        </ion-item>
+      </div>
+    </div>
+
+    <!-- <ion-icon name="lock" class="pass-icon"></ion-icon>
     <ion-item class="username-item">
       <ion-label position="floating">Password</ion-label>
       <ion-input [(ngModel)]="password" type="password"></ion-input>
-    </ion-item>
+    </ion-item> -->
   </div>
-
+  <!-- 
   <div class="remember-check">
     <ion-checkbox [(ngModel)]="checkRemember"></ion-checkbox>
     <p>Remember me</p>
-  </div>
+  </div> -->
 
 
   <div class="btn-login">
-    <ion-button color="light" (click)="doLogin()">Login</ion-button>
+    <ion-button (click)="doLogin()">Login</ion-button>
+  </div>
+
+
+  <div class="img-btm-div">
+    <img src="assets/img/logo.png">
   </div>
 
 </ion-content>
