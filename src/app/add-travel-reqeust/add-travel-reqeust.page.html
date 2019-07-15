@@ -1,14 +1,31 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start" class="burger-icon">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>{{pageTitle}}</ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
-<ion-content>
-  <ion-list>
+<ion-content class="bg">
+
+
+  <div class="home-header">
+    <div class="head-left">
+      <img class="back-btn" src="assets/icon/back-btn.png">
+      <p>Add Travel Request</p>
+    </div>
+    <div class="head-right">
+      <img src="assets/img/trf-logo.png">
+    </div>
+  </div>
+
+
+
+
+
+
+  <ion-list class="form-list">
     <div *ngIf="isApproveBtn">
       <ion-list-header class="list-header-custom">
         <ion-label>Budget Information</ion-label>

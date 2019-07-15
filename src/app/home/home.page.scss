@@ -19,3 +19,107 @@ ion-header ion-toolbar {
 .burger-icon {
     color: #fff;
 }
+
+
+.home-header {
+    width: 100%;
+    color: #fff;
+    padding-left: 7%;
+    float: left;
+    background: #0d6eb9;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
+
+.head-left {
+    margin-top: 8%;
+    width: 50%;
+    float: left;
+
+}
+
+.head-left p:first-child {
+    font-size: 21px;
+    font-weight: 500;
+    margin: auto;
+}
+
+.head-left p:nth-child(2) {
+    font-size: 18px;
+    font-weight: 500;
+    margin: auto;
+}
+
+.head-left p:nth-child(3) {
+    font-size: 18px;
+    font-weight: 500;
+    margin: auto;
+}
+
+.head-left {
+    width: 50%;
+    float: left;
+}
+
+.head-right {
+
+    width: 50%;
+    float: right;
+    text-align: right;
+}
+
+
+.head-right img {
+    width: 50%;
+    margin-right: 20%;
+}
+
+.cus-menu {
+    margin-top: 40%
+}
+
+.cus-menu ion-row {
+    width: 100%;
+}
+
+.cus-menu ion-col {}
+
+.cus-menu ion-col .col-div {
+    background: #fff;
+    text-align: center;
+    padding: 5%;
+    border-radius: 15px;
+}
+
+.cus-menu ion-col img {
+    width: 70%;
+}
+
+.cus-menu ion-col h4 {
+    margin: auto;
+    padding-bottom: 12%;
+    color: #0d6eb9;
+    line-height: 17px;
+    margin-top: 5%
+}
+
+.cus-menu ion-grid:first-child ion-row ion-col:nth-child(3) img {
+    width: 59%;
+}
+
+.cus-menu ion-grid:nth-child(2) ion-row ion-col:nth-child(2) img {
+    width: 53%;
+}
+
+.cus-menu ion-grid:nth-child(3) ion-row ion-col:first-child img {
+    width: 53%;
+}
+
+
+.img-btm-div {
+    text-align: center;
+    float: left;
+    width: 100%;
+    margin-top: 8%;
+}

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastController, Events } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { DatePicker } from '@ionic-native/date-picker/ngx';
+import { GeneralService } from '../general.service';
 
 @Component({
   selector: 'app-home',
@@ -13,9 +14,11 @@ export class HomePage implements OnInit {
 
   userType: any;
   constructor(private activatedRoute: ActivatedRoute,
+    private datePicker: DatePicker,
+    public generalService: GeneralService,
     public events: Events,
-    public localStorrage: Storage,
-    private datePicker: DatePicker) { }
+    private router: Router,
+    public localStorrage: Storage) { }
 
   ngOnInit() {
     // this.userType = this.activatedRoute.snapshot.paramMap.get('userType');
@@ -40,6 +43,9 @@ export class HomePage implements OnInit {
     );
   }
 
-
+  gotoTravelRequest() {
+    this.generalService.userRole = 0
+    this.router.navigateByUrl("/add-travel-reqeust" + "/" + null + "/" + false + "/" + false);
+  }
 
 }

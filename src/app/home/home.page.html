@@ -19,15 +19,82 @@
   <p>TRF</p> -->
 
 
-  <div class="header">
+  <div class="home-header">
     <div class="head-left">
       <p>Welcome Back</p>
       <p>Hammad Khatri</p>
       <p>I.T Manager - 2988</p>
     </div>
-    <div>
+    <div class="head-right">
       <img src="assets/img/trf-logo.png">
     </div>
+  </div>
+
+
+  <div class="cus-menu">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="4" (click)="gotoTravelRequest()">
+          <div class="col-div">
+            <img src="assets/img/travel.png">
+            <h4>Travel Requests</h4>
+          </div>
+        </ion-col>
+        <ion-col size="4">
+          <div class="col-div">
+            <img src="assets/img/request.png">
+            <h4>My Requests</h4>
+          </div>
+        </ion-col>
+        <ion-col size="4">
+          <div class="col-div">
+            <img src="assets/img/pending.png">
+            <h4>Head Requests</h4>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+
+    <ion-grid>
+      <ion-row>
+        <ion-col size="4">
+          <div class="col-div">
+            <img src="assets/img/approve.png">
+            <h4>Head Approved</h4>
+          </div>
+        </ion-col>
+        <ion-col size="4">
+          <div class="col-div">
+            <img src="assets/img/pending.png">
+            <h4>CFO Pending</h4>
+          </div>
+        </ion-col>
+        <ion-col size="4">
+          <div class="col-div">
+            <img src="assets/img/approve.png">
+            <h4>CFO Approved</h4>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+
+    <ion-grid>
+      <ion-row>
+        <ion-col size="4">
+          <div class="col-div">
+            <img src="assets/img/pending.png">
+            <h4>CEO Pending</h4>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+
+  <div class="img-btm-div">
+    <img src="assets/img/logo.png">
   </div>
 
 </ion-content>
