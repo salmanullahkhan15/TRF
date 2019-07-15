@@ -22,10 +22,10 @@
   <div class="home-header">
     <div class="head-left">
       <p>Welcome Back</p>
-      <p>Hammad Khatri</p>
-      <p>I.T Manager - 2988</p>
+      <p>{{userName}}</p>
+      <p>{{userDesignation}}</p>
     </div>
-    <div class="head-right">
+    <div class="head-right" (click)="openCalendar()">
       <img src="assets/img/trf-logo.png">
     </div>
   </div>
@@ -34,22 +34,22 @@
   <div class="cus-menu">
     <ion-grid>
       <ion-row>
-        <ion-col size="4" (click)="gotoTravelRequest()">
+        <ion-col size="4" (click)="gotoTravelRequestForm()">
           <div class="col-div">
             <img src="assets/img/travel.png">
             <h4>Travel Requests</h4>
           </div>
         </ion-col>
-        <ion-col size="4">
+        <ion-col size="4" (click)="gotoMyTravelRequests()">
           <div class="col-div">
             <img src="assets/img/request.png">
             <h4>My Requests</h4>
           </div>
         </ion-col>
-        <ion-col size="4">
+        <ion-col size="4" *ngIf="checkArrayVal('Approve/Reject Head')" (click)="gotoHeadPending()">
           <div class="col-div">
             <img src="assets/img/pending.png">
-            <h4>Head Requests</h4>
+            <h4>Head Pending</h4>
           </div>
         </ion-col>
       </ion-row>
@@ -58,19 +58,19 @@
 
     <ion-grid>
       <ion-row>
-        <ion-col size="4">
+        <ion-col size="4" *ngIf="checkArrayVal('Approve/Reject Head')" (click)=" gotoHeadApprove()">
           <div class="col-div">
             <img src="assets/img/approve.png">
             <h4>Head Approved</h4>
           </div>
         </ion-col>
-        <ion-col size="4">
+        <ion-col size="4" *ngIf="checkArrayVal('Approve/Reject Cfo')" (click)="gotoCfoPending()">
           <div class="col-div">
             <img src="assets/img/pending.png">
             <h4>CFO Pending</h4>
           </div>
         </ion-col>
-        <ion-col size="4">
+        <ion-col size="4" *ngIf="checkArrayVal('Approve/Reject Cfo')" (click)="gotoCfoApprove()">
           <div class="col-div">
             <img src="assets/img/approve.png">
             <h4>CFO Approved</h4>
@@ -82,10 +82,17 @@
 
     <ion-grid>
       <ion-row>
-        <ion-col size="4">
+        <ion-col size="4" *ngIf="checkArrayVal('Approve/Reject Ceo')" (click)="gotoCeoPending()">
           <div class="col-div">
             <img src="assets/img/pending.png">
             <h4>CEO Pending</h4>
+          </div>
+        </ion-col>
+
+        <ion-col size="4" (click)="logout()">
+          <div class="col-div">
+            <img src="assets/img/pending.png">
+            <h4>Logout</h4>
           </div>
         </ion-col>
       </ion-row>

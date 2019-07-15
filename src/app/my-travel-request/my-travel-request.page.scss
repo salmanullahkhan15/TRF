@@ -16,7 +16,9 @@ ion-header ion-toolbar {
     margin-top: 11px;
     border-radius: 20px;
     margin: 12px;
-    border-color: #3e3866;
+    /* border-color: #3e3866; */
+    background: #fff;
+    border: none;
 }
 
 .seg-list p {
@@ -27,6 +29,7 @@ ion-header ion-toolbar {
 .seg-list h6 {
     margin-top: 5px;
     margin-bottom: 5px;
+    color: #0d6eb9;
 }
 
 .seg-list .from {
@@ -55,4 +58,80 @@ ion-header ion-toolbar {
 
 .seg-list .approved-st {
     color: green;
+}
+
+
+
+
+
+// New Css
+
+// Header 
+
+.bg {
+    --background: url(../../assets/img/bg.png) 0 0/100% 100% no-repeat;
+}
+
+
+.home-header {
+    width: 100%;
+    color: #fff;
+    padding-left: 7%;
+    float: left;
+    background: #0d6eb9;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
+
+.head-left {
+    margin-top: 8%;
+    width: 50%;
+    float: left;
+
+}
+
+.head-left p {
+    float: left;
+    width: 70%;
+    margin-top: 2%;
+    margin-left: 10%;
+    font-size: 18px;
+    font-weight: 500;
+
+}
+
+.head-left {
+    width: 70%;
+    float: left;
+}
+
+.head-right {
+    width: 30%;
+    float: right;
+    text-align: right;
+}
+
+
+.head-right img {
+    width: 80%;
+    margin-right: 20%;
+}
+
+.back-btn {
+    width: 15%;
+    float: left;
+}
+
+// Header end
+
+
+ion-segment {
+    background: #fff;
+    border-radius: 150px;
+    margin-top: 35%;
+    width: 90%;
+    margin: auto;
+    margin-top: 35%;
+    --color-checked: #0d6eb9;
 }

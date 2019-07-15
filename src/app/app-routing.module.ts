@@ -7,6 +7,11 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  // {
+  //   path: 'add-travel-reqeust/:isReadOnly/:readData/:isApproveBtn',
+  //   loadChildren: './add-travel-reqeust/add-travel-reqeust.module#AddTravelReqeustPageModule'
+  // },
+
   {
     path: 'login',
     loadChildren: './login/login.module#LoginPageModule'
@@ -21,7 +26,7 @@ const routes: Routes = [
   },
   { path: 'add-travel-reqeust/:isReadOnly/:readData/:isApproveBtn', loadChildren: './add-travel-reqeust/add-travel-reqeust.module#AddTravelReqeustPageModule' },
   { path: 'my-travel-request', loadChildren: './my-travel-request/my-travel-request.module#MyTravelRequestPageModule' },
-  { path: 'approve-reject/:userType', loadChildren: './approve-reject/approve-reject.module#ApproveRejectPageModule' }
+  { path: 'approve-reject/:userType/:listType', loadChildren: './approve-reject/approve-reject.module#ApproveRejectPageModule' }
 ];
 
 @NgModule({

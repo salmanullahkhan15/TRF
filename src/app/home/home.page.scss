@@ -83,7 +83,9 @@ ion-header ion-toolbar {
     width: 100%;
 }
 
-.cus-menu ion-col {}
+.cus-menu ion-col {
+    margin: auto;
+}
 
 .cus-menu ion-col .col-div {
     background: #fff;

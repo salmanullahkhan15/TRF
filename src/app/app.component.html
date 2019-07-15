@@ -1,6 +1,6 @@
 <ion-app>
   <ion-split-pane>
-    <ion-menu>
+    <!-- <ion-menu>
       <ion-header>
         <img class="user-img" src="../assets/img/user.png">
         <div class="user-name">{{userName}}</div>
@@ -10,7 +10,6 @@
         <ion-list>
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
             <ion-item [routerDirection]="'root'" (click)="gotoUrl(p.url)">
-              <!-- <ion-icon slot="start" [name]="p.icon"></ion-icon> -->
               <ion-label>
                 {{p.title}}
               </ion-label>
@@ -18,7 +17,6 @@
           </ion-menu-toggle>
           <ion-menu-toggle auto-hide="false">
             <ion-item (click)="logout()">
-              <!-- <ion-icon slot="start" [name]="p.icon"></ion-icon> -->
               <ion-label>
                 Logout
               </ion-label>
@@ -26,7 +24,7 @@
           </ion-menu-toggle>
         </ion-list>
       </ion-content>
-    </ion-menu>
+    </ion-menu> -->
     <ion-router-outlet main></ion-router-outlet>
   </ion-split-pane>
 </ion-app>

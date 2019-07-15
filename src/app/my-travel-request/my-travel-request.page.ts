@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { GeneralService } from '../general.service';
 import { Storage } from '@ionic/storage';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-my-travel-request',
@@ -41,7 +42,7 @@ export class MyTravelRequestPage implements OnInit {
   approvedForms: any = []
   pendingForms: any = []
   userName: any;
-  constructor(private router: Router, public generalService: GeneralService, public localStorage: Storage) { }
+  constructor(private router: Router, public generalService: GeneralService, public localStorage: Storage, public location: Location) { }
 
   ngOnInit() {
     this.localStorage.get("user_detail")
@@ -106,6 +107,10 @@ export class MyTravelRequestPage implements OnInit {
     var month = newDate.getMonth() + 1
     var day = newDate.getDate()
     return year + "-" + month + "-" + day
+  }
+
+  goBackPage() {
+    this.location.back();
   }
 
 }

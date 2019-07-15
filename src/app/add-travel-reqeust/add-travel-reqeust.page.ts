@@ -4,6 +4,7 @@ import { GeneralService } from '../general.service';
 import { Storage } from '@ionic/storage';
 import { LoadingController, AlertController } from '@ionic/angular';
 import { Location } from "@angular/common";
+import { DatePicker } from '@ionic-native/date-picker/ngx';
 @Component({
   selector: 'app-add-travel-reqeust',
   templateUrl: './add-travel-reqeust.page.html',
@@ -83,10 +84,13 @@ export class AddTravelReqeustPage implements OnInit {
 
   trfNumNew: any;
   actionReason: any = ""
+  toggleItem: number = 0
   constructor(private activatedRoute: ActivatedRoute, public generalService: GeneralService,
     public localStorrage: Storage, public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
-    private location: Location) { }
+    private location: Location,
+    private datePicker: DatePicker,
+  ) { }
 
   ngOnInit() {
 
@@ -669,6 +673,119 @@ export class AddTravelReqeustPage implements OnInit {
     this.location.back();
     // this.generalService.presentToast("Please fill all required fields")
   }
+
+
+  toggleList(num) {
+    if (num == this.toggleItem) {
+      this.toggleItem = 0
+
+    } else {
+      this.toggleItem = num
+    }
+  }
+
+  goBackPage() {
+    this.location.back();
+  }
+
+  openCalender() {
+    this.datePicker.show({
+      date: new Date(),
+      mode: 'date',
+      androidTheme: this.datePicker.ANDROID_THEMES.THEME_DEVICE_DEFAULT_LIGHT
+    }).then(
+      (date) => {
+        // console.log('Got date: ', date)
+        console.log(this.dateFormat(date))
+        // console.log(this.timeFormat(date))
+        // this.dateFormat(date)
+        // this.timeFormat(date)
+        this.travelInfo.preferableDateFrom = this.dateFormat(date)
+      },
+      err => console.log('Error occurred while getting date: ', err)
+    );
+  }
+
+  openCalenderPrefDate() {
+    this.datePicker.show({
+      date: new Date(),
+      mode: 'date',
+      androidTheme: this.datePicker.ANDROID_THEMES.THEME_DEVICE_DEFAULT_LIGHT
+    }).then(
+      (date) => {
+        // console.log('Got date: ', date)
+        console.log(this.dateFormat(date))
+        // console.log(this.timeFormat(date))
+        // this.dateFormat(date)
+        // this.timeFormat(date)
+        this.travelInfo.preferableDateFrom = this.dateFormat(date)
+      },
+      err => console.log('Error occurred while getting date: ', err)
+    );
+  }
+
+  openCalenderPrefTo() {
+    this.datePicker.show({
+      date: new Date(),
+      mode: 'date',
+      androidTheme: this.datePicker.ANDROID_THEMES.THEME_DEVICE_DEFAULT_LIGHT
+    }).then(
+      (date) => {
+        // console.log('Got date: ', date)
+        console.log(this.dateFormat(date))
+        // console.log(this.timeFormat(date))
+        // this.dateFormat(date)
+        // this.timeFormat(date)
+        this.travelInfo.preferableDateToTwo = this.dateFormat(date)
+      },
+      err => console.log('Error occurred while getting date: ', err)
+    );
+  }
+
+  openCalenderPrefTime() {
+    this.datePicker.show({
+      date: new Date(),
+      mode: 'time',
+      androidTheme: this.datePicker.ANDROID_THEMES.THEME_DEVICE_DEFAULT_LIGHT
+    }).then(
+      (date) => {
+        // console.log('Got date: ', date)
+        console.log(this.dateFormat(date))
+        // console.log(this.timeFormat(date))
+        // this.dateFormat(date)
+        // this.timeFormat(date)
+        this.travelInfo.preferableTimeFrom = this.timeFormat(date)
+      },
+      err => console.log('Error occurred while getting date: ', err)
+    );
+  }
+
+  openCalenderPrefTimeTo() {
+    this.datePicker.show({
+      date: new Date(),
+      mode: 'time',
+      androidTheme: this.datePicker.ANDROID_THEMES.THEME_DEVICE_DEFAULT_LIGHT
+    }).then(
+      (date) => {
+        // console.log('Got date: ', date)
+        console.log(this.dateFormat(date))
+        // console.log(this.timeFormat(date))
+        // this.dateFormat(date)
+        // this.timeFormat(date)
+        this.travelInfo.preferableTimeToTwo = this.timeFormat(date)
+      },
+      err => console.log('Error occurred while getting date: ', err)
+    );
+  }
+
+  // openCalenderPrefTo
+  // this.travelInfo.preferableDateToTwo = this.dateFormat(date)
+
+  // openCalenderPrefTime
+  // this.travelInfo.preferableTimeFrom
+
+  // openCalenderPrefTimeTo
+  // this.travelInfo.preferableTimeToTwo
 
 
 

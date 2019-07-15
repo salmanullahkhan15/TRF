@@ -5,22 +5,27 @@ ion-header ion-toolbar {
 }
 
 .list-header-custom {
-    background: rgba(62, 56, 102, 0.85);
+    background: #206eb9;
     color: #fff;
     font-size: 16px;
     font-weight: 500;
     text-align: center;
+    border-radius: 160px;
+    margin-top: 2%;
 }
 
 ion-button {
-    --background: #3e3866 !important;
+    --background: #206eb9 !important;
     color: #fff;
-    --border-color: #3e3866 !important;
+    --border-color: #206eb9 !important;
     margin-bottom: 10%;
-    width: 80%;
+    width: 90%;
     margin: auto;
     margin-top: 5%;
     margin-bottom: 5%;
+    --border-radius: 150px;
+    font-size: 16px;
+    font-weight: 600;
 }
 
 .burger-icon {
@@ -47,7 +52,7 @@ ion-button {
 }
 
 .in-valid {
-    border-bottom: 2px solid red;
+    // border-bottom: 2px solid red;
 }
 
 
@@ -117,4 +122,52 @@ ion-button {
     width: 90%;
     background: transparent;
     margin: auto;
+}
+
+
+.form-list ion-item {
+    --border-radius: 160px;
+    margin-top: 2%;
+}
+
+
+.form-list ion-item {
+    --highlight-color-valid: transparent;
+    --highlight-color-invalid: transparent;
+    --highlight-color-focused: transparent;
+    --color: #0d6eb9;
+}
+
+.form-list ion-item ion-input {
+
+    --placeholder-color: #0d6eb9;
+    --color: #0d6eb9;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.form-list ion-item ion-label {
+    --color: #0d6eb9;
+}
+
+.form-list ion-item ion-select {
+    --color: #0d6eb9;
+}
+
+.form-list ion-item ion-select .select-text {
+    --color: #0d6eb9;
+}
+
+.list-header-custom img {
+    width: 10%;
+    margin-right: 9%;
+}
+
+
+.invalid-txt {
+    color: red;
+    margin: auto;
+    margin-left: 4%;
+    margin-top: 1%;
+    margin-bottom: 4%;
 }

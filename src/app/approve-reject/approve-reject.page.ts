@@ -3,6 +3,7 @@ import { GeneralService } from '../general.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Storage } from '@ionic/storage';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-approve-reject',
@@ -46,10 +47,12 @@ export class ApproveRejectPage implements OnInit {
     },
   ]
   userRole: any;
+  listType: any;
   userName: any;
   approvalRequests: any = []
   approvedRequests: any = []
-  constructor(public generalService: GeneralService, private router: Router, private activatedRoute: ActivatedRoute, public localStorage: Storage) { }
+  constructor(public generalService: GeneralService, private router: Router, private activatedRoute: ActivatedRoute, public localStorage: Storage,
+    public location: Location) { }
 
   ngOnInit() {
     // this.userRole = this.activatedRoute.snapshot.paramMap.get('userType')
@@ -93,7 +96,12 @@ export class ApproveRejectPage implements OnInit {
     this.approvedRequests = []
 
     this.userRole = this.activatedRoute.snapshot.paramMap.get('userType')
+    this.listType = this.activatedRoute.snapshot.paramMap.get('listType')
 
+
+    // this.listType =
+
+    this.segment = this.listType
 
     console.log(this.userRole)
     console.log(this.userRole)
@@ -255,6 +263,10 @@ export class ApproveRejectPage implements OnInit {
 
     this.initFunction();
 
+  }
+
+  goBackPage() {
+    this.location.back();
   }
 
 }
