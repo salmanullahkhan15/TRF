@@ -49,3 +49,72 @@ ion-button {
 .in-valid {
     border-bottom: 2px solid red;
 }
+
+
+// NEW CSS_______-----______----
+
+
+.bg {
+    --background: url(../../assets/img/bg.png) 0 0/100% 100% no-repeat;
+}
+
+
+.home-header {
+    width: 100%;
+    color: #fff;
+    padding-left: 7%;
+    float: left;
+    background: #0d6eb9;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
+
+.head-left {
+    margin-top: 8%;
+    width: 50%;
+    float: left;
+
+}
+
+.head-left p {
+    // font-size: 21px;
+    // font-weight: 500;
+    // margin: auto;
+
+    float: left;
+    width: 70%;
+    margin-top: 2%;
+    margin-left: 10%;
+    font-size: 18px;
+    font-weight: 500;
+
+}
+
+.head-left {
+    width: 70%;
+    float: left;
+}
+
+.head-right {
+    width: 30%;
+    float: right;
+    text-align: right;
+}
+
+
+.head-right img {
+    width: 80%;
+    margin-right: 20%;
+}
+
+.back-btn {
+    width: 15%;
+    float: left;
+}
+
+.form-list {
+    width: 90%;
+    background: transparent;
+    margin: auto;
+}
