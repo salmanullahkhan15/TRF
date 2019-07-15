@@ -32,7 +32,7 @@ export class HomePage implements OnInit {
   openCalendar() {
     this.datePicker.show({
       date: new Date(),
-      mode: 'date',
+      mode: 'time',
       androidTheme: this.datePicker.ANDROID_THEMES.THEME_DEVICE_DEFAULT_LIGHT
     }).then(
       date => console.log('Got date: ', date),
