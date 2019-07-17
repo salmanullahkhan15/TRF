@@ -114,8 +114,12 @@ ion-header ion-toolbar {
 
 
 .head-right img {
-    width: 80%;
+    width: 60%;
+    // margin-right: 20%;
+
+    // width: 30%;
     margin-right: 20%;
+    margin-top: 20%;
 }
 
 .back-btn {
@@ -134,4 +138,12 @@ ion-segment {
     margin: auto;
     margin-top: 35%;
     --color-checked: #0d6eb9;
+}
+
+.no-record {
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 30%;
+    text-align: center;
+    color: #fff;
 }

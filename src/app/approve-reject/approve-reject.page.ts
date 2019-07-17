@@ -51,6 +51,8 @@ export class ApproveRejectPage implements OnInit {
   userName: any;
   approvalRequests: any = []
   approvedRequests: any = []
+  noRecordAl: boolean = false
+  noRecordEd: boolean = false
   constructor(public generalService: GeneralService, private router: Router, private activatedRoute: ActivatedRoute, public localStorage: Storage,
     public location: Location) { }
 
@@ -153,12 +155,17 @@ export class ApproveRejectPage implements OnInit {
     this.generalService.getRequest(this.generalService.API_GET_HEAD_APPROVAL_LIST + user).then((res: any) => {
       console.log(res)
       if (res[0].Message == undefined) {
+        this.noRecordAl = false;
+
         for (let i = 0; i < res.length; i++) {
           res[i].PreferDateFrom = this.dateFormat(res[i].PreferDateFrom)
           res[i].PreferDateTo2 = this.dateFormat(res[i].PreferDateTo2)
           res[i].RequestedDate = this.dateFormatNoPlus(res[i].RequestedDate)
         }
         this.approvalRequests = res
+      } else {
+        this.noRecordAl = true;
+
       }
     })
   }
@@ -170,12 +177,16 @@ export class ApproveRejectPage implements OnInit {
       console.log("salman")
 
       if (res[0].Message == undefined) {
+        this.noRecordAl = false;
+
         for (let i = 0; i < res.length; i++) {
           res[i].PreferDateFrom = this.dateFormat(res[i].PreferDateFrom)
           res[i].PreferDateTo2 = this.dateFormat(res[i].PreferDateTo2)
           res[i].RequestedDate = this.dateFormatNoPlus(res[i].RequestedDate)
         }
         this.approvalRequests = res
+      } else {
+        this.noRecordAl = true;
       }
 
     })
@@ -185,6 +196,8 @@ export class ApproveRejectPage implements OnInit {
     this.generalService.getRequest(this.generalService.API_GET_CEO_APPROVAL_LIST).then((res: any) => {
       console.log(res)
       if (res[0].Message == undefined) {
+        this.noRecordAl = false;
+
         for (let i = 0; i < res.length; i++) {
           res[i].PreferDateFrom = this.dateFormat(res[i].PreferDateFrom)
           res[i].PreferDateTo2 = this.dateFormat(res[i].PreferDateTo2)
@@ -192,6 +205,9 @@ export class ApproveRejectPage implements OnInit {
           res[i].selected = false
         }
         this.approvalRequests = res
+      } else {
+        this.noRecordAl = true;
+
       }
     })
   }
@@ -200,6 +216,8 @@ export class ApproveRejectPage implements OnInit {
     this.generalService.getRequest(this.generalService.API_GET_HEAD_REJECT_LIST + user).then((res: any) => {
       console.log(res)
       if (res[0].Message == undefined) {
+        this.noRecordEd = false;
+
         for (let i = 0; i < res.length; i++) {
           res[i].PreferDateFrom = this.dateFormat(res[i].PreferDateFrom)
           res[i].PreferDateTo2 = this.dateFormat(res[i].PreferDateTo2)
@@ -207,6 +225,8 @@ export class ApproveRejectPage implements OnInit {
           res[i].selected = false
         }
         this.approvedRequests = res
+      } else {
+        this.noRecordEd = true;
       }
     })
   }
@@ -218,6 +238,8 @@ export class ApproveRejectPage implements OnInit {
     this.generalService.getRequest(this.generalService.API_GET_CFO_REJECT_LIST).then((res: any) => {
       console.log(res)
       if (res[0].Message == undefined) {
+        this.noRecordEd = false;
+
         for (let i = 0; i < res.length; i++) {
           res[i].PreferDateFrom = this.dateFormat(res[i].PreferDateFrom)
           res[i].PreferDateTo2 = this.dateFormat(res[i].PreferDateTo2)
@@ -225,6 +247,8 @@ export class ApproveRejectPage implements OnInit {
           res[i].selected = false
         }
         this.approvedRequests = res
+      } else {
+        this.noRecordEd = true;
       }
     })
   }
@@ -264,6 +288,23 @@ export class ApproveRejectPage implements OnInit {
     this.initFunction();
 
   }
+
+
+
+  // approveByCfo(isApprove) {
+  //   // this.approvalRequests[i].selected
+  //   // http://mytravelrequest.com/Home/PostCEOApproval?UnBlockBy=hammad.hammad&PKID=1
+  //   for (let i = 0; i < this.approvalRequests.length; i++) {
+  //     if (this.approvalRequests[i].selected == true) {
+  //       this.generalService.postRequestUrl(this.generalService.API_APPROVE_BY_CEO + "UnBlockBy=" + this.userName + "&PKID=" + this.approvalRequests[i].PKID).then((res) => {
+  //         console.log(res)
+  //       })
+  //     }
+  //   }
+
+  //   this.initFunction();
+
+  // }
 
   goBackPage() {
     this.location.back();

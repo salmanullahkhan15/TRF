@@ -72,5 +72,7 @@
     </div>
   </div>
 
+  <p class="no-record" *ngIf="segment == 'pending' && pendingForms<1">NO RECORD FOUND</p>
+  <p class="no-record" *ngIf="segment == 'approved' && approvedForms<1">NO RECORD FOUND</p>
 
 </ion-content>
