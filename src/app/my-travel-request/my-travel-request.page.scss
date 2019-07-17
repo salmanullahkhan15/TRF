@@ -19,6 +19,7 @@ ion-header ion-toolbar {
     /* border-color: #3e3866; */
     background: #fff;
     border: none;
+    font-size: 12px;
 }
 
 .seg-list p {
@@ -43,7 +44,7 @@ ion-header ion-toolbar {
 }
 
 .seg-list .req {
-    width: 50%;
+    width: 58%;
     float: left;
 }
 
@@ -54,10 +55,12 @@ ion-header ion-toolbar {
 
 .seg-list .pending-st {
     color: red;
+    width: 30%;
 }
 
 .seg-list .approved-st {
     color: green;
+    width: 40%;
 }
 
 

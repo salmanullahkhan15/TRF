@@ -243,3 +243,73 @@ export class HomePage implements OnInit {
 }
 
 
+
+
+
+
+
+
+
+
+// app ka icon change karna hay.
+// splash screen change karni hay.
+// app install karnay k bad jo scree naati hay wo login hwi hwi aati hay bagair login kye us m (travel request, my request, logout) k button aarahy hain jab k login aana chaiyeh
+
+
+// font same use karnay hain designer walay 
+// LOGIN ka button k font chotay karain like (Login)
+// place holder m USERNAME ko small m kardein
+// place holder m PASSWORD ko small m kardein
+
+
+// home par box k sizes chotay hogaye hain usay designer file jitnay banain.
+
+
+// logout ka button bara aaraha hay usay chota karin sab ek jitnay button banain.
+
+
+// prefferable time from m time 9 bajay kja select karnay par 21:000 aaraha hay jab ka 09:00 aana chaiyeh
+// aur preferable time from second walay m 6 select karnay par 18:0 aaraha hay 
+// time ko 12 hours par kardein
+// preferable time from srf ek bar hay baki sab To,To,To hay.
+
+
+// Hotel price nai aarahay. (need to check)
+// form inserted successfully k bad us ko wapis shuru m lejain another words addtravel ko reload kardein. (need to check)
+// time ki sara data  DB m NaN:NaN ja raha hay. (need to check)
+
+
+// head ki list m request select karnay par jab request open hoti hay to header par (travel request detail) likha hwa aaraha hay wahan (TRF detail for Head) kardein. 
+
+// aur head par jo by default tab open hoga wo first wala hoga means (Budget Information). 
+
+
+// list ka style abhi b designer file k hisab say nai.
+
+
+
+
+// head k approve k button k click k bad message aata hay k update successfully but kuch update nai horaha. aur hi rejetc par kuch update horahah hay. (need to check)
+
+
+
+// chargeable to client m app k valye (yes) aarahai hay jabkay last time b theek karwaya tha (Yes) hoga aur no (No) hoga first letter hamesha capital hoga har kisi m. warna data hamara kbi b theek nai ayega.(HOLD)
+
+// domestic ka Domestic hona chaiyeh. (HOLD)
+
+// Head Pending par janay k bad jo screen aati hay wahan header par approve reject head likha hwa aaraha hay jabkay (Head Pending request) likha hwa aana chaiyeh.
+
+// Head Approved par janay k bad jo screen aati hay wahan header par approve reject head likha hwa aaraha hay jabkay (Head Approved request) likha hwa aana chaiyeh.
+
+
+// Ye m shayad tesri bar app ko bata raha hoon k CFO k pas jo list ayegi wo CEO ki tarha hogi sab ko ek sath select kar k approve ka button daba dega waha form open nai hoga Head ki tarha.  (pending)Ï
+
+// CFO Pending par janay k bad jo screen aati hay wahan header par approve reject cfo likha hwa aaraha hay jabkay (CFO Pending request) likha hwa aana chaiyeh.
+
+// CFO Approved par janay k bad jo screen aati hay wahan header par approve reject head likha hwa aaraha hay jabkay (CFO Approved request) likha hwa aana chaiyeh.
+
+// cfo ko Capital letter m karain CFO.
+
+// CFO ki date aagai haya jahan NaN aaraha tha. (need to check)
+
+// Db m time jo NaN jaraha hay wo app k time ka format theek nai usay 10:10, 04:05 is tarha k format m bhejain. (need to check)

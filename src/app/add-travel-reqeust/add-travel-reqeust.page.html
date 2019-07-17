@@ -27,11 +27,11 @@
 
   <ion-list class="form-list">
     <div *ngIf="isApproveBtn">
-      <ion-list-header class="list-header-custom" (click)="toggleList(7)">
+      <ion-list-header class="list-header-custom" (click)="toggleList(isApproveBtn? 0 : 7)">
         <ion-label>Budget Information</ion-label>
         <img src="assets/icon/down.png" />
       </ion-list-header>
-      <div *ngIf="toggleItem == 7">
+      <div *ngIf="toggleItem == (isApproveBtn? 0 : 7)">
 
         <ion-item>
           <ion-label position="floating">Budget</ion-label>
@@ -55,11 +55,11 @@
       </div>
     </div>
 
-    <ion-list-header class="list-header-custom">
+    <ion-list-header class="list-header-custom" (click)="toggleList(isApproveBtn? 7 : 0)">
       <ion-label>User Information</ion-label>
       <img src="assets/icon/down.png" />
     </ion-list-header>
-    <div>
+    <div *ngIf="toggleItem == (isApproveBtn? 7 : 0)">
       <ion-item>
         <ion-label position="floating">Staff Code</ion-label>
         <ion-input disabled="true" [(ngModel)]="userInfo.staffCode"></ion-input>
@@ -98,20 +98,23 @@
 
       <ion-item>
         <ion-label>Chargeable to Clients*</ion-label>
-        <ion-select placeholder="Select" [(ngModel)]="basicInfo.chargableToClients" (ionChange)="chargableToClientsChange(basicInfo.chargableToClients)"
-          [disabled]="isReadOnly" interface="popover">
+        <ion-select placeholder="Select" [(ngModel)]="basicInfo.chargableToClients"
+          (ionChange)="chargableToClientsChange(basicInfo.chargableToClients)" [disabled]="isReadOnly"
+          interface="popover">
           <ion-select-option value="yes">YES</ion-select-option>
           <ion-select-option value="no">NO</ion-select-option>
         </ion-select>
       </ion-item>
-      <p class="invalid-txt" *ngIf="(basicInfo.chargableToClients == '' || basicInfo.chargableToClients == null || basicInfo.chargableToClients == undefined) && !isReadOnly">
+      <p class="invalid-txt"
+        *ngIf="(basicInfo.chargableToClients == '' || basicInfo.chargableToClients == null || basicInfo.chargableToClients == undefined) && !isReadOnly">
         Please
         enter Chargeable to Clients</p>
 
 
       <ion-item>
         <ion-label>Name of Clients/Regions*</ion-label>
-        <ion-select placeholder="Select" [(ngModel)]="basicInfo.nameOfClients" [disabled]="basicInfo.chargableToClients == 'no' || isReadOnly"
+        <ion-select placeholder="Select" [(ngModel)]="basicInfo.nameOfClients"
+          [disabled]="basicInfo.chargableToClients == 'no' || isReadOnly"
           (ionChange)="clientSelect(basicInfo.nameOfClients)" interface="popover">
           <ion-select-option *ngFor="let item of clients" [value]="item.Client_Name">{{item.Client_Name}}
           </ion-select-option>
@@ -124,8 +127,8 @@
 
       <ion-item>
         <ion-label>PE*</ion-label>
-        <ion-select placeholder="Select" [(ngModel)]="basicInfo.pe" [disabled]="basicInfo.chargableToClients == 'no' || isReadOnly || peList.length == 0"
-          interface="popover">
+        <ion-select placeholder="Select" [(ngModel)]="basicInfo.pe"
+          [disabled]="basicInfo.chargableToClients == 'no' || isReadOnly || peList.length == 0" interface="popover">
           <ion-select-option *ngFor="let item of peList" [value]="item.PKID">{{item.PE}}</ion-select-option>
         </ion-select>
       </ion-item>
@@ -135,15 +138,16 @@
 
       <ion-item>
         <ion-label>Nature Of Travel*</ion-label>
-        <ion-select placeholder="Select" [(ngModel)]="basicInfo.natureOfTravel" [disabled]="isReadOnly" (ionChange)="natureOfTravelSelect()"
-          interface="popover">
+        <ion-select placeholder="Select" [(ngModel)]="basicInfo.natureOfTravel" [disabled]="isReadOnly"
+          (ionChange)="natureOfTravelSelect()" interface="popover">
           <ion-select-option value="domestic">Domestic</ion-select-option>
           <ion-select-option value="international">International</ion-select-option>
         </ion-select>
         <!-- [ngClass]="basicInfo.natureOfTravel == '' || basicInfo.natureOfTravel == null || basicInfo.natureOfTravel == undefined ?
             'in-valid':''" -->
       </ion-item>
-      <p class="invalid-txt" *ngIf="(basicInfo.natureOfTravel == '' || basicInfo.natureOfTravel == null || basicInfo.natureOfTravel == undefined) && !isReadOnly">
+      <p class="invalid-txt"
+        *ngIf="(basicInfo.natureOfTravel == '' || basicInfo.natureOfTravel == null || basicInfo.natureOfTravel == undefined) && !isReadOnly">
         Please
         enter Nature Of Travel</p>
 
@@ -156,7 +160,8 @@
             <ion-select-option *ngFor="let item of reasonPurpose" value="item.PKID">{{item.Purpose_desc}}</ion-select-option>
           </ion-select> -->
       </ion-item>
-      <p class="invalid-txt" *ngIf="(basicInfo.purposeOfTravel == '' || basicInfo.purposeOfTravel == null || basicInfo.purposeOfTravel == undefined) && !isReadOnly">
+      <p class="invalid-txt"
+        *ngIf="(basicInfo.purposeOfTravel == '' || basicInfo.purposeOfTravel == null || basicInfo.purposeOfTravel == undefined) && !isReadOnly">
         Please
         enter Purpose Of Travel</p>
 
@@ -171,7 +176,8 @@
           </ion-select-option>
         </ion-select>
       </ion-item>
-      <p class="invalid-txt" *ngIf="(basicInfo.reason == '' || basicInfo.reason == null || basicInfo.reason == undefined) && !isReadOnly">
+      <p class="invalid-txt"
+        *ngIf="(basicInfo.reason == '' || basicInfo.reason == null || basicInfo.reason == undefined) && !isReadOnly">
         Please
         enter Reason</p>
 
@@ -183,7 +189,7 @@
 
       <ion-item *ngIf="otherInfo.hotelBookingRequired == 'yes'">
         <ion-label position="floating">Hotel Price</ion-label>
-        <ion-input disabled="true" [(ngModel)]="basicInfo.hpamount" (ngModelChange)="calcTotalHotelPrice()"></ion-input>
+        <ion-input disabled="true" [(ngModel)]="basicInfo.hpamount"></ion-input>
       </ion-item>
 
       <ion-item *ngIf="otherInfo.hotelBookingRequired == 'yes'">
@@ -206,26 +212,29 @@
 
       <ion-item>
         <ion-label>Departure From*</ion-label>
-        <ion-select placeholder="Select" [(ngModel)]="travelInfo.departureFrom" [disabled]="isReadOnly" interface="popover">
+        <ion-select placeholder="Select" [(ngModel)]="travelInfo.departureFrom" [disabled]="isReadOnly"
+          interface="popover">
           <ion-select-option *ngFor="let item of designations" [value]="item.Destination">{{item.Destination}}
           </ion-select-option>
         </ion-select>
       </ion-item>
 
-      <p class="invalid-txt" *ngIf="(travelInfo.departureFrom == '' || travelInfo.departureFrom == null || travelInfo.departureFrom == undefined && !isReadOnly)">
+      <p class="invalid-txt"
+        *ngIf="(travelInfo.departureFrom == '' || travelInfo.departureFrom == null || travelInfo.departureFrom == undefined && !isReadOnly)">
         Please
         enter Departure From</p>
 
       <ion-item>
         <ion-label>To*</ion-label>
-        <ion-select placeholder="" [(ngModel)]="travelInfo.departureToTwo" [disabled]="isReadOnly" (ionChange)="departureToSelect()"
-          interface="popover">
+        <ion-select placeholder="" [(ngModel)]="travelInfo.departureToTwo" [disabled]="isReadOnly"
+          (ionChange)="departureToSelect()" interface="popover">
           <ion-select-option *ngFor="let item of designations" [value]="item.Destination">{{item.Destination}}
           </ion-select-option>
 
         </ion-select>
       </ion-item>
-      <p class="invalid-txt" *ngIf="(travelInfo.departureToTwo == '' || travelInfo.departureToTwo == null || travelInfo.departureToTwo == undefined) && !isReadOnly">
+      <p class="invalid-txt"
+        *ngIf="(travelInfo.departureToTwo == '' || travelInfo.departureToTwo == null || travelInfo.departureToTwo == undefined) && !isReadOnly">
         Please
         enter Departure To</p>
 
@@ -238,7 +247,8 @@
 
       <ion-item>
         <ion-label>To</ion-label>
-        <ion-select placeholder="Select" [(ngModel)]="travelInfo.departureToThree" [disabled]="isReadOnly" interface="popover">
+        <ion-select placeholder="Select" [(ngModel)]="travelInfo.departureToThree" [disabled]="isReadOnly"
+          interface="popover">
           <ion-select-option *ngFor="let item of designations" [value]="item.Destination">{{item.Destination}}
           </ion-select-option>
 
@@ -261,7 +271,8 @@
           [disabled]="isReadOnly" (ionChange)="preferableDateFromChange()">
         </ion-datetime> -->
         <ion-label position="floating">Preferable Date From*</ion-label>
-        <ion-input placeholder="Select Date" disabled="true" [(ngModel)]="travelInfo.preferableDateFrom" (click)="openCalenderPrefDate()"></ion-input>
+        <ion-input placeholder="Select Date" disabled="true" [(ngModel)]="travelInfo.preferableDateFrom"
+          (click)="openCalenderPrefDate()" (ngModelChange)="preferableDateFromChange()"></ion-input>
       </ion-item>
       <p class="invalid-txt" *ngIf="(travelInfo.preferableDateFrom=='' || travelInfo.preferableDateFrom==null ||
       travelInfo.preferableDateFrom==undefined) && !isReadOnly">Please
@@ -283,9 +294,11 @@
         </ion-datetime>
       </ion-item> -->
         <ion-label position="floating">To*</ion-label>
-        <ion-input placeholder="Select Date" disabled="true" [(ngModel)]="travelInfo.preferableDateToTwo" (click)="openCalenderPrefTo()"></ion-input>
+        <ion-input placeholder="Select Date" disabled="true" [(ngModel)]="travelInfo.preferableDateToTwo"
+          (click)="openCalenderPrefTo()" (ngModelChange)="preferableDateToTwoChange()"></ion-input>
       </ion-item>
-      <p class="invalid-txt" *ngIf="(travelInfo.preferableDateToTwo == '' || travelInfo.preferableDateToTwo == null || travelInfo.preferableDateToTwo == undefined) && !isReadOnly">
+      <p class="invalid-txt"
+        *ngIf="(travelInfo.preferableDateToTwo == '' || travelInfo.preferableDateToTwo == null || travelInfo.preferableDateToTwo == undefined) && !isReadOnly">
         Please
         enter Preferable Date From</p>
 
@@ -304,7 +317,8 @@
         </ion-datetime>
       </ion-item> -->
         <ion-label position="floating">Preferable Time From</ion-label>
-        <ion-input placeholder="Select Time" disabled="true" [(ngModel)]="travelInfo.preferableTimeFrom" (click)="openCalenderPrefTime()"></ion-input>
+        <ion-input placeholder="Select Time" disabled="true" [(ngModel)]="travelInfo.preferableTimeFrom"
+          (click)="openCalenderPrefTime()"></ion-input>
       </ion-item>
 
       <ion-item>
@@ -323,8 +337,9 @@
         </ion-datetime>
       </ion-item> -->
 
-        <ion-label position="floating">Preferable Time From</ion-label>
-        <ion-input placeholder="Select Time" disabled="true" [(ngModel)]="travelInfo.preferableTimeToTwo" (click)="openCalenderPrefTimeTo()"></ion-input>
+        <ion-label position="floating">To</ion-label>
+        <ion-input placeholder="Select Time" disabled="true" [(ngModel)]="travelInfo.preferableTimeToTwo"
+          (click)="openCalenderPrefTimeTo()"></ion-input>
       </ion-item>
 
 
@@ -346,7 +361,8 @@
 
       <ion-item>
         <ion-label>Preferable Flight</ion-label>
-        <ion-select placeholder="Select" [(ngModel)]="airlineInfo.preferableFlight" [disabled]="isReadOnly" interface="popover">
+        <ion-select placeholder="Select" [(ngModel)]="airlineInfo.preferableFlight" [disabled]="isReadOnly"
+          interface="popover">
           <ion-select-option *ngFor="let item of flights" [value]="item.Flights">{{item.Flights}}</ion-select-option>
 
         </ion-select>
@@ -384,7 +400,8 @@
 
       <ion-item>
         <ion-label>Mode Of Travel</ion-label>
-        <ion-select placeholder="Select" [(ngModel)]="otherInfo.modeOfTravel" [disabled]="isReadOnly" interface="popover">
+        <ion-select placeholder="Select" [(ngModel)]="otherInfo.modeOfTravel" [disabled]="isReadOnly"
+          interface="popover">
           <ion-select-option value="Air Economy">Air Economy</ion-select-option>
           <ion-select-option value="Air Business">Air Business</ion-select-option>
           <ion-select-option value="Train">Train </ion-select-option>
@@ -394,19 +411,22 @@
 
       <ion-item>
         <ion-label>Hotel Booking Required*</ion-label>
-        <ion-select placeholder="Select" [(ngModel)]="otherInfo.hotelBookingRequired" [disabled]="isReadOnly" interface="popover">
+        <ion-select placeholder="Select" [(ngModel)]="otherInfo.hotelBookingRequired" [disabled]="isReadOnly"
+          interface="popover">
           <ion-select-option value="yes">YES</ion-select-option>
           <ion-select-option value="no">NO</ion-select-option>
         </ion-select>
       </ion-item>
-      <p class="invalid-txt" *ngIf="(otherInfo.hotelBookingRequired == '' || otherInfo.hotelBookingRequired == null || otherInfo.hotelBookingRequired == undefined) && !isReadOnly">
+      <p class="invalid-txt"
+        *ngIf="(otherInfo.hotelBookingRequired == '' || otherInfo.hotelBookingRequired == null || otherInfo.hotelBookingRequired == undefined) && !isReadOnly">
         Please
         enter Hotel Booking Required</p>
 
       <ion-item>
         <ion-label>Visa Required*</ion-label>
-        <ion-select placeholder="Select" [(ngModel)]="otherInfo.viseRequired" [disabled]="isReadOnly || basicInfo.natureOfTravel == 'domestic' "
-          (ionChange)="visaRequiredSelect()" interface="popover">
+        <ion-select placeholder="Select" [(ngModel)]="otherInfo.viseRequired"
+          [disabled]="isReadOnly || basicInfo.natureOfTravel == 'domestic' " (ionChange)="visaRequiredSelect()"
+          interface="popover">
           <ion-select-option value="yes">YES</ion-select-option>
           <ion-select-option value="no">NO</ion-select-option>
         </ion-select>
@@ -423,12 +443,14 @@
 
       <ion-item>
         <ion-label>Rent a Car Required*</ion-label>
-        <ion-select placeholder="Select" [(ngModel)]="otherInfo.rentACarRequired" [disabled]="isReadOnly" interface="popover">
+        <ion-select placeholder="Select" [(ngModel)]="otherInfo.rentACarRequired" [disabled]="isReadOnly"
+          interface="popover">
           <ion-select-option value="yes">YES</ion-select-option>
           <ion-select-option value="no">NO</ion-select-option>
         </ion-select>
       </ion-item>
-      <p class="invalid-txt" *ngIf="(otherInfo.rentACarRequired == '' || otherInfo.rentACarRequired == null || otherInfo.rentACarRequired == undefined)  && !isReadOnly">
+      <p class="invalid-txt"
+        *ngIf="(otherInfo.rentACarRequired == '' || otherInfo.rentACarRequired == null || otherInfo.rentACarRequired == undefined)  && !isReadOnly">
         Please
         enter Rent a Car Required</p>
 
@@ -454,7 +476,8 @@
 
       <ion-item>
         <ion-label position="floating">Advance Amount (PKR)</ion-label>
-        <ion-input [(ngModel)]="travelingAdvance.advanceAmount" [disabled]="isReadOnly || travelingAdvance.advanceRequired == 'no'"></ion-input>
+        <ion-input [(ngModel)]="travelingAdvance.advanceAmount"
+          [disabled]="isReadOnly || travelingAdvance.advanceRequired == 'no'"></ion-input>
       </ion-item>
     </div>
   </ion-list>

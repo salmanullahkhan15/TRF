@@ -138,7 +138,7 @@ export class ApproveRejectPage implements OnInit {
   }
 
   selectCard(i, item) {
-    if (this.userRole == 3) {
+    if (this.userRole == 3 || this.userRole == 4) {
       this.approvalRequests[i].selected = this.approvalRequests[i].selected == true ? false : true;
     } else {
       var isReadOnly = true
@@ -291,20 +291,18 @@ export class ApproveRejectPage implements OnInit {
 
 
 
-  // approveByCfo(isApprove) {
-  //   // this.approvalRequests[i].selected
-  //   // http://mytravelrequest.com/Home/PostCEOApproval?UnBlockBy=hammad.hammad&PKID=1
-  //   for (let i = 0; i < this.approvalRequests.length; i++) {
-  //     if (this.approvalRequests[i].selected == true) {
-  //       this.generalService.postRequestUrl(this.generalService.API_APPROVE_BY_CEO + "UnBlockBy=" + this.userName + "&PKID=" + this.approvalRequests[i].PKID).then((res) => {
-  //         console.log(res)
-  //       })
-  //     }
-  //   }
+  approveByCfo(isApprove) {
+    // for (let i = 0; i < this.approvalRequests.length; i++) {
+    //   if (this.approvalRequests[i].selected == true) {
+    //     this.generalService.postRequestUrl(this.generalService.API_APPROVE_BY_CEO + "UnBlockBy=" + this.userName + "&PKID=" + this.approvalRequests[i].PKID).then((res) => {
+    //       console.log(res)
+    //     })
+    //   }
+    // }
 
-  //   this.initFunction();
+    // this.initFunction();
 
-  // }
+  }
 
   goBackPage() {
     this.location.back();

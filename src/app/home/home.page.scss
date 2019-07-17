@@ -105,7 +105,7 @@ ion-header ion-toolbar {
     color: #0d6eb9;
     line-height: 17px;
     margin-top: 5%;
-    font-size: 0.8em;
+    font-size: 1.1em;
 }
 
 .cus-menu ion-grid:first-child ion-row ion-col:nth-child(3) img {
@@ -128,4 +128,8 @@ ion-header ion-toolbar {
     /* margin-top: 8%; */
     position: absolute;
     bottom: 2%;
+}
+
+.cus-menu ion-grid:nth-child(3) ion-row ion-col:nth-child(2) img {
+    width: 55%;
 }
