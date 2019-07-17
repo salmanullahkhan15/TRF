@@ -88,8 +88,8 @@
     ion-button {
         width: 90%;
         --border-radius: 150px;
-        --background: #fff;
-        color: #0d6eb9
+        --background: #0d6eb9;
+        color: #fff
     }
 
 
@@ -145,6 +145,7 @@
     height: 100%;
     float: left;
     border-radius: 150px;
+    --hightligh-color: transparent;
 }
 
 .user-icon {
@@ -164,6 +165,10 @@
 .input-parent ion-item {
     --border: none !important;
     // height: 6vh;
+    --highlight-color-focused: transparent;
+    --highlight-color-valid: transparent;
+    --highlight-color-invalid: transparent;
+
 }
 
 .input-parent ion-icon {

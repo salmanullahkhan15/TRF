@@ -72,8 +72,8 @@
     </div>
   </div>
 
-  <p *ngIf="segment == 'pending' && pendingForms.length<1" class="no-record">No Record</p>
-  <p *ngIf="segment == 'approved' && approvedForms.length<1" class="no-record">No Record</p>
+  <p class="no-record" *ngIf="segment == 'pending' && pendingForms<1">NO RECORD FOUND</p>
+  <p class="no-record" *ngIf="segment == 'approved' && approvedForms<1">NO RECORD FOUND</p>
 
   <div class="img-btm-div">
     <img src="assets/img/logo.png">

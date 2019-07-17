@@ -67,17 +67,20 @@
 
   </div>
 
+  <p class="no-record" *ngIf="segment == 'pending' && noRecordAl==true">NO RECORD FOUND</p>
+  <p class="no-record" *ngIf="segment == 'approved' && noRecordEd==true">NO RECORD FOUND</p>
 
-  <p *ngIf="approvalRequests.length<1" class="no-record">No Record</p>
-
-
-  <div class="img-btm-div">
-    <img src="assets/img/logo.png">
-  </div>
+  <!-- noRecordAl
+  noRecordEd -->
 
   <div class="btns" *ngIf="userRole == 3 && segment == 'pending' && approvalRequests.length>0">
     <ion-button size="small" class="approve-btn" (click)="approveByCeo(1)">Approve</ion-button>
     <!-- <ion-button size="small" class="reject-btn" (click)="approveByCeo(0)">Reject</ion-button> -->
   </div>
+
+  <!-- <div class="btns" *ngIf="userRole == 4 && segment == 'pending' && approvalRequests.length>0">
+    <ion-button size="small" class="approve-btn" (click)="approveByCfo(1)">Approve</ion-button>
+  </div> -->
+
 
 </ion-content>

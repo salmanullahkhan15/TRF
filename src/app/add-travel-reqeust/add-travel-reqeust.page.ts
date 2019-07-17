@@ -434,6 +434,7 @@ export class AddTravelReqeustPage implements OnInit {
 
   getReadOnlyData(trfNum) {
     // API_GET_APPLICATION_BY_TRFNUM
+    console.log()
     this.generalService.getRequest(this.generalService.API_GET_APPLICATION_BY_TRFNUM + trfNum).then((res) => {
       console.log(res)
       var formData = res[0]
@@ -558,7 +559,7 @@ export class AddTravelReqeustPage implements OnInit {
         budget: res[0].Total_Budget,
         used: res[0].Total_Budget_Used,
         selected: res[0].This_TRF,
-        balance: this.generalService.userRole == 3 ? res[0].This_TRF + res[0].Balance : res[0].Balance,
+        balance: this.generalService.userRole == 3 ? (res[0].This_TRF + res[0].Balance) : res[0].Balance,
       }
 
     })
@@ -719,6 +720,7 @@ export class AddTravelReqeustPage implements OnInit {
         // this.dateFormat(date)
         // this.timeFormat(date)
         this.travelInfo.preferableDateFrom = this.dateFormat(date)
+        this.preferableDateFromChange();
       },
       err => console.log('Error occurred while getting date: ', err)
     );
@@ -737,6 +739,7 @@ export class AddTravelReqeustPage implements OnInit {
         // this.dateFormat(date)
         // this.timeFormat(date)
         this.travelInfo.preferableDateToTwo = this.dateFormat(date)
+        this.preferableDateToTwoChange();
       },
       err => console.log('Error occurred while getting date: ', err)
     );
@@ -754,11 +757,7 @@ export class AddTravelReqeustPage implements OnInit {
         // console.log(this.timeFormat(date))
         // this.dateFormat(date)
         // this.timeFormat(date)
-        this.travelInfo.preferableTimeFrom = this.tConvert(this.timeFormat(date) + "00")
-        console.log(this.travelInfo.preferableTimeFrom)
-        console.log(this.travelInfo.preferableTimeFrom)
-        console.log(this.travelInfo.preferableTimeFrom)
-        console.log(this.travelInfo.preferableTimeFrom)
+        this.travelInfo.preferableTimeFrom = this.tConvert(this.timeFormat(date))
       },
       err => console.log('Error occurred while getting date: ', err)
     );
@@ -775,11 +774,7 @@ export class AddTravelReqeustPage implements OnInit {
         // console.log(this.timeFormat(date))
         // this.dateFormat(date)
         // this.timeFormat(date)
-        this.travelInfo.preferableTimeToTwo = this.tConvert(this.timeFormat(date) + "00")
-        console.log(this.travelInfo.preferableTimeToTwo)
-        console.log(this.travelInfo.preferableTimeToTwo)
-        console.log(this.travelInfo.preferableTimeToTwo)
-        console.log(this.travelInfo.preferableTimeToTwo)
+        this.travelInfo.preferableTimeToTwo = this.tConvert(this.timeFormat(date))
       },
       err => console.log('Error occurred while getting date: ', err)
     );
@@ -791,7 +786,7 @@ export class AddTravelReqeustPage implements OnInit {
 
     if (time.length > 1) { // If time format correct
       time = time.slice(1);  // Remove full string match value
-      // time[5] = +time[0] < 12 ? 'AM' : 'PM'; // Set AM/PM
+      time[5] = +time[0] < 12 ? 'AM' : 'PM'; // Set AM/PM
       time[0] = +time[0] % 12 || 12; // Adjust hours
     }
     return time.join(''); // return adjusted time or original string
