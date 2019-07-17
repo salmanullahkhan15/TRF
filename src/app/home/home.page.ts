@@ -40,13 +40,13 @@ export class HomePage implements OnInit {
 
     // })
 
-    // this.appPages = [
-    //   "Add Travel Request",
-    //   "My Travel Request",
-    //   "Approve/Reject Ceo",
-    //   "Approve/Reject Cfo",
-    //   "Approve/Reject Head"
-    // ]
+    this.appPages = [
+      "Add Travel Request",
+      "My Travel Request",
+      "Approve/Reject Ceo",
+      "Approve/Reject Cfo",
+      "Approve/Reject Head"
+    ]
 
   }
 
@@ -54,7 +54,7 @@ export class HomePage implements OnInit {
     this.localStorrage.get("user_detail").then((res) => {
       // this.events.publish('sidemenuEvent', res);
       console.log(res)
-      this.manageSideMenu(res)
+      // this.manageSideMenu(res)
 
     })
   }

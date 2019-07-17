@@ -177,6 +177,9 @@
 
 .input-parent ion-item {
     --border: none !important;
+    --highlight-color-focused: transparent;
+    --highlight-color-valid: transparent;
+    --highlight-color-invalid: transparent;
 }
 
 .input-field-custom {
@@ -189,5 +192,7 @@
     text-align: center;
     float: left;
     width: 100%;
-    margin-top: 8%;
+    /* margin-top: 8%; */
+    position: absolute;
+    bottom: 2%;
 }

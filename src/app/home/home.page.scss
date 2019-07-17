@@ -71,12 +71,13 @@ ion-header ion-toolbar {
 
 
 .head-right img {
-    width: 50%;
+    width: 35%;
     margin-right: 20%;
+    margin-top: 19%;
 }
 
 .cus-menu {
-    margin-top: 40%
+    margin-top: 34%;
 }
 
 .cus-menu ion-row {
@@ -103,7 +104,8 @@ ion-header ion-toolbar {
     padding-bottom: 12%;
     color: #0d6eb9;
     line-height: 17px;
-    margin-top: 5%
+    margin-top: 5%;
+    font-size: 0.9em;
 }
 
 .cus-menu ion-grid:first-child ion-row ion-col:nth-child(3) img {
@@ -123,5 +125,7 @@ ion-header ion-toolbar {
     text-align: center;
     float: left;
     width: 100%;
-    margin-top: 8%;
+    /* margin-top: 8%; */
+    position: absolute;
+    bottom: 2%;
 }

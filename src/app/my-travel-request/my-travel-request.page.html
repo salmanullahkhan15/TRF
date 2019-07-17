@@ -72,5 +72,10 @@
     </div>
   </div>
 
+  <p *ngIf="segment == 'pending' && pendingForms.length<1" class="no-record">No Record</p>
+  <p *ngIf="segment == 'approved' && approvedForms.length<1" class="no-record">No Record</p>
 
+  <div class="img-btm-div">
+    <img src="assets/img/logo.png">
+  </div>
 </ion-content>

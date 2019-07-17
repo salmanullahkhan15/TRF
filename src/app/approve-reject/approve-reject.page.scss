@@ -74,6 +74,7 @@ ion-header ion-toolbar {
     float: left;
     width: 100%;
     text-align: center;
+    background: transparent;
 }
 
 .selectedClass {
@@ -131,8 +132,9 @@ ion-header ion-toolbar {
 
 
 .head-right img {
-    width: 80%;
+    width: 60%;
     margin-right: 20%;
+    margin-top: 19%;
 }
 
 .back-btn {
@@ -151,3 +153,20 @@ ion-header ion-toolbar {
 //     margin-top: 35%;
 //     --color-checked: #0d6eb9;
 // }
+
+.no-record {
+    text-align: center;
+    margin-top: 90%;
+    color: #fff;
+    font-weight: 600;
+    font-size: 28px;
+}
+
+.img-btm-div {
+    text-align: center;
+    float: left;
+    width: 100%;
+    /* margin-top: 8%; */
+    position: absolute;
+    bottom: 2%;
+}

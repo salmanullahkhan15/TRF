@@ -55,11 +55,11 @@
       </div>
     </div>
 
-    <ion-list-header class="list-header-custom" (click)="toggleList(1)">
+    <ion-list-header class="list-header-custom">
       <ion-label>User Information</ion-label>
       <img src="assets/icon/down.png" />
     </ion-list-header>
-    <div *ngIf="toggleItem == 1">
+    <div>
       <ion-item>
         <ion-label position="floating">Staff Code</ion-label>
         <ion-input disabled="true" [(ngModel)]="userInfo.staffCode"></ion-input>
@@ -95,6 +95,44 @@
       <img src="assets/icon/down.png" />
     </ion-list-header>
     <div *ngIf="toggleItem == 2">
+
+      <ion-item>
+
+        <ion-label>Chargeable to Clients*</ion-label>
+        <ion-select placeholder="Select" [(ngModel)]="basicInfo.chargableToClients" (ionChange)="chargableToClientsChange(basicInfo.chargableToClients)"
+          [disabled]="isReadOnly" interface="popover">
+          <ion-select-option value="yes">YES</ion-select-option>
+          <ion-select-option value="no">NO</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <p class="invalid-txt" *ngIf="basicInfo.chargableToClients == '' || basicInfo.chargableToClients == null || basicInfo.chargableToClients == undefined">Please
+        enter Chargeable to Clients</p>
+
+
+      <ion-item>
+        <ion-label>Name of Clients/Regions*</ion-label>
+        <ion-select placeholder="Select" [(ngModel)]="basicInfo.nameOfClients" [disabled]="basicInfo.chargableToClients == 'no' || isReadOnly"
+          (ionChange)="clientSelect(basicInfo.nameOfClients)" interface="popover">
+          <ion-select-option *ngFor="let item of clients" [value]="item.Client_Name">{{item.Client_Name}}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <p class="invalid-txt" *ngIf="(basicInfo.nameOfClients == '' || basicInfo.nameOfClients == null || basicInfo.nameOfClients == undefined) && 
+            basicInfo.chargableToClients == 'yes'">Please
+        enter Name of Clients/Region</p>
+
+      <ion-item>
+        <ion-label>PE*</ion-label>
+        <ion-select placeholder="Select" [(ngModel)]="basicInfo.pe" [disabled]="basicInfo.chargableToClients == 'no' || isReadOnly || peList.length == 0"
+          interface="popover">
+          <ion-select-option *ngFor="let item of peList" [value]="item.PKID">{{item.PE}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <p class="invalid-txt" *ngIf="(basicInfo.pe == '' || basicInfo.pe == null || basicInfo.pe == undefined) && 
+          basicInfo.chargableToClients == 'yes'">Please
+        enter PE</p>
+
       <ion-item>
         <ion-label>Nature Of Travel*</ion-label>
         <ion-select placeholder="Select" [(ngModel)]="basicInfo.natureOfTravel" [disabled]="isReadOnly" (ionChange)="natureOfTravelSelect()"
@@ -102,30 +140,18 @@
           <ion-select-option value="domestic">Domestic</ion-select-option>
           <ion-select-option value="international">International</ion-select-option>
         </ion-select>
-        <!-- [ngClass]="basicInfo.natureOfTravel == '' || basicInfo.natureOfTravel == null || basicInfo.natureOfTravel == undefined ?
-        'in-valid':''" -->
+
       </ion-item>
       <p class="invalid-txt" *ngIf="basicInfo.natureOfTravel == '' || basicInfo.natureOfTravel == null || basicInfo.natureOfTravel == undefined">Please
         enter Nature Of Travel</p>
-
-
-      <ion-item *ngIf="otherInfo.hotelBookingRequired == 'yes'">
-        <ion-label position="floating">Hotel Price</ion-label>
-        <ion-input disabled="true" [(ngModel)]="basicInfo.hpamount" (ngModelChange)="calcTotalHotelPrice()"></ion-input>
-      </ion-item>
-
-      <ion-item *ngIf="otherInfo.hotelBookingRequired == 'yes'">
-        <ion-label position="floating">Transport Price</ion-label>
-        <ion-input disabled="true" [(ngModel)]="basicInfo.tpamount"></ion-input>
-      </ion-item>
 
 
       <ion-item>
         <ion-label position="floating">Purpose Of Travel*</ion-label>
         <ion-input disabled="true" [(ngModel)]="basicInfo.purposeOfTravel" [disabled]="isReadOnly"></ion-input>
         <!-- <ion-select placeholder="Select" [(ngModel)]="basicInfo.purposeOfTravel" [disabled]="isReadOnly">
-        <ion-select-option *ngFor="let item of reasonPurpose" value="item.PKID">{{item.Purpose_desc}}</ion-select-option>
-      </ion-select> -->
+            <ion-select-option *ngFor="let item of reasonPurpose" value="item.PKID">{{item.Purpose_desc}}</ion-select-option>
+          </ion-select> -->
       </ion-item>
       <p class="invalid-txt" *ngIf="basicInfo.purposeOfTravel == '' || basicInfo.purposeOfTravel == null || basicInfo.purposeOfTravel == undefined">Please
         enter Purpose Of Travel</p>
@@ -141,41 +167,18 @@
       <p class="invalid-txt" *ngIf="basicInfo.reason == '' || basicInfo.reason == null || basicInfo.reason == undefined">Please
         enter Reason</p>
 
-      <ion-item>
 
-        <ion-label>Chargeable to Clients*</ion-label>
-        <ion-select placeholder="Select" [(ngModel)]="basicInfo.chargableToClients" (ionChange)="chargableToClientsChange(basicInfo.chargableToClients)"
-          [disabled]="isReadOnly" interface="popover">
-          <ion-select-option value="yes">YES</ion-select-option>
-          <ion-select-option value="no">NO</ion-select-option>
-        </ion-select>
-      </ion-item>
-      <p class="invalid-txt" *ngIf="basicInfo.chargableToClients == '' || basicInfo.chargableToClients == null || basicInfo.chargableToClients == undefined">Please
-        enter Chargeable to Clients</p>
-
-      <ion-item>
-        <ion-label>Name of Clients/Regions*</ion-label>
-        <ion-select placeholder="Select" [(ngModel)]="basicInfo.nameOfClients" [disabled]="basicInfo.chargableToClients == 'no' || isReadOnly"
-          (ionChange)="clientSelect(basicInfo.nameOfClients)" interface="popover">
-          <ion-select-option *ngFor="let item of clients" [value]="item.Client_Name">{{item.Client_Name}}
-          </ion-select-option>
-        </ion-select>
+      <ion-item *ngIf="otherInfo.hotelBookingRequired == 'yes'">
+        <ion-label position="floating">Hotel Price</ion-label>
+        <ion-input disabled="true" [(ngModel)]="basicInfo.hpamount" (ngModelChange)="calcTotalHotelPrice()"></ion-input>
       </ion-item>
 
-      <p class="invalid-txt" *ngIf="(basicInfo.nameOfClients == '' || basicInfo.nameOfClients == null || basicInfo.nameOfClients == undefined) && 
-    basicInfo.chargableToClients == 'yes'">Please
-        enter Name of Clients/Region</p>
-
-      <ion-item>
-        <ion-label>PE*</ion-label>
-        <ion-select placeholder="Select" [(ngModel)]="basicInfo.pe" [disabled]="basicInfo.chargableToClients == 'no' || isReadOnly || peList.length == 0"
-          interface="popover">
-          <ion-select-option *ngFor="let item of peList" [value]="item.PKID">{{item.PE}}</ion-select-option>
-        </ion-select>
+      <ion-item *ngIf="otherInfo.hotelBookingRequired == 'yes'">
+        <ion-label position="floating">Transport Price</ion-label>
+        <ion-input disabled="true" [(ngModel)]="basicInfo.tpamount"></ion-input>
       </ion-item>
-      <p class="invalid-txt" *ngIf="(basicInfo.pe == '' || basicInfo.pe == null || basicInfo.pe == undefined) && 
-      basicInfo.chargableToClients == 'yes'">Please
-        enter PE</p>
+
+
 
     </div>
     <!-- ---------------------||||||||||||||||||||||||||||||||---------------------- -->
@@ -278,7 +281,7 @@
         </ion-datetime>
       </ion-item> -->
         <ion-label position="floating">Preferable Time From</ion-label>
-        <ion-input placeholder="Select Date" disabled="true" [(ngModel)]="travelInfo.preferableTimeFrom" (click)="openCalenderPrefTime()"></ion-input>
+        <ion-input placeholder="Select Time" disabled="true" [(ngModel)]="travelInfo.preferableTimeFrom" (click)="openCalenderPrefTime()"></ion-input>
       </ion-item>
 
       <ion-item>
@@ -295,7 +298,7 @@
         </ion-datetime>
       </ion-item> -->
         <ion-label position="floating">Preferable Time From</ion-label>
-        <ion-input placeholder="Select Date" disabled="true" [(ngModel)]="travelInfo.preferableTimeToTwo" (click)="openCalenderPrefTimeTo()"></ion-input>
+        <ion-input placeholder="Select Time" disabled="true" [(ngModel)]="travelInfo.preferableTimeToTwo" (click)="openCalenderPrefTimeTo()"></ion-input>
       </ion-item>
 
 
@@ -436,4 +439,10 @@
     <ion-button size="small" class="reject-btn" (click)="presentAlertPrompt(0)">Reject</ion-button>
   </div>
 
+
+
 </ion-content>
+
+<!-- <div class="img-btm-div">
+  <img src="assets/img/logo.png">
+</div> -->

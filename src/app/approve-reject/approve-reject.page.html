@@ -67,9 +67,17 @@
 
   </div>
 
-</ion-content>
 
-<div class="btns" *ngIf="userRole == 3 && segment == 'pending' && approvalRequests.length>0">
-  <ion-button size="small" class="approve-btn" (click)="approveByCeo(1)">Approve</ion-button>
-  <!-- <ion-button size="small" class="reject-btn" (click)="approveByCeo(0)">Reject</ion-button> -->
-</div>
+  <p *ngIf="approvalRequests.length<1" class="no-record">No Record</p>
+
+
+  <div class="img-btm-div">
+    <img src="assets/img/logo.png">
+  </div>
+
+  <div class="btns" *ngIf="userRole == 3 && segment == 'pending' && approvalRequests.length>0">
+    <ion-button size="small" class="approve-btn" (click)="approveByCeo(1)">Approve</ion-button>
+    <!-- <ion-button size="small" class="reject-btn" (click)="approveByCeo(0)">Reject</ion-button> -->
+  </div>
+
+</ion-content>

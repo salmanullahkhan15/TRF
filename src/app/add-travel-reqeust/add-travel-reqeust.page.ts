@@ -750,11 +750,15 @@ export class AddTravelReqeustPage implements OnInit {
     }).then(
       (date) => {
         // console.log('Got date: ', date)
-        console.log(this.dateFormat(date))
+        // console.log(this.dateFormat(date))
         // console.log(this.timeFormat(date))
         // this.dateFormat(date)
         // this.timeFormat(date)
-        this.travelInfo.preferableTimeFrom = this.timeFormat(date)
+        this.travelInfo.preferableTimeFrom = this.tConvert(this.timeFormat(date) + "00")
+        console.log(this.travelInfo.preferableTimeFrom)
+        console.log(this.travelInfo.preferableTimeFrom)
+        console.log(this.travelInfo.preferableTimeFrom)
+        console.log(this.travelInfo.preferableTimeFrom)
       },
       err => console.log('Error occurred while getting date: ', err)
     );
@@ -768,14 +772,29 @@ export class AddTravelReqeustPage implements OnInit {
     }).then(
       (date) => {
         // console.log('Got date: ', date)
-        console.log(this.dateFormat(date))
         // console.log(this.timeFormat(date))
         // this.dateFormat(date)
         // this.timeFormat(date)
-        this.travelInfo.preferableTimeToTwo = this.timeFormat(date)
+        this.travelInfo.preferableTimeToTwo = this.tConvert(this.timeFormat(date) + "00")
+        console.log(this.travelInfo.preferableTimeToTwo)
+        console.log(this.travelInfo.preferableTimeToTwo)
+        console.log(this.travelInfo.preferableTimeToTwo)
+        console.log(this.travelInfo.preferableTimeToTwo)
       },
       err => console.log('Error occurred while getting date: ', err)
     );
+  }
+
+  tConvert(time) {
+    // Check correct time format and split into components
+    time = time.toString().match(/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time];
+
+    if (time.length > 1) { // If time format correct
+      time = time.slice(1);  // Remove full string match value
+      // time[5] = +time[0] < 12 ? 'AM' : 'PM'; // Set AM/PM
+      time[0] = +time[0] % 12 || 12; // Adjust hours
+    }
+    return time.join(''); // return adjusted time or original string
   }
 
   // openCalenderPrefTo

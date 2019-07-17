@@ -7,11 +7,10 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
-  // {
-  //   path: 'add-travel-reqeust/:isReadOnly/:readData/:isApproveBtn',
-  //   loadChildren: './add-travel-reqeust/add-travel-reqeust.module#AddTravelReqeustPageModule'
-  // },
-
+  {
+    path: 'add-travel-reqeust/:isReadOnly/:readData/:isApproveBtn',
+    loadChildren: './add-travel-reqeust/add-travel-reqeust.module#AddTravelReqeustPageModule'
+  },
   {
     path: 'login',
     loadChildren: './login/login.module#LoginPageModule'
