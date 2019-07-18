@@ -108,7 +108,10 @@ export class AddTravelReqeustPage implements OnInit {
     this.isReadOnly = this.activatedRoute.snapshot.paramMap.get('isReadOnly') == "true" ? true : false
     console.log(readData)
     console.log(this.isReadOnly)
-    this.pageTitle = this.isReadOnly ? "TRF Detail For Head" : "Add Travel Request"
+
+    var titl = this.isApproveBtn ? "TRF Detail For Head" : "TRF Detail"
+
+    this.pageTitle = this.isReadOnly ? titl : "Add Travel Request"
     // this.getReadOnlyData(readData)
     if (this.isReadOnly == true && readData != null) {
       console.log("asdfasdfasdf")
@@ -175,6 +178,8 @@ export class AddTravelReqeustPage implements OnInit {
     this.basicInfo.totalHotelPrice = ""
     this.basicInfo.tpamount = ""
     this.travelInfo.airlinePrice = ""
+
+    this.toggleItem = 0
 
     // var hotelPrice = this.otherInfo.hotelBookingRequired == "yes" ? this.basicInfo.totalHotelPrice : 0
 
@@ -389,6 +394,8 @@ export class AddTravelReqeustPage implements OnInit {
         AdvAmount: this.travelingAdvance.advanceAmount == "" ? 0 : this.travelingAdvance.advanceAmount,
         RequestedBy: this.userNameGlobe
       }
+
+      console.log(JSON.stringify(obj))
 
       this.generalService.postRequest(this.generalService.API_POST_USER_FORM, obj).then((res) => {
         console.log(res)
@@ -633,6 +640,10 @@ export class AddTravelReqeustPage implements OnInit {
     var date = this.dateFormat(new Date()) + " " + this.timeFormat(new Date())
 
     var trfCheck = (Number.isNaN(parseInt(this.trfNumNew[0].TRFNum)) ? 0 : parseInt(this.trfNumNew[0].TRFNum)) + 1
+
+
+    console.log(this.generalService.API_POST_EXTRA_FORM_DATA + "TRFNum=" + "TR-" + trfCheck + "&Hotel_price_bud=" + hotelPrice + "&Visa_price_bud=" + visaPrice + "&Trans_price_bud=" + transportPrice + "&Airline_price_bud=" + airlinePrice + "&Updated_by=" + this.userNameGlobe + "&Updated_on=" + date)
+    console.log(this.generalService.API_POST_EXTRA_FORM_DATA + "TRFNum=" + "TR-" + trfCheck + "&Hotel_price_bud=" + hotelPrice + "&Visa_price_bud=" + visaPrice + "&Trans_price_bud=" + transportPrice + "&Airline_price_bud=" + airlinePrice + "&Updated_by=" + this.userNameGlobe + "&Updated_on=" + date)
 
     this.generalService.postRequestUrl(this.generalService.API_POST_EXTRA_FORM_DATA + "TRFNum=" + "TR-" + trfCheck + "&Hotel_price_bud=" + hotelPrice + "&Visa_price_bud=" + visaPrice + "&Trans_price_bud=" + transportPrice + "&Airline_price_bud=" + airlinePrice + "&Updated_by=" + this.userNameGlobe + "&Updated_on=" + date).then((res) => {
       this.clearForm()
