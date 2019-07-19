@@ -201,7 +201,7 @@ export class AddTravelReqeustPage implements OnInit {
       const diffTime = Math.abs(date2.getTime() - date1.getTime());
       const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
-      this.airlineInfo.durationOfVisit = diffDays
+      this.airlineInfo.durationOfVisit = diffDays + 1
       console.log(diffDays);
       this.calcTotalHotelPrice()
     }
@@ -218,7 +218,7 @@ export class AddTravelReqeustPage implements OnInit {
       const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
       console.log(diffDays);
-      this.airlineInfo.durationOfVisit = diffDays
+      this.airlineInfo.durationOfVisit = diffDays + 1
       this.calcTotalHotelPrice()
     }
   }
@@ -560,14 +560,12 @@ export class AddTravelReqeustPage implements OnInit {
       console.log(res)
 
 
-
-
-
+      var bal = this.generalService.userRole == 3 ? (res[0].This_TRF + res[0].Balance) : res[0].Balance
       this.budget = {
-        budget: res[0].Total_Budget,
-        used: res[0].Total_Budget_Used,
-        selected: res[0].This_TRF,
-        balance: this.generalService.userRole == 3 ? (res[0].This_TRF + res[0].Balance) : res[0].Balance,
+        budget: this.numberWithCommas(res[0].Total_Budget),
+        used: this.numberWithCommas(res[0].Total_Budget_Used),
+        selected: this.numberWithCommas(res[0].This_TRF),
+        balance: this.numberWithCommas(bal),
       }
 
     })
@@ -779,8 +777,8 @@ export class AddTravelReqeustPage implements OnInit {
         // this.dateFormat(date)
         // this.timeFormat(date)
         this.travelInfo.preferableTimeFrom = this.tConvert(this.timeFormat(date))
-        alert(this.travelInfo.preferableTimeFrom)
-        alert(this.travelInfo.preferableTimeFrom)
+        // alert(this.travelInfo.preferableTimeFrom)
+        // alert(this.travelInfo.preferableTimeFrom)
       },
       err => console.log('Error occurred while getting date: ', err)
     );
@@ -827,6 +825,10 @@ export class AddTravelReqeustPage implements OnInit {
   // openCalenderPrefTimeTo
   // this.travelInfo.preferableTimeToTwo
 
+
+  numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
 
 
 }
