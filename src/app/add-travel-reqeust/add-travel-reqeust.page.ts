@@ -796,8 +796,8 @@ export class AddTravelReqeustPage implements OnInit {
         // this.dateFormat(date)
         // this.timeFormat(date)
         this.travelInfo.preferableTimeToTwo = this.tConvert(this.timeFormat(date))
-        alert(this.travelInfo.preferableTimeToTwo)
-        alert(this.travelInfo.preferableTimeToTwo)
+        // alert(this.travelInfo.preferableTimeToTwo)
+        // alert(this.travelInfo.preferableTimeToTwo)
 
       },
       err => console.log('Error occurred while getting date: ', err)
@@ -810,7 +810,7 @@ export class AddTravelReqeustPage implements OnInit {
 
     if (time.length > 1) { // If time format correct
       time = time.slice(1);  // Remove full string match value
-      time[5] = +time[0] < 12 ? 'AM' : 'PM'; // Set AM/PM
+      // time[5] = +time[0] < 12 ? 'AM' : 'PM'; // Set AM/PM
       time[0] = +time[0] % 12 || 12; // Adjust hours
     }
     return time.join(''); // return adjusted time or original string
