@@ -37,9 +37,8 @@
     <!-- pending -->
     <div class="pending-seg" *ngIf="segment == 'pending'">
 
-      <div class="seg-list" *ngFor="let item of approvalRequests; let i=index" (click)="selectCard(i, item)"
-        [ngClass]="item.selected?'selectedClass':''">
-        <h6>{{item.EmployeeName}}</h6>
+      <div class="seg-list" *ngFor="let item of approvalRequests; let i=index" (click)="selectCard(i, item)" [ngClass]="item.selected?'selectedClass':''">
+        <h6>{{item.EmployeeName == undefined? item.RequestedBy:item.EmployeeName}}</h6>
         <p class="loc">From: {{item.DestinationIDFrom}} to
           {{ item.DestinationIDTo1}}</p>
         <p class="from">From: {{item.PreferDateFrom}}</p>
@@ -57,7 +56,8 @@
     <!-- approved -->
     <div *ngIf="segment == 'approved'">
       <div class="seg-list" *ngFor="let item of approvedRequests">
-        <h6>{{item.EmployeeName}}</h6>
+        <!-- <h6>{{item.EmployeeName}}</h6> -->
+        <h6>{{item.EmployeeName == undefined? item.RequestedBy:item.EmployeeName}}</h6>
         <p class="loc">From: {{item.DestinationIDFrom}} to {{item.DestinationIDTo1}}</p>
         <p class="from">From: {{item.PreferDateFrom}}</p>
         <p class="to">To: {{item.PreferDateTo2}}</p>
@@ -79,7 +79,7 @@
     <ion-button size="small" class="approve-btn" (click)="approveByCeo(1)">Approve</ion-button>
     <!-- <ion-button size="small" class="reject-btn" (click)="approveByCeo(0)">Reject</ion-button> -->
   </div>
-  <div class="btns" *ngIf="userRole == 4 && segment == 'pending' && approvalRequests.length>0">
+  <div class="btns" *ngIf="userRole == 2 && segment == 'pending' && approvalRequests.length>0">
     <ion-button size="small" class="approve-btn" (click)="approveByCfo(1)">Approve</ion-button>
   </div>
 

@@ -108,7 +108,10 @@ export class AddTravelReqeustPage implements OnInit {
     this.isReadOnly = this.activatedRoute.snapshot.paramMap.get('isReadOnly') == "true" ? true : false
     console.log(readData)
     console.log(this.isReadOnly)
-    this.pageTitle = this.isReadOnly ? "TRF Detail For Head" : "Add Travel Request"
+
+    var titl = this.isApproveBtn ? "TRF Detail For Head" : "TRF Detail"
+
+    this.pageTitle = this.isReadOnly ? titl : "Add Travel Request"
     // this.getReadOnlyData(readData)
     if (this.isReadOnly == true && readData != null) {
       console.log("asdfasdfasdf")
@@ -176,6 +179,8 @@ export class AddTravelReqeustPage implements OnInit {
     this.basicInfo.tpamount = ""
     this.travelInfo.airlinePrice = ""
 
+    this.toggleItem = 0
+
     // var hotelPrice = this.otherInfo.hotelBookingRequired == "yes" ? this.basicInfo.totalHotelPrice : 0
 
     // var visaPrice = this.otherInfo.viseRequired == "yes" ? this.otherInfo.visaPrice : 0
@@ -196,7 +201,7 @@ export class AddTravelReqeustPage implements OnInit {
       const diffTime = Math.abs(date2.getTime() - date1.getTime());
       const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
-      this.airlineInfo.durationOfVisit = diffDays
+      this.airlineInfo.durationOfVisit = diffDays + 1
       console.log(diffDays);
       this.calcTotalHotelPrice()
     }
@@ -213,7 +218,7 @@ export class AddTravelReqeustPage implements OnInit {
       const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
       console.log(diffDays);
-      this.airlineInfo.durationOfVisit = diffDays
+      this.airlineInfo.durationOfVisit = diffDays + 1
       this.calcTotalHotelPrice()
     }
   }
@@ -390,6 +395,8 @@ export class AddTravelReqeustPage implements OnInit {
         RequestedBy: this.userNameGlobe
       }
 
+      console.log(JSON.stringify(obj))
+
       this.generalService.postRequest(this.generalService.API_POST_USER_FORM, obj).then((res) => {
         console.log(res)
         loading.dismiss()
@@ -553,14 +560,12 @@ export class AddTravelReqeustPage implements OnInit {
       console.log(res)
 
 
-
-
-
+      var bal = this.generalService.userRole == 3 ? (res[0].This_TRF + res[0].Balance) : res[0].Balance
       this.budget = {
-        budget: res[0].Total_Budget,
-        used: res[0].Total_Budget_Used,
-        selected: res[0].This_TRF,
-        balance: this.generalService.userRole == 3 ? (res[0].This_TRF + res[0].Balance) : res[0].Balance,
+        budget: this.numberWithCommas(res[0].Total_Budget),
+        used: this.numberWithCommas(res[0].Total_Budget_Used),
+        selected: this.numberWithCommas(res[0].This_TRF),
+        balance: this.numberWithCommas(bal),
       }
 
     })
@@ -633,6 +638,10 @@ export class AddTravelReqeustPage implements OnInit {
     var date = this.dateFormat(new Date()) + " " + this.timeFormat(new Date())
 
     var trfCheck = (Number.isNaN(parseInt(this.trfNumNew[0].TRFNum)) ? 0 : parseInt(this.trfNumNew[0].TRFNum)) + 1
+
+
+    console.log(this.generalService.API_POST_EXTRA_FORM_DATA + "TRFNum=" + "TR-" + trfCheck + "&Hotel_price_bud=" + hotelPrice + "&Visa_price_bud=" + visaPrice + "&Trans_price_bud=" + transportPrice + "&Airline_price_bud=" + airlinePrice + "&Updated_by=" + this.userNameGlobe + "&Updated_on=" + date)
+    console.log(this.generalService.API_POST_EXTRA_FORM_DATA + "TRFNum=" + "TR-" + trfCheck + "&Hotel_price_bud=" + hotelPrice + "&Visa_price_bud=" + visaPrice + "&Trans_price_bud=" + transportPrice + "&Airline_price_bud=" + airlinePrice + "&Updated_by=" + this.userNameGlobe + "&Updated_on=" + date)
 
     this.generalService.postRequestUrl(this.generalService.API_POST_EXTRA_FORM_DATA + "TRFNum=" + "TR-" + trfCheck + "&Hotel_price_bud=" + hotelPrice + "&Visa_price_bud=" + visaPrice + "&Trans_price_bud=" + transportPrice + "&Airline_price_bud=" + airlinePrice + "&Updated_by=" + this.userNameGlobe + "&Updated_on=" + date).then((res) => {
       this.clearForm()
@@ -768,8 +777,8 @@ export class AddTravelReqeustPage implements OnInit {
         // this.dateFormat(date)
         // this.timeFormat(date)
         this.travelInfo.preferableTimeFrom = this.tConvert(this.timeFormat(date))
-        alert(this.travelInfo.preferableTimeFrom)
-        alert(this.travelInfo.preferableTimeFrom)
+        // alert(this.travelInfo.preferableTimeFrom)
+        // alert(this.travelInfo.preferableTimeFrom)
       },
       err => console.log('Error occurred while getting date: ', err)
     );
@@ -787,8 +796,8 @@ export class AddTravelReqeustPage implements OnInit {
         // this.dateFormat(date)
         // this.timeFormat(date)
         this.travelInfo.preferableTimeToTwo = this.tConvert(this.timeFormat(date))
-        alert(this.travelInfo.preferableTimeToTwo)
-        alert(this.travelInfo.preferableTimeToTwo)
+        // alert(this.travelInfo.preferableTimeToTwo)
+        // alert(this.travelInfo.preferableTimeToTwo)
 
       },
       err => console.log('Error occurred while getting date: ', err)
@@ -801,7 +810,7 @@ export class AddTravelReqeustPage implements OnInit {
 
     if (time.length > 1) { // If time format correct
       time = time.slice(1);  // Remove full string match value
-      time[5] = +time[0] < 12 ? 'AM' : 'PM'; // Set AM/PM
+      // time[5] = +time[0] < 12 ? 'AM' : 'PM'; // Set AM/PM
       time[0] = +time[0] % 12 || 12; // Adjust hours
     }
     return time.join(''); // return adjusted time or original string
@@ -816,6 +825,10 @@ export class AddTravelReqeustPage implements OnInit {
   // openCalenderPrefTimeTo
   // this.travelInfo.preferableTimeToTwo
 
+
+  numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
 
 
 }

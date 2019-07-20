@@ -23,6 +23,17 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
 
+    // this.localStorrage.get("user_detail").then((res) => {
+    //   console.log(res)
+    //   if (res != null) {
+    //     this.router.navigateByUrl('/home');
+    //   }
+    // })
+
+  }
+
+  ionViewWillEnter() {
+
     this.localStorrage.get("user_detail").then((res) => {
       console.log(res)
       if (res != null) {
@@ -36,30 +47,34 @@ export class LoginPage implements OnInit {
     console.log(this.username);
     console.log(this.password);
     console.log(this.checkRemember);
+    if (this.username !== undefined && this.password !== undefined) {
 
-    const loading = await this.loadingCtrl.create({
-      message: 'Loading'
-    });
-    await loading.present();
+      const loading = await this.loadingCtrl.create({
+        message: 'Loading'
+      });
+      await loading.present();
 
-    this.generalService.getRequest(this.generalService.API_LOGIN + "Username=" + this.username + "&Password=" + this.password).then((res) => {
-      console.log(res)
-      loading.dismiss();
+      this.generalService.getRequest(this.generalService.API_LOGIN + "Username=" + this.username + "&Password=" + this.password).then((res) => {
+        console.log(res)
+        loading.dismiss();
 
-      if (res[0].Usr_Name == this.username) {
-        this.localStorrage.set("user_detail", res).then((res) => {
-          this.router.navigateByUrl('/home');
-          this.events.publish('sidemenuEvent', res);
-        })
+        if (res[0].Usr_Name == this.username) {
+          this.localStorrage.set("user_detail", res).then((res) => {
+            this.router.navigateByUrl('/home');
+            this.events.publish('sidemenuEvent', res);
+          })
 
-      } else {
-        this.generalService.presentToast('Invalid username or password')
-      }
-
-
-    })
+        } else {
+          this.generalService.presentToast('Invalid username or password')
+        }
 
 
+      })
+
+    }
+    else {
+      this.generalService.presentToast('Invalid username or password')
+    }
   }
 
 

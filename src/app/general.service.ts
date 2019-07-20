@@ -50,6 +50,13 @@ export class GeneralService {
 
   API_APPROVE_BY_CFO = "Home/PostCFORejection?"
 
+  API_APPROVE_BY_CFO_NEW = "Home/PostCFOApproval?"
+
+
+
+  // http://mytravelrequest.com/Home/PostCFOApproval?UnBlockBy=hammad.hammad&PKID= 1
+
+
   API_APPROVE_BY_HEAD = "Home/PostHeadRejection?"
 
 

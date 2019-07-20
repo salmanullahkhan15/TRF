@@ -4,13 +4,10 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
-  {
-    path: 'add-travel-reqeust/:isReadOnly/:readData/:isApproveBtn',
-    loadChildren: './add-travel-reqeust/add-travel-reqeust.module#AddTravelReqeustPageModule'
-  },
+
   {
     path: 'login',
     loadChildren: './login/login.module#LoginPageModule'
