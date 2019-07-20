@@ -134,13 +134,20 @@ ion-header ion-toolbar {
 
 
 ion-segment {
-    background: #fff;
+    background: transparent;
     border-radius: 150px;
     margin-top: 35%;
     width: 90%;
     margin: auto;
     margin-top: 35%;
     --color-checked: #0d6eb9;
+
+    ion-segment-button {
+        background: #fff;
+        border-radius: 150px;
+        margin-right: 1%;
+    }
+
 }
 
 .no-record {
