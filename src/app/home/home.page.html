@@ -32,9 +32,9 @@
 
 
   <div class="cus-menu">
-    <ion-grid>
-      <ion-row>
-        <!-- <ion-col size="4" (click)="gotoTravelRequestForm()">
+    <!-- <ion-grid>
+      <ion-row> -->
+    <!-- <ion-col size="4" (click)="gotoTravelRequestForm()">
           <div class="col-div">
             <img src="assets/img/travel.png">
             <h4>Travel <br> Requests</h4>
@@ -46,36 +46,44 @@
             <h4>My <br>Requests</h4>
           </div>
         </ion-col> -->
-        <ion-col size="4" *ngIf="checkArrayVal('Approve/Reject Head')" (click)="gotoHeadPending()">
+    <!-- <ion-col size="4" *ngIf="checkArrayVal('Approve/Reject Head')" (click)="gotoHeadPending()">
           <div class="col-div">
             <img src="assets/img/pending.png">
             <h4>Head <br>Pending</h4>
           </div>
         </ion-col>
       </ion-row>
-    </ion-grid>
+    </ion-grid> -->
 
 
     <ion-grid>
       <ion-row>
-        <ion-col size="4" *ngIf="checkArrayVal('Approve/Reject Head')" (click)=" gotoHeadApprove()">
+        <!-- <ion-col size="4" *ngIf="checkArrayVal('Approve/Reject Head')" (click)=" gotoHeadApprove()">
           <div class="col-div">
             <img src="assets/img/approve.png">
             <h4>Head <br>Approved</h4>
           </div>
+        </ion-col> -->
+
+        <ion-col size="4" *ngIf="checkArrayVal('Approve/Reject Head')" (click)="gotoHeadPending()">
+          <div class="col-div">
+            <img src="assets/img/pending.png">
+            <h4>Head <br>Pending</h4>
+          </div>
         </ion-col>
+
         <ion-col size="4" *ngIf="checkArrayVal('Approve/Reject Cfo')" (click)="gotoCfoPending()">
           <div class="col-div">
             <img src="assets/img/pending.png">
             <h4>CFO <br>Pending</h4>
           </div>
         </ion-col>
-        <ion-col size="4" *ngIf="checkArrayVal('Approve/Reject Cfo')" (click)="gotoCfoApprove()">
+        <!-- <ion-col size="4" *ngIf="checkArrayVal('Approve/Reject Cfo')" (click)="gotoCfoApprove()">
           <div class="col-div">
             <img src="assets/img/approve.png">
             <h4>CFO <br>Approved</h4>
           </div>
-        </ion-col>
+        </ion-col> -->
       </ion-row>
     </ion-grid>
 
@@ -91,7 +99,7 @@
 
         <ion-col size="4" (click)="logout()">
           <div class="col-div">
-            <img src="assets/icon/logout.png">
+            <img class="logout" src="assets/icon/logout.png">
             <h4><br>Logout</h4>
           </div>
         </ion-col>
