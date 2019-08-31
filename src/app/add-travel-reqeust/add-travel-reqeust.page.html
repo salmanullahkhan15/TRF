@@ -255,13 +255,13 @@
         </ion-select>
       </ion-item>
 
-      <ion-item>
+      <ion-item (click)="openCalenderPrefDate()">
         <!-- <ion-label>Preferable Date From*</ion-label> -->
         <!-- <ion-datetime [(ngModel)]="travelInfo.preferableDateFrom" displayFormat="MM/DD/YYYY" placeholder="Select"
           [disabled]="isReadOnly" (ionChange)="preferableDateFromChange()">
         </ion-datetime> -->
         <ion-label position="floating">Preferable Date From*</ion-label>
-        <ion-input placeholder="Select Date" disabled="true" [(ngModel)]="travelInfo.preferableDateFrom" (click)="openCalenderPrefDate()"
+        <ion-input placeholder="Select Date" disabled="true" [(ngModel)]="travelInfo.preferableDateFrom" 
           (ngModelChange)="preferableDateFromChange()"></ion-input>
       </ion-item>
       <p class="invalid-txt" *ngIf="(travelInfo.preferableDateFrom=='' || travelInfo.preferableDateFrom==null ||
@@ -277,14 +277,14 @@
       </ion-item>
 
 
-      <ion-item>
+      <ion-item (click)="openCalenderPrefTo()">
         <!-- <ion-label>To*</ion-label>
         <ion-datetime [(ngModel)]="travelInfo.preferableDateToTwo" displayFormat="MM/DD/YYYY" placeholder="Select"
           [disabled]="isReadOnly" (ionChange)="preferableDateToTwoChange()">
         </ion-datetime>
       </ion-item> -->
         <ion-label position="floating">To*</ion-label>
-        <ion-input placeholder="Select Date" disabled="true" [(ngModel)]="travelInfo.preferableDateToTwo" (click)="openCalenderPrefTo()"
+        <ion-input placeholder="Select Date" disabled="true" [(ngModel)]="travelInfo.preferableDateToTwo" 
           (ngModelChange)="preferableDateToTwoChange()"></ion-input>
       </ion-item>
       <p class="invalid-txt" *ngIf="(travelInfo.preferableDateToTwo == '' || travelInfo.preferableDateToTwo == null || travelInfo.preferableDateToTwo == undefined) && !isReadOnly">
@@ -300,13 +300,13 @@
       </ion-item>
 
 
-      <ion-item>
+      <ion-item (click)="openCalenderPrefTime()">
         <!-- <ion-label>Preferable Time From</ion-label>
         <ion-datetime displayFormat="hh:mm" placeholder="Select" [(ngModel)]="travelInfo.preferableTimeFrom" [disabled]="isReadOnly">
         </ion-datetime>
       </ion-item> -->
         <ion-label position="floating">Preferable Time From</ion-label>
-        <ion-input placeholder="Select Time" disabled="true" [(ngModel)]="travelInfo.preferableTimeFrom" (click)="openCalenderPrefTime()"></ion-input>
+        <ion-input placeholder="Select Time" disabled="true" [(ngModel)]="travelInfo.preferableTimeFrom" ></ion-input>
       </ion-item>
 
       <ion-item>
@@ -318,7 +318,7 @@
       </ion-item>
 
 
-      <ion-item>
+      <ion-item (click)="openCalenderPrefTimeTo()">
         <!-- <ion-label>To</ion-label>
         <ion-datetime displayFormat="hh:mm" placeholder="Select" [(ngModel)]="travelInfo.preferableTimeToTwo"
           [disabled]="isReadOnly">
@@ -326,7 +326,7 @@
       </ion-item> -->
 
         <ion-label position="floating">To</ion-label>
-        <ion-input placeholder="Select Time" disabled="true" [(ngModel)]="travelInfo.preferableTimeToTwo" (click)="openCalenderPrefTimeTo()"></ion-input>
+        <ion-input placeholder="Select Time" disabled="true" [(ngModel)]="travelInfo.preferableTimeToTwo" ></ion-input>
       </ion-item>
 
 
@@ -456,7 +456,7 @@
 
       <ion-item>
         <ion-label position="floating">Advance Amount (PKR)</ion-label>
-        <ion-input [(ngModel)]="travelingAdvance.advanceAmount" [disabled]="isReadOnly || travelingAdvance.advanceRequired == 'no'"></ion-input>
+        <ion-input type="tel" [(ngModel)]="travelingAdvance.advanceAmount" [disabled]="isReadOnly || travelingAdvance.advanceRequired == 'no'"></ion-input>
       </ion-item>
     </div>
   </ion-list>

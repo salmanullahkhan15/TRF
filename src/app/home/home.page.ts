@@ -118,7 +118,7 @@ export class HomePage implements OnInit {
     this.userDesignation = data[0].Group_Name
 
 
-
+    console.log(this.userDesignation)
     this.appPages = []
 
 

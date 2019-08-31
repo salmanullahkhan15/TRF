@@ -94,6 +94,11 @@ export class AddTravelReqeustPage implements OnInit {
 
   ngOnInit() {
 
+    console.log(this.budget)
+
+    console.log(this.budget.budget - this.budget.used - this.budget.selected)
+    console.log((this.budget.budget - this.budget.used) - this.budget.selected)
+    console.log((this.budget.budget - this.budget.used) - this.budget.selected)
 
     // console.log(this.generalService.userRole)
     // console.log(this.generalService.userRole)
@@ -194,14 +199,18 @@ export class AddTravelReqeustPage implements OnInit {
   preferableDateFromChange() {
     // console.log(val)
     if (this.travelInfo.preferableDateFrom != "" && this.travelInfo.preferableDateToTwo != "") {
-
+      console.log(this.travelInfo.preferableDateFrom)
+      console.log(this.travelInfo.preferableDateToTwo)
       const date1 = new Date(this.travelInfo.preferableDateFrom);
       const date2 = new Date(this.travelInfo.preferableDateToTwo);
-
+      console.log(date1)
+      console.log(date2)
       const diffTime = Math.abs(date2.getTime() - date1.getTime());
+      console.log(diffTime)
       const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
       this.airlineInfo.durationOfVisit = diffDays + 1
+      console.log("salman");
       console.log(diffDays);
       this.calcTotalHotelPrice()
     }
@@ -210,13 +219,18 @@ export class AddTravelReqeustPage implements OnInit {
 
   preferableDateToTwoChange() {
     if (this.travelInfo.preferableDateFrom != "" && this.travelInfo.preferableDateToTwo != "") {
-
+      console.log(this.travelInfo.preferableDateFrom)
+      console.log(this.travelInfo.preferableDateToTwo)
       const date1 = new Date(this.travelInfo.preferableDateFrom);
       const date2 = new Date(this.travelInfo.preferableDateToTwo);
-
+      console.log(date1)
+      console.log(date2)
       const diffTime = Math.abs(date2.getTime() - date1.getTime());
+      console.log(diffTime)
+
       const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
+      console.log("salman");
       console.log(diffDays);
       this.airlineInfo.durationOfVisit = diffDays + 1
       this.calcTotalHotelPrice()
@@ -424,7 +438,7 @@ export class AddTravelReqeustPage implements OnInit {
     var newDate = new Date(date)
 
     var year = newDate.getFullYear()
-    var month = newDate.getMonth()
+    var month = newDate.getMonth() + 1
     var day = newDate.getDate()
 
     return year + "-" + month + "-" + day
@@ -512,17 +526,21 @@ export class AddTravelReqeustPage implements OnInit {
   approveRejectCfoHead(isApprove) {
 
     // this.presentAlertPrompt()
+    console.log(this.budget)
 
     var status = isApprove == 1 ? "Approved" : "Reject"
 
+    console.log(this.generalService.userRole)
 
+    // if (this.generalService.userRole == 3) {
+    //   var isBudgetNegative = (parseInt(this.budget.budget) - parseInt(this.budget.used)) - (parseInt(this.budget.selected) + parseInt(this.budget.balance)) < 0 ? true : false
+    // } else {
+    //   var isBudgetNegative = (parseInt(this.budget.budget) - parseInt(this.budget.used)) - parseInt(this.budget.selected) 
+    // }
 
-
-    if (this.generalService.userRole == 3) {
-      var isBudgetNegative = (this.budget.budget - this.budget.used) - (this.budget.selected + this.budget.balance) < 0 ? true : false
-    } else {
-      var isBudgetNegative = (this.budget.budget - this.budget.used) - this.budget.selected < 0 ? true : false
-    }
+    var isBudgetNegative = parseInt(this.budget.balance) < 0 ? true : false
+    console.log(this.budget.balance)
+    console.log(isBudgetNegative)
 
     if (isBudgetNegative && isApprove == 1) {
       this.generalService.presentToast("Insufficient balance for selected TRF. Please check budget.")
@@ -709,6 +727,7 @@ export class AddTravelReqeustPage implements OnInit {
   }
 
   openCalender() {
+    console.log("date click")
     this.datePicker.show({
       date: new Date(),
       mode: 'date',

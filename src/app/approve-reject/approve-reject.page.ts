@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Storage } from '@ionic/storage';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Location } from '@angular/common';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-approve-reject',
@@ -54,7 +55,8 @@ export class ApproveRejectPage implements OnInit {
   noRecordAl: boolean = false
   noRecordEd: boolean = false
   constructor(public generalService: GeneralService, private router: Router, private activatedRoute: ActivatedRoute, public localStorage: Storage,
-    public location: Location) { }
+    public location: Location,
+    public loadingCtrl: LoadingController) { }
 
   ngOnInit() {
     // this.userRole = this.activatedRoute.snapshot.paramMap.get('userType')
@@ -151,7 +153,13 @@ export class ApproveRejectPage implements OnInit {
   }
 
 
-  getHeadPendingList(user) {
+  async getHeadPendingList(user) {
+
+    const loading = await this.loadingCtrl.create({
+      message: 'Loading'
+    });
+    await loading.present();
+
     this.generalService.getRequest(this.generalService.API_GET_HEAD_APPROVAL_LIST + user).then((res: any) => {
       console.log(res)
       if (res[0].Message == undefined) {
@@ -167,11 +175,16 @@ export class ApproveRejectPage implements OnInit {
         this.noRecordAl = true;
 
       }
+      loading.dismiss();
     })
   }
 
 
-  getCfoPendingList(user) {
+  async getCfoPendingList(user) {
+    const loading = await this.loadingCtrl.create({
+      message: 'Loading'
+    });
+    await loading.present();
     this.generalService.getRequest(this.generalService.API_GET_CFO_APPROVAL_LIST).then((res: any) => {
       console.log(res[0].Message)
       console.log("salman")
@@ -188,11 +201,15 @@ export class ApproveRejectPage implements OnInit {
       } else {
         this.noRecordAl = true;
       }
-
+      loading.dismiss()
     })
   }
 
-  getCEOPendingList(user) {
+  async getCEOPendingList(user) {
+    const loading = await this.loadingCtrl.create({
+      message: 'Loading'
+    });
+    await loading.present();
     this.generalService.getRequest(this.generalService.API_GET_CEO_APPROVAL_LIST).then((res: any) => {
       console.log(res)
       if (res[0].Message == undefined) {
@@ -209,10 +226,15 @@ export class ApproveRejectPage implements OnInit {
         this.noRecordAl = true;
 
       }
+      loading.dismiss()
     })
   }
 
-  getHeadApproveList(user) {
+  async getHeadApproveList(user) {
+    const loading = await this.loadingCtrl.create({
+      message: 'Loading'
+    });
+    await loading.present();
     this.generalService.getRequest(this.generalService.API_GET_HEAD_REJECT_LIST + user).then((res: any) => {
       console.log(res)
       if (res[0].Message == undefined) {
@@ -228,13 +250,20 @@ export class ApproveRejectPage implements OnInit {
       } else {
         this.noRecordEd = true;
       }
+      loading.dismiss();
     })
   }
 
   // API_GET_HEAD_REJECT_LIST
   // API_GET_CFO_REJECT_LIST
 
-  getCfoApproveList(user) {
+  async getCfoApproveList(user) {
+
+    const loading = await this.loadingCtrl.create({
+      message: 'Loading'
+    });
+    await loading.present();
+
     this.generalService.getRequest(this.generalService.API_GET_CFO_REJECT_LIST).then((res: any) => {
       console.log(res)
       if (res[0].Message == undefined) {
@@ -250,6 +279,7 @@ export class ApproveRejectPage implements OnInit {
       } else {
         this.noRecordEd = true;
       }
+      loading.dismiss();
     })
   }
 
