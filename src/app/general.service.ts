@@ -13,7 +13,7 @@ import { forkJoin, Observable } from 'rxjs';
 export class GeneralService {
   userTypeGlobal = 0
 
-  BASE_URL = "http://mytravelrequest.com/"
+  BASE_URL = "https://mytravelrequest.com/"
 
   API_LOGIN = "Home/CheckLogin?";
   API_USER_DETAIL = "Home/GetEmployeeDetails?Username="

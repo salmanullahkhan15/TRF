@@ -15,7 +15,7 @@ export class HomePage implements OnInit {
   userType: any;
   appPages: any = []
   userName: any;
-  userDesignation: any;
+  userDesignation: boolean = false;
   constructor(private activatedRoute: ActivatedRoute,
     private datePicker: DatePicker,
     public generalService: GeneralService,
@@ -115,7 +115,12 @@ export class HomePage implements OnInit {
   manageSideMenu(data) {
 
     this.userName = data[0].Usr_Name
-    this.userDesignation = data[0].Group_Name
+    
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].Group_Name == 'Employee') {
+        this.userDesignation = true;
+      }
+    }
 
 
     console.log(this.userDesignation)
